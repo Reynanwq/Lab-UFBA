@@ -1,3 +1,6 @@
+DIGITAR NO TERMINAL APENAS AS LINHAS QUE TIVEREM UM "-"
+O QUE ESTIVER ENTRE PARENTESES () SÃO APENAS COMENTÁRIOS
+
 Node.js:
 -  sudo apt install curl
 curl: utilitário do linux que faz requisições de rede)
