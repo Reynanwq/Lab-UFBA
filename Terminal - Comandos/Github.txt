@@ -14,7 +14,7 @@ Clonar Repositório:
 
 Atualizar Repositório:
 - git status
-(Para saber o que estou atualizando)
+ (Para saber o que estou atualizando)
 - git add .
 - git commit -m "mudança-realizada"
 - git push -u origin "sua-branch"
@@ -24,9 +24,9 @@ Alterações que foram feitas manualmente e deseja upar na maquina (README, por 
 
 Criar uma nova Branch para o meu repositório:
 - git branch -vv
-(ver quais ramificações estão disponiveis)
+    (ver quais ramificações estão disponiveis)
 - git cheeckout -b dev
-(criar uma nova branch de nome dev e mudar para ele imediatamente)
+    (criar uma nova branch de nome dev e mudar para ele imediatamente)
 - git push -u origin dev
 
 
