@@ -1,0 +1,26 @@
+Level 01: justify-content: right;
+Level 02: justify-content: center;
+Level 03: justify-content: space-around;
+Level 04: justify-content: space-between;
+Level 05: align-items: flex-end;
+Level 06: justify-content: center;
+          align-items: center;
+Level 07: justify-content: space-around;
+          align-items: flex-end;
+Level 08: flex-direction: row-reverse;
+Level 09: flex-direction: column;
+Level 10:
+Level 11:
+Level 12:
+Level 13:
+Level 14:
+Level 15:
+Level 16:
+Level 17:
+Level 18:
+Level 19:
+Level 20:
+Level 21:
+Level 22:
+Level 23:
+Level 24:
