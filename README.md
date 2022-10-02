@@ -1,6 +1,4 @@
 # UFBA
 
-Laboratórios UFBA
-Repositório ao qual subirei tudo que produzir quando estiver nos Laboratórios da UFBA. Cada pasta está relacionada a um determinado assunto.
+Repositório ao qual subirei tudo que produzir quando estiver nos Laboratórios da UFBA ou qualquer outro assunto que esteja realacionado a Universidade Federal Da Bahia. 
 
-Instalar: Comandos para instalar certos pacotes pelo terminal do linux.
