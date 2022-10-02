@@ -30,4 +30,7 @@ Level 21: align-content: flex-start;
 Level 22: align-content: flex-end;
 Level 23: flex-direction: column-reverse;
           align-content: center;
-Level 24:
+Level 24:flex-direction: column-reverse;
+         flex-wrap: wrap-reverse;
+         justify-content: center;
+         align-content: space-between;
