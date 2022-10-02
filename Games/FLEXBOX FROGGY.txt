@@ -33,4 +33,4 @@ Level 23: flex-direction: column-reverse;
 Level 24: flex-direction: column-reverse;
           flex-wrap: wrap-reverse;
           justify-content: center;
-          align-content: space-etween;
+          align-content: space-between;
