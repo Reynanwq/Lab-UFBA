@@ -18,9 +18,9 @@ Level 12: flex-direction: column-reverse;
 Level 13: flex-direction: row-reverse;
           justify-content: center;
           align-items: flex-end;
-Level 14:
-Level 15:
-Level 16:
+Level 14: order: 2;
+Level 15: order: -3;
+Level 16: align-self: flex-end;
 Level 17:
 Level 18:
 Level 19:
