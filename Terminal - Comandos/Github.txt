@@ -28,3 +28,23 @@ Criar uma nova Branch para o meu repositório:
 - git cheeckout -b dev
 (criar uma nova branch de nome dev e mudar para ele imediatamente)
 - git push -u origin dev
+
+
+Merge:
+- git cheeckout -b "Nome da branch"
+    (Criar uma nova Branch)
+- git cheeckout master
+    (Entrar novamente na Branch master)
+- git merge dev
+    (passo as alterações feitas na branch dev para master)
+- git add .
+- git commit -m "Nomde do Commit"
+- git push -f --set-upstream origin master
+(   utilizada para dá um push para master
+    muito útil quando aparece o seguinte erro:
+    error: failed to push some refs to 'https://github.com/Reynanwq/Lab-UFBA'
+    hint: Updates were rejected because the tip of your current branch is behind
+    hint: its remote counterpart. Integrate the remote changes (e.g.
+    hint: 'git pull ...') before pushing again.
+    hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+)
