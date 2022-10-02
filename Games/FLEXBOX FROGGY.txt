@@ -15,7 +15,9 @@ Level 11: flex-direction: column;
           justify-content: flex-end;
 Level 12: flex-direction: column-reverse;
           justify-content: space-between;
-Level 13:
+Level 13: flex-direction: row-reverse;
+          justify-content: center;
+          align-items: flex-end;
 Level 14:
 Level 15:
 Level 16:
