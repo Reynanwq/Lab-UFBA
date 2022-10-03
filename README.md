@@ -13,3 +13,13 @@
 + Lab-UFBA
 + MATA40
 + Terminal - Comandos
+
+## Technologies Used:
+
+<table>
+  <tr>
+    <td>C</td>
+    <td>HTML</td>
+    <td>CSS</td>
+  </tr>
+</table>
