@@ -1,4 +1,5 @@
-# UFBA
+![ufba-logo](https://user-images.githubusercontent.com/90296084/193683816-e0c3a7e5-80fc-4775-840b-2efaa16fbe45.png)
+<center><img src="![ufba-logo](https://user-images.githubusercontent.com/90296084/193682999-980b9bfd-760c-40ef-a469-26a0420e1bf9.png)"></center>
 
 >Status: Developing ⚠️
 
