@@ -24,72 +24,72 @@ LÓGICA PARA COMPUTAÇÃO:
 (Ler pelo menos 1 vez por dia o Script)
 (SCRIPT)
 13/10: - Exercício 3.43
-13/10: - Definição 3.44
-13/10: - Exemplo 3.45
-13/10: - Exercício 3.46
-13/10: - Definição 3.47
-13/10: - Teorema 3.48
-13/10: - Sistemas Dedutivos 3.3
-13/10: - Axiomatizac¸ao — um calculo no estilo de Hilbert 3.3.1
-13/10: - Definição 3.49
-13/10: - Teorema 3.50 (Corretude do Cálculo)
-13/10: - Observação 3.51 
-13/10: - Teorema 3.52 (Finitude do Cálculo)
-13/10: - Lema 3.53
-13/10: - Definição 3.54
-13/10: - Lema 3.55
-13/10: - Lema 3.56 (Teorema Da Dedução)
-13/10: - Lema 3.57
-13/10: - Lema 3.58 (Teorema de Lindenbaum)
-13/10: - Lema 3.59 (Lema de Zorn)
-13/10: - Lema 3.60
-13/10: - Lema 3.61 (Propriedades de conjuntos maximal consistentes)
-13/10: - Lema 3.62 Todo conjunto consistente e satisfatıvel
-13/10: - Teorema 3.63 (Teorema da Completude) 
-13/10: - Corolario 3.64
-13/10: - Corolario 3.64
-13/10: - 3.3.2 Um calculo de sequentes
-13/10: - Exemplo 3.67
-13/10: - Definição 3.68
-13/10: - Observação 3.69
-13/10: - Definição 3.70
-13/10: - Teorema 3.71
-13/10: - Definição 3.72
-- Teorema 3.73
-- Exemplo 3.74
-- Exemplo 3.75
-- Teorema 3.76
-- Colário 3.77
-- 3.3.3 O Cálculo de Resolução
+14/10: - Definição 3.44
+15/10: - Exemplo 3.45
+16/10: - Exercício 3.46
+17/10: - Definição 3.47
+18/10: - Teorema 3.48
+19/10: - Sistemas Dedutivos 3.3
+20/10: - Axiomatizac¸ao — um calculo no estilo de Hilbert 3.3.1
+21/10: - Definição 3.49
+22/10: - Teorema 3.50 (Corretude do Cálculo)
+23/10: - Observação 3.51 
+24/10: - Teorema 3.52 (Finitude do Cálculo)
+25/10: - Lema 3.53
+26/10: - Definição 3.54
+27/10: - Lema 3.55
+28/10: - Lema 3.56 (Teorema Da Dedução)
+29/10: - Lema 3.57
+30/10: - Lema 3.58 (Teorema de Lindenbaum)
+31/10: - Lema 3.59 (Lema de Zorn)
+01/11: - Lema 3.60
+02/11: - Lema 3.61 (Propriedades de conjuntos maximal consistentes)
+03/11: - Lema 3.62 Todo conjunto consistente e satisfatıvel
+04/11: - Teorema 3.63 (Teorema da Completude) 
+05/11: - Corolario 3.64
+06/11: - Corolario 3.64
+07/11: - 3.3.2 Um calculo de sequentes
+08/11: - Exemplo 3.67
+09/11: - Definição 3.68
+10/11: - Observação 3.69
+11/11: - Definição 3.70
+12/11: - Teorema 3.71
+13/11: - Definição 3.72
+14/11: - Teorema 3.73
+15/11: - Exemplo 3.74
+16/11: - Exemplo 3.75
+17/11: - Teorema 3.76
+18/11: - Colário 3.77
+19/11: - 3.3.3 O Cálculo de Resolução
 
 FCHC45:
 (Pesquisar sobre o tema)
 (Todo domingo: Começar leitura do livro)
 (Livro: LGPD Ninja: Entendendo e implementando a Lei Geral de Proteção de Dados na Empresa)
-- Introdução
-- Capítulo 1: A Lei Geral de Proteção De Dados, e este livro
-- 1.2 A tão temida LGPD
-- 1.3 Perfil dos leitores
-- 1.4 O Framework LGPD Ninja
-- 1.5 Organização do Livro
-- 2.1 O que é a GDPR
-- 2.2 Relação da GPDR com o Brasil
-- 2.3 Cumprimento com a GDPR
-- 3.1 Sequência Histórica
-- Capítulo 4: Outras Leis - Analisando a relação da LGPD com outras leis anteriore
-- 4.1 Relativas ao Setor Financeiro
-- 4.2 Relativas à Saúde
-- 4.3 Relativas diretamente ao Indivíduo
-- 4.4 Relativas ao Estado
-- 4.5 Relativas as Comunicações
-- 4.7 Relativas a Internet ou a dispositivos Eletrônicos
-- Capítulo 5: Conceitos - Conceitos básicos para uma melhor compreensão da lei
-- 5.1 Pessoa Natural
-- 5.2 Pessoa Jurídica
-- 5.3 Compliance
-- 5.4 Dado Pessoal
-- 5.5 Dado Pessoal Sensível
-- 5.6 Dado Anonimizado
+13/10: - Introdução
+14/10: - Capítulo 1: A Lei Geral de Proteção De Dados, e este livro
+15/10: - 1.2 A tão temida LGPD
+16/10: - 1.3 Perfil dos leitores
+17/10: - 1.4 O Framework LGPD Ninja
+18/10: - 1.5 Organização do Livro
+19/10: - 2.1 O que é a GDPR
+20/10: - 2.2 Relação da GPDR com o Brasil
+21/10: - 2.3 Cumprimento com a GDPR
+22/10: - 3.1 Sequência Histórica
+23/10: - Capítulo 4: Outras Leis - Analisando a relação da LGPD com outras leis anteriore
+24/10: - 4.1 Relativas ao Setor Financeiro
+25/10: - 4.2 Relativas à Saúde
+26/10: - 4.3 Relativas diretamente ao Indivíduo
+27/10: - 4.4 Relativas ao Estado
+28/10: - 4.5 Relativas as Comunicações
+29/10: - 4.7 Relativas a Internet ou a dispositivos Eletrônicos
+30/10: - Capítulo 5: Conceitos - Conceitos básicos para uma melhor compreensão da lei
+31/10: - 5.1 Pessoa Natural
+01/11: - 5.2 Pessoa Jurídica
+02/11: - 5.3 Compliance
+03/11: - 5.4 Dado Pessoal
+04/11: - 5.5 Dado Pessoal Sensível
+05/11: - 5.6 Dado Anonimizado
 
 ESTRUTURA DE DADOS:
 (Codar em C pelo menos uma vez por dia - deixar separado)
