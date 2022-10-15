@@ -78,7 +78,7 @@ FCHC45:
 15/10: - 4.7 Relativas a Internet ou a dispositivos Eletrônicos
 15/10: - Capítulo 5: Conceitos - Conceitos básicos para uma melhor compreensão da lei
 15/10: - 5.1 Pessoa Natural
-15/10: - 5.2 Pessoa Jurídica
+15/10: - 5.2 Pessoa Jurídica 
 15/10: - 5.3 Compliance
 15/10: - 5.4 Dado Pessoal
 15/10: - 5.5 Dado Pessoal Sensível
@@ -88,7 +88,7 @@ ESTRUTURA DE DADOS:
 (Codar em C pelo menos uma vez por dia - deixar separado)
 
 13/10: - Curso de Programação C | Como percorrer uma matriz dinâmica com aritmética de ponteiros? | Aula 204 (OK)
-14/10: - Curso de Programação C | Estruturas de dados dinâmicas - Pilhas, Filas, Listas, Árvores | aula 223
+14/10: - Curso de Programação C | Estruturas de dados dinâmicas - Pilhas, Filas, Listas, Árvores | aula 223  (OK)
 15/10: - Curso de Programação C | Operação push. Como empilhar um dado na estrutura de dados pilha | aula 224
 16/10: - Curso de Programação C | Operação pop. Como desempilhar um nó na estrutura de dados pilha | aula 225
 17/10: - Curso de Programação C | Imprimindo e testando nossa estrutura de dados dinâmica PILHA | aula 226
