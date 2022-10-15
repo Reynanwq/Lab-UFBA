@@ -71,27 +71,27 @@ FCHC45:
 15/10: - 3.1 Sequência Histórica   (OK)
 15/10: - Capítulo 4: Outras Leis - Analisando a relação da LGPD com outras leis anteriore (OK)
 15/10: - 4.1 Relativas ao Setor Financeiro (OK)
-15/10: - 4.2 Relativas à Saúde
-15/10: - 4.3 Relativas diretamente ao Indivíduo
-15/10: - 4.4 Relativas ao Estado
-15/10: - 4.5 Relativas as Comunicações
-15/10: - 4.7 Relativas a Internet ou a dispositivos Eletrônicos
-15/10: - Capítulo 5: Conceitos - Conceitos básicos para uma melhor compreensão da lei
-15/10: - 5.1 Pessoa Natural
-15/10: - 5.2 Pessoa Jurídica 
-15/10: - 5.3 Compliance
-15/10: - 5.4 Dado Pessoal
-15/10: - 5.5 Dado Pessoal Sensível
-15/10: - 5.6 Dado Anonimizado
+15/10: - 4.2 Relativas à Saúde  (OK)
+15/10: - 4.3 Relativas diretamente ao Indivíduo   (OK)
+15/10: - 4.4 Relativas ao Estado      (OK)
+15/10: - 4.5 Relativas as Comunicações  (OK)
+15/10: - 4.7 Relativas a Internet ou a dispositivos Eletrônicos   (OK)
+15/10: - Capítulo 5: Conceitos - Conceitos básicos para uma melhor compreensão da lei (OK)
+15/10: - 5.1 Pessoa Natural  (OK)
+15/10: - 5.2 Pessoa Jurídica (OK)
+15/10: - 5.3 Compliance  (OK)
+15/10: - 5.4 Dado Pessoal (OK)
+15/10: - 5.5 Dado Pessoal Sensível  (OK)
+15/10: - 5.6 Dado Anonimizado (OK)
 
 ESTRUTURA DE DADOS:
 (Codar em C pelo menos uma vez por dia - deixar separado)
 
 13/10: - Curso de Programação C | Como percorrer uma matriz dinâmica com aritmética de ponteiros? | Aula 204 (OK)
 14/10: - Curso de Programação C | Estruturas de dados dinâmicas - Pilhas, Filas, Listas, Árvores | aula 223  (OK)
-15/10: - Curso de Programação C | Operação push. Como empilhar um dado na estrutura de dados pilha | aula 224
-16/10: - Curso de Programação C | Operação pop. Como desempilhar um nó na estrutura de dados pilha | aula 225
-17/10: - Curso de Programação C | Imprimindo e testando nossa estrutura de dados dinâmica PILHA | aula 226
+15/10: - Curso de Programação C | Operação push. Como empilhar um dado na estrutura de dados pilha | aula 224 (OK)
+15/10: - Curso de Programação C | Operação pop. Como desempilhar um nó na estrutura de dados pilha | aula 225 (OK)
+15/10: - Curso de Programação C | Imprimindo e testando nossa estrutura de dados dinâmica PILHA | aula 226  (OK)
 18/10: - Curso de Programação C | Segunda versão para a estrutura de dados dinâmica do tipo PI (OK)LHA | aula 227
 19/10: - Curso de Programação C | TAD - Tipo Abstrato de Dado | aula 228
 20/10: - Curso de Programação C | Como simular a recursão com uma estrutura de dados PILHA? | aula 229
