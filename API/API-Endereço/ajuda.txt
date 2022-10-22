@@ -1,0 +1,3 @@
+BootsTrap: https://getbootstrap.com
+
+unDraw: website que contém algumas imagens que podem ser utilizadas
