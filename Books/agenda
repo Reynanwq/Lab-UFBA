@@ -23,14 +23,14 @@ ALGEBRA LINEAR:
 21/10: - GRINGS - Extraindo a base geradora de um subespaço. Exercício 1 - ( Aula 32 ) (OK)
 22/10: - GRINGS - Extraindo a base geradora de um subespaço. Exercício 2 - ( Aula 33 ) (OK)
 23/10: - GRINGS - Como extrair uma base geradora de um conjunto de vetores - ( Aula 36 ) (OK)
-24/10: - GRINGS - Subespaço gerado a partir de um conjunto de vetores - ( Aula 37 ) (OK)
-25/10: - GRINGS - Mudança de base geradora - ( Aula 38 )  (OK)
-26/10: - GRINGS - Mudança de base sem uso de matriz inversa - ( Aula 39 )  (OK)
-27/10: - GRINGS - Mudança de base . Vetor com 3 componentes - ( Aula 40 )  (OK)
-28/10: -
-29/10: -
-30/10: -
-31/10: -
+23/10: - GRINGS - Subespaço gerado a partir de um conjunto de vetores - ( Aula 37 ) (OK)
+23/10: - GRINGS - Mudança de base geradora - ( Aula 38 )  (OK)
+23/10: - GRINGS - Mudança de base sem uso de matriz inversa - ( Aula 39 )  (OK)
+23/10: - GRINGS - Mudança de base . Vetor com 3 componentes - ( Aula 40 )  (OK)
+24/10: -
+25/10: -
+26/10: -
+27/10: -
 
 LÓGICA PARA COMPUTAÇÃO:
 (Prova: (19 dias))
@@ -138,9 +138,9 @@ ESTRUTURA DE DADOS:
 
 
 WEB:
-17/10: - como consumir uma api em 20 minutos em javaScript puro
-18/10: - Como consumir de uma API usando a Fetch API! - Level Up #05
-19/10: - Como consumir uma API com javascript | CEP da viaCep #01
+17/10: - como consumir uma api em 20 minutos em javaScript puro  (OK)
+18/10: - Como consumir de uma API usando a Fetch API! - Level Up #05 (OK)
+19/10: - Como consumir uma API com javascript | CEP da viaCep #01 (OK)
 20/10: -
 21/10: -
 22/10: -
