@@ -19,3 +19,4 @@ React-TypeScriptc - Projeto em Vite:
 (no terminal do vscode)
 - npm install
 (instalar dependencias)
+- npm i typescript -D
