@@ -20,3 +20,5 @@ React-TypeScriptc - Projeto em Vite:
 - npm install
 (instalar dependencias)
 - npm i typescript -D
+- npx tsc --init
+(criar arquivo tsc config .json)
