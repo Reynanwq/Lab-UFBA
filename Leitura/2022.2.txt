@@ -1,4 +1,4 @@
-1111ALGEBRA LINEAR:
+ALGEBRA LINEAR:
 (Prova: 08/11 (36 dias))
 
 13/10: - Grings - Álgebra Linear - Combinação Linear de Vetores - Aula 10 (OK)
