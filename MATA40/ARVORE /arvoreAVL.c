@@ -34,5 +34,32 @@ Node* newNode(int x){
   return novo;
 }
 
+DESCOBRIR A ALTURA DE CADA NÓ
+PARA FAZER ISSO, PRECISAMOS DESCOBRIR A ALTURA DA SUBARVORE DA ESQUERDA E DA DIREITA
+DADA A ALTURA DE DUAS SUBARVORES, RETORNO O MAIOR VALOR
+
+short maior(short a, short b){
+  return (a > b)? a: b;
+}
+
+ALTURA DE UM NÓ:
+retorna a altura de um NÓ ou -1 caso ele seja null.
+
+short alturaDoNode(Node *node){
+  if(node == NULL){
+    return -1;
+  }else{
+    return(node->altura);
+  }
+}
+
+FATOR DE BALANCEAMENTO:
+
+
+
+
+
+
+
 
 */
