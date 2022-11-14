@@ -54,12 +54,16 @@ short alturaDoNode(Node *node){
 }
 
 FATOR DE BALANCEAMENTO:
+pode ser, no máximo 1 ou -1.
+fator de balanceamento negativo: DIREITA
+fator de balanceamento positivo: ESQUERDA
 
-
-
-
-
-
-
+short fatorDeBalanceamento(Node *node){
+  if(node){
+    return (alturaDoNode(node->left)) - (alturaDoNode(node->direita));
+  }else{
+    return 0;
+  }
+}
 
 */
