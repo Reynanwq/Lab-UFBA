@@ -90,6 +90,40 @@ Node *rotacaoEsquerda(Node *r){
   return y;
 }
 
+FUNCAO PARA ROTAÇÃO A DIREITA
+precisamos fazer a rotação por causa do fator de balanceamento
+
+    50          35
+   35         20  50
+  20
+  
+35 SERÁ A RAIZ DA ARVORE E O 50 O FILHO DO 35
+
+r = 50 e y = 35
+
+Node *rotacaoDireita(Node *r){
+  Node *y, *f;
+  y = r->left;
+  f = y->right;
+  y->right = r;
+  r->left = f;
+  r->altura = maior(alturaDoNode(r->left), alturaDoNode(r->right)) + 1;
+  y->altura = maior(alturaDoNode(y->left), alturaDoNode(y->right)) + 1;
+  
+  return y;
+  
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 */
