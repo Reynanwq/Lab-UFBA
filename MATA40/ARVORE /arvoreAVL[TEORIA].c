@@ -206,6 +206,15 @@ Node *remocao(Node *raiz, int chave){
         //remover nós que possem 2 filhos
         if(raiz->left != NULL && raiz->right != NULL){
           Node *aux = raiz->left;
+          while(aux->right != NULL){
+            aux = aux->right;
+          }
+          raiz->valor = aux->valor;
+          aux->valor = chave;
+          printf("\nElemento trocado: %d !\n", chave);
+          return raiz;
+        }else{
+          
         }
       }
     }
