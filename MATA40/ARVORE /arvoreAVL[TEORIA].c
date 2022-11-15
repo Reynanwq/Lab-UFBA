@@ -142,4 +142,33 @@ Node* rotacaoEsquerdaDireita(Node *r){
   return rotacaoRight(r);
 }
 
+
+INSERÇÃO
+altera a altura da arvore || Nao aceitar repetição de elementos
+
+Node* inserir(Node *raiz, int x){
+  if(raiz == NULL){
+    return newNode(x);
+  }else{
+    if(x < raiz->valor){
+      raiz->left = inserir(raiz->left, x);
+    }else if(x > raiz->valor){
+      raiz->right = inserir(raiz->right, x);
+    }else{
+      printf("\nInsercao nao realizada\n");
+    }
+  }
+  raiz->altura = maior(alturaDoNode(raiz->left), alturaDoNode(raiz->right)) +1);
+  raiz = balancear(raiz);
+  return raiz;
+}
+
+
+
+
+
+
+
+
+
 */
