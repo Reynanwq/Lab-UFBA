@@ -118,13 +118,28 @@ ROTACOES DUPLAS:
 
 ROTACAO DIREITRA ESQUERDA: juncao de uma rotacao a direita e a esquerda
 
+100           100              150
+  200           150          100  200
+150               200
 
 
+Node* rotacaoDireitaEsquerda(Node *r){
+  r->right = rotacaoRight(r->right);
+  return rotacaoLeft(r);
+}
 
 
+ROTACOES DUPLAS:
 
+ROTACAO ESQUERDA DIREITA: juncao de uma rotacao a esquerda e a direita
 
+  200       200      150
+100       150     100   200
+  150    100
 
-
+Node* rotacaoEsquerdaDireita(Node *r){
+  r->left = rotacaoLeft(r->left);
+  return rotacaoRight(r);
+}
 
 */
