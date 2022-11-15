@@ -163,6 +163,34 @@ Node* inserir(Node *raiz, int x){
   return raiz;
 }
 
+BALANCEAR
+determinar qual rotação iremos realizar
+caso a raiz esteja desbalanceada, ela seŕa balanceada.
+
+Node* balancear(No *raiz){
+  short fb = fatorDeBalanceamento(raiz);
+  
+  //rotacao a esquerda
+    if(fb < -1 && fatorDeBalanceamento(raiz->right) <= 0){
+      raiz = rotacaoEsquerda(raiz);
+    }
+  //rotacao a direito
+    else if(fb > 1 && fatorDeBalanceamento(raiz->left) >= 0){
+      raiz = rotacaoDireita(raiz);
+    }
+  //rotacao dupla esquerda
+    else if(fb > 1 && fatorDeBalanceamento(raiz->left) < 0{
+      raiz = rotacaoEsquerdaDireira(raiz);
+    }
+  //rotacao dupla direita
+  else if(fb < -1 && fatorDeBalanceamento(raiz->right) > 0{
+      raiz = rotacaoDireiraEsquerda(raiz);
+  }
+  
+  return raiz;
+}
+
+
 
 
 
