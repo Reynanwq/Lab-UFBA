@@ -191,6 +191,28 @@ Node* balancear(No *raiz){
 }
 
 
+Node *remocao(Node *raiz, int chave){
+  if(raiz == NULL){
+    pŕintf("\nValor nao encontrado!\n");
+    return NULL;
+  } else{ //procurar um nó para remover
+    if(raiz->valor == chave){
+      //remover os nós que nao tem filho
+      if(){
+        
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 
