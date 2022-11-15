@@ -66,4 +66,30 @@ short fatorDeBalanceamento(Node *node){
   }
 }
 
+ROTAÇÃO À ESQUERDA:
+
+10                 25
+  25             10  32
+    32
+    
+r = 10;
+y = 25;
+
+FUNCAO PARA ROTAÇÃO A ESQUERDA
+
+Node *rotacaoEsquerda(Node *r){
+  Node *y, *f;
+  y = r->right;
+  f = y->left;
+  y->left = r;
+  r->right = f;
+  
+  r->altura = maior(alturaDoNode(r->left), alturaDoNode(r->right)) + 1;
+  y->altura = maior(alturaDoNode(y->left), alturaDoNode(y->right)) + 1;
+  
+  return y;
+}
+
+
+
 */
