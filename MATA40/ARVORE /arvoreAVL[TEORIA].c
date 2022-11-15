@@ -114,8 +114,9 @@ Node *rotacaoDireita(Node *r){
   
 }
 
+ROTACOES DUPLAS:
 
-
+ROTACAO DIREITRA ESQUERDA: juncao de uma rotacao a direita e a esquerda
 
 
 
