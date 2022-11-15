@@ -198,8 +198,15 @@ Node *remocao(Node *raiz, int chave){
   } else{ //procurar um nó para remover
     if(raiz->valor == chave){
       //remover os nós que nao tem filho
-      if(){
-        
+      if(raiz->left == NULL && raiz->right == NULL){
+        free(raiz);
+        printf("Elemento folha removido: %d!\n", chave);
+        return NULL;
+      }else{
+        //remover nós que possem 2 filhos
+        if(raiz->left != NULL && raiz->right != NULL){
+          Node *aux = raiz->left;
+        }
       }
     }
   }
