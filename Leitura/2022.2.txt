@@ -146,11 +146,9 @@ WEB:
 17/10: - como consumir uma api em 20 minutos em javaScript puro  (OK)
 18/10: - Como consumir de uma API usando a Fetch API! - Level Up #05 (OK)
 19/10: - Como consumir uma API com javascript | CEP da viaCep #01 (OK)
-20/10: -
-21/10: -
-22/10: -
-23/10: -
-24/10: -
+
+UDEMY:
+??/11: - 44. Exercício (unindo tudo aprendido até aqui e mais)
 
 
 
