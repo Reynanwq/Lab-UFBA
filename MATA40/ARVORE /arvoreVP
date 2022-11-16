@@ -5,6 +5,23 @@ altura negra: quantidade de link's negros que nós utilizamos para passar um NÓ
 NÃO PODE TER 2 LINK'S rubros em seguida
 
 VANTAGENS: todos os algoritmos usados em arvores de busca também podem ser usados em árvores rubro-negras
+dizer se o link para esquerda ou o link para a direita é vermelho ou preto
+a chegada do link vermelho será o NÓ vermelho.
+
+TAD
+
+typedef enmu{
+  C_RED,
+  C_BLACK;
+}ARN_COR;
+
+typedef struct ARN{
+  struct ARN *left;
+  struct ARN *right;
+  int valor;
+  int chave;
+  ARN_COR cor;
+}ARN;
 
 
 
