@@ -226,8 +226,17 @@ Node *remocao(Node *raiz, int chave){
             return aux;
         }
       }
-    } else
+    } else{
+        if(chave < raiz->valor){
+          raiz->left = remover(raiz->left, chave);
+        }else{
+           raiz->right = remover(raiz->right, chave);
+      } 
   }
+  
+  raiz->altura = maior(alturaDoNode(raiz->left), alturaDoNode(raiz->right)) + 1;
+  raiz = balancear(raiz);
+  return raiz;
 }
 
 
