@@ -237,9 +237,37 @@ Node *remocao(Node *raiz, int chave){
   raiz->altura = maior(alturaDoNode(raiz->left), alturaDoNode(raiz->right)) + 1;
   raiz = balancear(raiz);
   return raiz;
+  
+  IMPRIMIR UMA ARVRE AVL
+  
+  void imprimir(Node *raiz, int nivel){
+    int i;
+    if(raiz){
+      imprimir(raiz->right, nivel + 1);
+      printf("\n\n");
+      for(i = 0; i < nivel; i++){
+        printf("\t");
+      }
+      printf("%d", raiz->valor);
+      imprimir(raiz->left, nivel + 1);
+    }
+  }
 }
 
+FUNCAO MAIN
 
+int main(){
+  No *raiz = NULL;
+  
+  do{
+    printf("\n\n\t0 - Sair\n\t1- Inserir\n\t2- Remover\n\t3 - Imprimir\n\n");
+    scanf("%d", &opcao);
+  
+  
+  
+  
+  }
+}
 
 
 
