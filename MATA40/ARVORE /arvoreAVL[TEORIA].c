@@ -214,10 +214,19 @@ Node *remocao(Node *raiz, int chave){
           printf("\nElemento trocado: %d !\n", chave);
           return raiz;
         }else{
-          
+          //remover nós que possuem apenas 1 filho
+          No* aux;
+            if(raiz->left != NULL){
+              aux = raiz->left;
+            } else{
+              aux = raiz->right;
+            }
+            free(raiz);
+            printf("\nElemento com 1 filho removido: %d\n", chave);
+            return aux;
         }
       }
-    }
+    } else
   }
 }
 
