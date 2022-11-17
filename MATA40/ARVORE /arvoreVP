@@ -8,6 +8,16 @@ VANTAGENS: todos os algoritmos usados em arvores de busca também podem ser usad
 dizer se o link para esquerda ou o link para a direita é vermelho ou preto
 a chegada do link vermelho será o NÓ vermelho.
 
+Todo nó da arvore é "vermelho" ou "preto".
+A raiz é sempre preta.
+Todo Nó folha NULL é "preto".
+se um NÓ é "vermelho", então os seus filhos são "pretos".
+
+AVL vs VP
+
+AVL: mais rápida no processo de busca
+VP: mais rápida no processo de remoção e inserção
+
 TAD
 
 typedef enmu{
@@ -23,6 +33,9 @@ typedef struct ARN{
   ARN_COR cor;
 }ARN;
 
+void ARN_inserir(ARN **A, int chave, int valor){
+  VF
+}
 
 
 
