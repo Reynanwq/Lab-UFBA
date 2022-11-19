@@ -33,10 +33,56 @@ typedef struct ARN{
   ARN_COR cor;
 }ARN;
 
-void ARN_inserir(ARN **A, int chave, int valor){
-  VF
+static ARN *ARN_Criar(int chave, int valor){
+  ARN* novo;
+  novo = malloc(sizeof(ARN));
+  novo->chave = chave;
+  novo->valor = valor;
+  novo->cor = C_VERMELHO;
+  novo->left = NULL;
+  novo->right = NULL;
+  
+  return novo;
 }
 
+static inline int eh_vermelho(ARN *A){
+  if(A == NULL){
+    return 0;
+   } return A->cor == C_VERMELHO ? 1 : 0;
+}
+
+
+
+
+void ARN_inserir_R(ARN **A, int chave, int valor){
+  if(*A == NULL){
+    *A = ARN_Criar(chave, valor);
+    return;
+  }
+  if(chave < (*A)->chave){
+    ARN_Inserir_R(&(*A)->left, chave, valor);
+  }
+  if(chave > (*A)->chave){
+   ARN_Inserir_R(&(*A)->right, chave, valor);
+  }
+  
+  if(eh_vermelho((*A)->right && !eh_vermelho((*A)->left)){
+    rot_left(A);
+  }
+  
+  if(eh_vermelho((*A)->left && eh_vermelho((*A)->left->left)){
+    rot_right(A);
+  }
+  
+  if(eh_vermelho((*A)->left && eh_vermelho((*A)->right)){
+    inverter_cores(*A);
+  }
+  
+} 
+
+void ARN_inserir(ARN **A, int chave, int valor){
+  ARN_inserir_R(A, chave, valor);
+}
 
 
 
