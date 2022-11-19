@@ -51,6 +51,11 @@ static inline int eh_vermelho(ARN *A){
    } return A->cor == C_VERMELHO ? 1 : 0;
 }
 
+static void inverter_cores(ARN *A){
+  A->cor = C_VERMELHO;
+  A->left->cor = C_PRETO;
+  A->right->cor = C_PRETO;
+}
 
 
 
