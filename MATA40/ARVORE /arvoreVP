@@ -57,6 +57,28 @@ static void inverter_cores(ARN *A){
   A->right->cor = C_PRETO;
 }
 
+static void rot_left(ARN **A){
+  ARN *h, *x;
+  h = *A;
+  x = h->right;
+  h->right = x->left;
+  x->left = h;
+  x ->cor = h->cor;
+  h->cor = C_VERMELHO;
+  *A = x;
+}
+
+static void rot_right(ARN **A){
+  ARN *h, *x;
+  h = *A;
+  x = h->left;
+  h->letf = x->right;
+  x->right = h;
+  x ->cor = h->cor;
+  h->cor = C_VERMELHO;
+  *A = x;
+}
+
 
 
 void ARN_inserir_R(ARN **A, int chave, int valor){
