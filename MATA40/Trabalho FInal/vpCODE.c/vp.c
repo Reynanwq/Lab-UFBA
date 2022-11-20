@@ -1,44 +1,52 @@
-// Implementing Red-Black Tree in C
-
 #include <stdio.h>
 #include <stdlib.h>
 
+//COR DO NÓ
 enum nodeColor {
   RED,
   BLACK
 };
+
 
 struct rbNode {
   int data, color;
   struct rbNode *link[2];
 };
 
-struct rbNode *root = NULL;
+struct rbNode *root = NULL; 
 
 // Create a red-black tree
 struct rbNode *createNode(int data) {
-  struct rbNode *newnode;
-  newnode = (struct rbNode *)malloc(sizeof(struct rbNode));
+  struct rbNode *newnode = (struct rbNode *)malloc(sizeof(struct rbNode));
   newnode->data = data;
-  newnode->color = RED;
+  newnode->color = RED; //já entra como vermelho
   newnode->link[0] = newnode->link[1] = NULL;
   return newnode;
 }
 
-// Insert an node
-void insertion(int data) {
-  struct rbNode *stack[98], *ptr, *newnode, *xPtr, *yPtr;
-  int dir[98], ht = 0, index;
+
+
+// Inserir em um Nó
+void insertion(int data) {      //10 -> 20
+  struct rbNode *stack[98];
+  struct rbNode *ptr;
+  struct rbNode *newnode;
+  struct rbNode *xPtr;
+  struct rbNode *yPtr;
+  int dir[98];
+  int ht = 0;
+  int index;
   ptr = root;
-  if (!root) {
+  //se a raiz nao existir, então criar uma raiz
+  if (root == NULL) {
     root = createNode(data);
     return;
   }
 
   stack[ht] = root;
   dir[ht++] = 0;
-  while (ptr != NULL) {
-    if (ptr->data == data) {
+  while (ptr != NULL) { //20
+    if (ptr->data == data) { //Se o valor que eu immplementar for igual
       printf("Duplicates Not Allowed!!\n");
       return;
     }
@@ -112,12 +120,17 @@ void insertion(int data) {
 
 // Delete a node
 void deletion(int data) {
-  struct rbNode *stack[98], *ptr, *xPtr, *yPtr;
-  struct rbNode *pPtr, *qPtr, *rPtr;
+  struct rbNode *stack[98];
+  struct rbNode *ptr; 
+  struct rbNode *xPtr;
+  struct rbNode *yPtr;
+  struct rbNode *pPtr;
+  struct rbNode *qPtr;
+  struct rbNode *rPtr;
   int dir[98], ht = 0, diff, i;
   enum nodeColor color;
 
-  if (!root) {
+  if (root == NULL) {
     printf("Tree not available\n");
     return;
   }
@@ -321,13 +334,13 @@ void inorderTraversal(struct rbNode *node, int level) {
 
 // Driver code
 int main() {
-  int ch, data;
+  int option, data;
   while (1) {
     printf("1. Insertion\t2. Deletion\n");
     printf("3. Traverse\t4. Exit");
     printf("\nEnter your choice:");
-    scanf("%d", &ch);
-    switch (ch) {
+    scanf("%d", &option);
+    switch (option) {
       case 1:
         printf("Enter the element to insert:");
         scanf("%d", &data);
