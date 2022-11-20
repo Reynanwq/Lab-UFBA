@@ -3,189 +3,189 @@
 
 
 typedef struct node{
-  int valor;
+  int value;
   struct node *left;
   struct node *right;
-  short altura; //short ocupa apenas 2 bytes de memória
+  short height; 
 }Node;
 
 
 Node* newNode(int x){
   Node *new = malloc(sizeof(Node));
   if(new){
-  new->valor = x;
+  new->value = x;
   new->left = NULL;
   new->right = NULL;
-  new->altura = 0;
+  new->height = 0;
     }else{
   printf("\nERRO ao alocar um novo NO!\n");
   return new;
     }
 }
 
-short maior(short a, short b){
+short max(short a, short b){
   return (a > b)? a: b;
 }
 
 
-short alturaDoNode(Node *node){
+short nodeHeight(Node *node){
   if(node == NULL){
     return -1;
   }else{
-    return(node->altura);
+    return(node->height);
   }
-}
+} 
 
 
 short fatorDeBalanceamento(Node *node){
   if(node){
-    return (alturaDoNode(node->left)) - (alturaDoNode(node->right));
+    return (nodeHeight(node->left)) - (nodeHeight(node->right));
   }else{
     return 0;
   }
 }
 
-Node *rotacaoEsquerda(Node *r){
+Node *leftRotate(Node *r){
   Node *y, *f;
   y = r->right;
   f = y->left;
   y->left = r;
   r->right = f;
   
-  r->altura = maior(alturaDoNode(r->left), alturaDoNode(r->right)) + 1;
-  y->altura = maior(alturaDoNode(y->left), alturaDoNode(y->right)) + 1;
+  r->height = max(nodeHeight(r->left), nodeHeight(r->right)) + 1;
+  y->height = max(nodeHeight(y->left), nodeHeight(y->right)) + 1;
   
   return y;
 }
 
-Node *rotacaoDireita(Node *r){
+Node *rightRotate(Node *r){
   Node *y, *f;
   y = r->left;
   f = y->right;
   y->right = r;
   r->left = f;
-  r->altura = maior(alturaDoNode(r->left), alturaDoNode(r->right)) + 1;
-  y->altura = maior(alturaDoNode(y->left), alturaDoNode(y->right)) + 1;
+  r->height = max(nodeHeight(r->left), nodeHeight(r->right)) + 1;
+  y->height = max(nodeHeight(y->left), nodeHeight(y->right)) + 1;
   
   return y; 
 }
 
 Node* rotacaoDireitaEsquerda(Node *r){
-  r->right = rotacaoDireita(r->right);
-  return rotacaoEsquerda(r);
+  r->right = rightRotate(r->right);
+  return leftRotate(r);
 }
 
 Node* rotacaoEsquerdaDireita(Node *r){
-  r->left = rotacaoEsquerda(r->left);
-  return rotacaoDireita(r);
+  r->left = leftRotate(r->left);
+  return rightRotate(r);
 }
 
-Node* balancear(Node *raiz){
-  short fb = fatorDeBalanceamento(raiz);
+Node* balancear(Node *root){
+  short fb = fatorDeBalanceamento(root);
   
   //rotacao a esquerda
-    if(fb < -1 && fatorDeBalanceamento(raiz->right) <= 0){
-      raiz = rotacaoEsquerda(raiz);
+    if(fb < -1 && fatorDeBalanceamento(root->right) <= 0){
+      root = leftRotate(root);
     }
   //rotacao a direito
-    else if(fb > 1 && fatorDeBalanceamento(raiz->left) >= 0){
-      raiz = rotacaoDireita(raiz);
+    else if(fb > 1 && fatorDeBalanceamento(root->left) >= 0){
+      root = rightRotate(root);
     }
   //rotacao dupla esquerda
-    else if(fb > 1 && fatorDeBalanceamento(raiz->left) < 0){
-      raiz = rotacaoEsquerdaDireita(raiz);
+    else if(fb > 1 && fatorDeBalanceamento(root->left) < 0){
+      root = rotacaoEsquerdaDireita(root);
     }
   //rotacao dupla direita
-  else if(fb < -1 && fatorDeBalanceamento(raiz->right) > 0){
-      raiz = rotacaoDireitaEsquerda(raiz);
+  else if(fb < -1 && fatorDeBalanceamento(root->right) > 0){
+      root = rotacaoDireitaEsquerda(root);
   }
   
-  return raiz;
+  return root;
 }
 
-Node* inserir(Node *raiz, int x){
-  if(raiz == NULL){
+Node* insert(Node *root, int x){
+  if(root == NULL){
     return newNode(x);
   }else{
-    if(x < raiz->valor){
-      raiz->left = inserir(raiz->left, x);
-    }else if(x > raiz->valor){
-      raiz->right = inserir(raiz->right, x);
+    if(x < root->value){
+      root->left = insert(root->left, x);
+    }else if(x > root->value){
+      root->right = insert(root->right, x);
     }else{
       printf("\nInsercao nao realizada\n");
     }
   }
-  raiz->altura = maior(alturaDoNode(raiz->left), alturaDoNode(raiz->right) +1);
-  raiz = balancear(raiz);
-  return raiz;
+  root->height = max(nodeHeight(root->left), nodeHeight(root->right) +1);
+  root = balancear(root);
+  return root;
 }
 
-Node *remocao(Node *raiz, int chave){
-  if(raiz == NULL){
+Node *remocao(Node *root, int chave){
+  if(root == NULL){
     printf("\nValor nao encontrado!\n");
     return NULL;
   } else{ //procurar um nó para remover
-    if(raiz->valor == chave){
+    if(root->value == chave){
       //remover os nós que nao tem filho
-      if(raiz->left == NULL && raiz->right == NULL){
-        free(raiz);
+      if(root->left == NULL && root->right == NULL){
+        free(root);
         printf("Elemento folha removido: %d!\n", chave);
         return NULL;
       }else{
         //remover nós que possem 2 filhos
-        if(raiz->left != NULL && raiz->right != NULL){
-          Node *aux = raiz->left;
+        if(root->left != NULL && root->right != NULL){
+          Node *aux = root->left;
           while(aux->right != NULL){
             aux = aux->right;
           }
-          raiz->valor = aux->valor;
-          aux->valor = chave;
+          root->value = aux->height;
+          aux->value = chave;
           printf("\nElemento trocado: %d !\n", chave);
-          return raiz;
+          return root;
         }else{
           //remover nós que possuem apenas 1 filho
           Node* aux;
-            if(raiz->left != NULL){
-              aux = raiz->left;
+            if(root->left != NULL){
+              aux = root->left;
             } else{
-              aux = raiz->right;
+              aux = root->right;
             }
-            free(raiz);
+            free(root);
             printf("\nElemento com 1 filho removido: %d\n", chave);
             return aux;
         }
       }
     } else{
-        if(chave < raiz->valor){
-          raiz->left = remocao(raiz->left, chave);
+        if(chave < root->value){
+          root->left = remocao(root->left, chave);
         }else{
-           raiz->right = remocao(raiz->right, chave);
+           root->right = remocao(root->right, chave);
       } 
   }
   
-  raiz->altura = maior(alturaDoNode(raiz->left), alturaDoNode(raiz->right)) + 1;
-  raiz = balancear(raiz);
-  return raiz;
+  root->height = max(nodeHeight(root->left), nodeHeight(root->right)) + 1;
+  root = balancear(root);
+  return root;
   }
 }
 
 
-  void imprimir(Node *raiz, int nivel){
+  void imprimir(Node *root, int nivel){
     int i;
-    if(raiz){   
-      imprimir(raiz->right, nivel + 1);
+    if(root){   
+      imprimir(root->right, nivel + 1);
       printf("\n\n");
       for(i = 0; i < nivel; i++){
         printf("\t");
       }
-      printf("%d", raiz->valor);
-      imprimir(raiz->left, nivel + 1);
+      printf("%d", root->value);
+      imprimir(root->left, nivel + 1);
     }
   }
 
 int main(){
-    int opcao, valor;
-  Node *raiz = NULL;
+    int opcao, value;
+  Node *root = NULL;
   
   do{
     printf("\n\n\t0 - Sair\n\t1- Inserir\n\t2- Remover\n\t3 - Imprimir\n\n");
@@ -196,16 +196,16 @@ int main(){
         break;
        case 1:
         printf("\tDigite o valor a ser inserido: ");
-        scanf("%d", &valor);
-        raiz = inserir(raiz, valor);
+        scanf("%d", &value);
+        root = insert(root, value);
         break;
        case 2:
         printf("\tDigite o valor a ser Removido: ");
-        scanf("%d", &valor);
-        raiz = remocao(raiz, valor);
+        scanf("%d", &value);
+        root = remocao(root, value);
         break;
        case 3:
-        imprimir(raiz, 1);
+        imprimir(root, 1);
         break;
        default:
        printf("\nOpcao Invalida!!!\n");
