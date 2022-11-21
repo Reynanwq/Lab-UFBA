@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum nodeColor{
-    RED, 
+typedef enum{
+    RED,
     BLACK
-};
+}nodeColor;
 
 typedef struct rbnode{
     int data;              // data
-    int color;             // 1-red, 0-black
+    nodeColor color;             // 1-red, 0-black
     struct rbnode *parent; // parent
     struct rbnode *right;  // right-child
     struct rbnode *left;   // left child
@@ -52,14 +52,11 @@ short nodeHeight(rbNode *node)
     }
 }
 
-rbNode *insert(rbNode *root, int value)
-{
-    if (root == NULL)
-    {
+rbNode *insert(rbNode *root, rbNode value){
+    
+    if (root == NULL){
         return newNode(value);
-    }
-    else
-    {
+    }else{
         if (value < root->data)        {
             root->left = insert(root->left, value);
             root->left->parent = root;
@@ -69,7 +66,7 @@ rbNode *insert(rbNode *root, int value)
             root->right->parent = root;
         }
     }
-    return root;
+    fixup(root, value);
 }
 
 void rightRotate(rbNode *value){
@@ -107,96 +104,50 @@ void leftRotate(rbNode *value)
 
 void fixup(rbNode *root, rbNode *value)
 {
-    rbNode *parent_pt = NULL;
-    rbNode *grand_parent_pt = NULL;
-      while ((value != root) && (value->color != BLACK) && (value->parent->color == RED)){
-        parent_pt = value->parent;
-        grand_parent_pt = value->parent->parent;
-
-        /*  Case : A
-             Parent of pt is left child
-             of Grand-parent of
-           pt */
-        if (parent_pt == grand_parent_pt->left)
-        {
-            rbNode *uncle_pt = grand_parent_pt->right;
-
-            /* Case : 1
-                The uncle of pt is also red
-                Only Recoloring required */
-            if (uncle_pt != NULL && uncle_pt->color == RED)
-            {
-                grand_parent_pt->color = RED;
-                parent_pt->color = BLACK;
+      while (value->color == RED){
+        if (value->parent == value->parent->parent->left){
+            //case 1
+            rbNode *uncle_pt = value->parent->parent->right;
+            if (uncle_pt->color == RED){
+                value->parent->color = BLACK;            
+                value->parent->color = RED;
                 uncle_pt->color = BLACK;
-                value = grand_parent_pt;
+                value = value->parent->parent;
             }
-            else
-            {
-
-                /* Case : 2
-                     pt is right child of its parent
-                     Left-rotation required */
-                if (value == parent_pt->right)
-                {
-                    leftRotate(parent_pt);
-                    value = parent_pt;
-                    parent_pt = value->parent;
+            else{
+                //case 2
+                if (value == value->parent->right){
+                    leftRotate(value->parent);
+                    value = value->parent;
+                    value->parent = value->parent;
                 }
-
-                /* Case : 3
-                     pt is left child of its parent
-                     Right-rotation required */
-                rightRotate(grand_parent_pt);
-                int t = parent_pt->color;
-                parent_pt->color = grand_parent_pt->color;
-                grand_parent_pt->color = t;
-                value = parent_pt;
+                //case 3
+                value->parent->color = BLACK;
+                value->parent->parent->color = RED;
+                rightRotate(value->parent->parent);
             }
-        }
-
-        /* Case : B
-             Parent of pt is right
-             child of Grand-parent of
-           pt */
-        else
-        {
-            rbNode *uncle_pt = grand_parent_pt->left;
-
-            /*  Case : 1
-                The uncle of pt is also red
-                Only Recoloring required */
-            if ((uncle_pt != NULL) && (uncle_pt->color == RED))
-            {
-                grand_parent_pt->color = RED;
-                parent_pt->color = BLACK;
+        } else {
+            rbNode *uncle_pt = value->parent->parent->left;
+            if (uncle_pt->color == RED){
+                value->parent->parent->color = RED;
+                value->parent->color = BLACK;
                 uncle_pt->color = BLACK;
-                value = grand_parent_pt;
+                value = value->parent->parent;
             }
-            else
-            {
-                /* Case : 2
-                   pt is left child of its parent
-                   Right-rotation required */
-                if (value == parent_pt->left)
-                {
-                    rightRotate(parent_pt);
-                    value = parent_pt;
-                    parent_pt = value->parent;
+            else{
+                if (value == value->parent->left){
+                    value = value->parent;
+                    rightRotate(value->parent);
+                    value->parent->parent = value->parent;
                 }
-
-                /* Case : 3
-                     pt is right child of its parent
-                     Left-rotation required */
-                leftRotate(grand_parent_pt);
-                int t = parent_pt->color;
-                parent_pt->color = grand_parent_pt->color;
-                grand_parent_pt->color = t;
-                value = parent_pt;
+                value->parent->color = BLACK;
+                value->parent->parent->color = RED;
+                leftRotate(value->parent->parent);
+                value = value->parent;
             }
         }
     }
-    root->color = 0;
+    root->color = BLACK;
 }
 
 void imprimir(rbNode *node, int level){
@@ -218,7 +169,6 @@ void imprimir(rbNode *node, int level){
 int main()
 {
     int option, data;
-    rbNode *root = NULL;
     do
     {
         printf("1. Insertion\t2. Deletion\n");
