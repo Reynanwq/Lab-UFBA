@@ -12,6 +12,7 @@ typedef struct tree_node {
     struct tree_node *left;
     struct tree_node *parent;
     enum COLOR color;
+    short height;
 }tree_node;
 
 typedef struct red_black_tree{
@@ -28,6 +29,26 @@ tree_node* new_tree_node(int data) {
     n->color = Red;
 
     return n;
+}
+
+short max(short a, short b){
+  return (a > b) ? a : b;
+}
+
+short nodeHeight(tree_node *node){
+    if(node == NULL){
+      return -1;
+    }else{
+      return(node->height);
+    }
+}
+
+short fatorDeBalanceamento(tree_node *node){
+  if(node){
+    return (nodeHeight(node->left)) - (nodeHeight(node->right));
+  }else{
+    return 0;
+  }
 }
 
 red_black_tree* new_red_black_tree(){
