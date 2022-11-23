@@ -27,7 +27,7 @@ tree_node* new_tree_node(int data) {
     n->parent = NULL;
     n->data = data;
     n->color = Red;
-
+    n->height = 0;
     return n;
 }
 
@@ -62,47 +62,48 @@ red_black_tree* new_red_black_tree(){
     t->NIL = nil_node;
     t->root = t->NIL;
 
-return t;
+  return t;
 }
 
 void left_rotate(red_black_tree *t, tree_node *x) {
-tree_node *y = x->right;
-x->right = y->left;
-if(y->left != t->NIL) {
-  y->left->parent = x;
-}
-y->parent = x->parent;
-if(x->parent == t->NIL) { //x is root
-  t->root = y;
-}
-else if(x == x->parent->left) { //x is left child
-  x->parent->left = y;
-}
-else { //x is right child
-  x->parent->right = y;
-}
-y->left = x;
-x->parent = y;
+  tree_node *y = x->right;
+  x->right = y->left;
+  if(y->left != t->NIL) {
+    y->left->parent = x;
+  }
+  y->parent = x->parent;
+  if(x->parent == t->NIL) { //x is root
+    t->root = y;
+  } else if(x == x->parent->left) { //x is left child
+    x->parent->left = y;
+  } else { //x is right child
+    x->parent->right = y;
+  }
+  y->left = x;
+  x->parent = y;
+  x->height = max(nodeHeight(x->left), nodeHeight(x->right)) + 1;
+  y->height = max(nodeHeight(y->left), nodeHeight(y->right)) + 1;
 }
 
 void right_rotate(red_black_tree *t, tree_node *x) {
-tree_node *y = x->left;
-x->left = y->right;
-if(y->right != t->NIL) {
-  y->right->parent = x;
-}
-y->parent = x->parent;
-if(x->parent == t->NIL) { //x is root
-  t->root = y;
-}
-else if(x == x->parent->right) { //x is left child
+  tree_node *y = x->left;
+  x->left = y->right;
+  if(y->right != t->NIL) {
+    y->right->parent = x;
+  }
+  y->parent = x->parent;
+  if(x->parent == t->NIL) { //x is root
+    t->root = y;
+  }
+  else if(x == x->parent->right) { //x is left child
   x->parent->right = y;
-}
-else { //x is right child
-  x->parent->left = y;
-}
-y->right = x;
-x->parent = y;
+  } else { //x is right child
+    x->parent->left = y;
+  }
+  y->right = x;
+  x->parent = y;
+  x->height = max(nodeHeight(x->left), nodeHeight(x->right)) + 1;
+  y->height = max(nodeHeight(y->left), nodeHeight(y->right)) + 1;
 }
 
 void insertion_fixup(red_black_tree *t, tree_node *z) {
@@ -167,25 +168,17 @@ z->parent = y;
 
 if(y == t->NIL) { //newly added node is root
   t->root = z;
-}
-else if(z->data < y->data) //data of child is less than its parent, left child
-  y->left = z;
-else
-  y->right = z;
+  } else if(z->data < y->data) //data of child is less than its parent, left child
+    y->left = z;
+  else
+    y->right = z;
 
-z->right = t->NIL;
-z->left = t->NIL;
-
-insertion_fixup(t, z);
+  z->right = t->NIL;
+  z->left = t->NIL;
+  z->height = max(nodeHeight(z->left), nodeHeight(z->right) + 1);
+  insertion_fixup(t, z);
 }
 
-/*void inorder(red_black_tree *t, tree_node *n) {
-if(n != t->NIL) {
-  inorder(t, n->left);
-  printf("%d\n", n->data);
-  inorder(t, n->right);
-}
-}*/
 
 void inorder(red_black_tree *t, tree_node *n, int level) {
 if(n != t->NIL) {
@@ -216,7 +209,6 @@ scanf("%d\n", &d6);
 scanf("%d\n", &d7);
 scanf("%d\n", &d8);
 scanf("%d\n", &d9);
-scanf("%d\n", &d10);
 scanf("%d\n", &d11);
 scanf("%d\n", &d12);
 scanf("%d\n", &d13);
@@ -250,6 +242,6 @@ insert(t, l);
 insert(t, m);
 
 inorder(t, t->root, 1);
-
+printf("\na altura: %d\n", t->root->height);
 return 0;
 }
