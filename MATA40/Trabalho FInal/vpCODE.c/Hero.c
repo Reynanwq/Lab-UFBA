@@ -51,6 +51,20 @@ short fatorDeBalanceamento(tree_node *node){
   }
 }
 
+int altura(tree_node *root){
+  if(root == NULL){
+    return -1;
+  }else{
+    int esq = altura(root->left);
+    int dir = altura(root->right);
+    if(esq > dir){
+      return esq + 1;
+    }else{
+      return dir + 1;
+    }
+  }
+}
+
 red_black_tree* new_red_black_tree(){
     red_black_tree *t = malloc(sizeof(red_black_tree));
     tree_node *nil_node = malloc(sizeof(tree_node));
@@ -153,7 +167,7 @@ t->root->color = Black;
 }
 
 void insert(red_black_tree *t, tree_node *z) {
-    tree_node* y = t->NIL; //variable for the parent of the added node
+    tree_node* y = t->NIL; 
     tree_node* temp = t->root;
 
     while(temp != t->NIL) {
@@ -166,9 +180,9 @@ void insert(red_black_tree *t, tree_node *z) {
 
 z->parent = y;
 
-if(y == t->NIL) { //newly added node is root
+if(y == t->NIL) { 
   t->root = z;
-  } else if(z->data < y->data) //data of child is less than its parent, left child
+  } else if(z->data < y->data)
     y->left = z;
   else
     y->right = z;
@@ -196,9 +210,9 @@ if(n != t->NIL) {
 int main() {
 red_black_tree *t = new_red_black_tree();
 int d0, d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13;
-
+tree_node *node;
 tree_node *a, *b, *c, *d, *e, *f, *g, *h, *i, *j, *k, *l, *m;
-printf("\nDigite o valor que deseja inserir: ");
+printf("\nDigite o valor que deseja inserir: \n");
 scanf("%d\n", &d0);
 scanf("%d\n", &d1);
 scanf("%d\n", &d2);
@@ -229,7 +243,7 @@ m = new_tree_node(d13);
 
 insert(t, a);
 insert(t, b);
-insert(t, c);
+insert(t, c); 
 insert(t, d);
 insert(t, e);
 insert(t, f);
@@ -243,5 +257,6 @@ insert(t, m);
 
 inorder(t, t->root, 1);
 printf("\na altura: %d\n", t->root->height);
-return 0;
+printf("\na altura: %d\n", altura(t->root));
+  return 0;
 }
