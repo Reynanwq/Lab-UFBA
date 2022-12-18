@@ -1,0 +1,29 @@
+Competição de Programação: in C 
+
+Programação Orientada a Objetos: JAVA
+
+Course OOP Theory # 01a - What is Object Oriented Programming
+Curso POO Java # 01b - Instalando o JDK e NetBeans
+Curso POO Teoria # 02a - O que é um Objeto?
+Curso POO Java # 02b - Criando Classes e Objetos em Java
+Curso POO Teoria # 03a - O que é Visibilidade em um Objeto?
+Curso POO Java # 03b - Configurando Visibilidade de Atributos e Métodos
+Curso POO Teoria # 04a - Métodos Especiais
+Curso POO Java # 04b - Métodos Getter, Setter e Construtor
+Curso POO Teoria # 05a - Exemplo Prático com Objetos
+Curso POO Java # 05b - Exemplo Prático em Java
+Curso POO Teoria # 06a - Pilares da POO: Encapsulamento
+Curso POO Java # 06b - Encapsulamento
+Curso POO Teoria # 07a - Relacionamento entre Classes
+Curso POO Java # 07b - Objetos Compostos em Java
+Curso POO teoria # 08a - Relacionamento de Agregação
+Curso POO teoria #08a - Relacionamento de Agregação
+Curso POO Java #08b - Agregação entre Objetos com Java
+
+Udemy:
+
+Árvores: Heap
+
+Algebra Linear:
+
+Complemento de Calculo:
