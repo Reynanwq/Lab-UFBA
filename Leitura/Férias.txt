@@ -46,6 +46,27 @@ Curso POO teoria #08a - Relacionamento de Agregação
 Curso POO Java #08b - Agregação entre Objetos com Java
 
 Udemy:
+44. Exercício (unindo tudo aprendido até aqui e mais)
+50. Atribuição via desestruturação (Arrays)
+57. Exercícios com NodeList (Browser)
+59. Break e Continue
+63. Tratando e lançando erros (try, catch, throw)
+64. Tratando e lançando erros (try, catch, finally)
+65. setInterval e setTimeout
+66. Exercício - Criando um timer com setInterval
+67. Criando uma lista de tarefas
+68. As várias maneiras de declarar funções em JavaScript
+69. Parâmetros da função
+70. Retorno da função
+71. Escopo léxico
+72. Closures
+73. Funções de callback
+74. Funções imediatas (IIFE)
+75 Funções fábrica (Factory Functions)
+77. Funções construtoras (constructor functions
+78. Calculadora com função construtora
+79. Funções recursivas
+80. Funções geradoras
 
 Árvores: Heap
 
