@@ -1,5 +1,30 @@
 Competição de Programação: in C 
 
+A. Watermelon
+A. Way Too Long Words
+A. Team
+A. Calculating Function
+A. Division?
+A. Cards for Friends
+A. I Wanna Be the Guy
+A. Epic Game
+A. Party
+B. Last Year's Substring
+B. Sport Mafia
+C. MAX-MEX Cut
+D. Two Divisors
+D. Three Integers
+A. Bmail Computer Network
+B. Christmas Spruce
+C. Useful Decomposition
+D. Weights Assignment For Tree Edges
+A. Hashing Trees
+A1. Add on a Tree
+C. Tree Infection
+D. Distance in Tree
+C. Kamil and Making a Stream
+
+
 Programação Orientada a Objetos: JAVA
 
 Course OOP Theory # 01a - What is Object Oriented Programming
