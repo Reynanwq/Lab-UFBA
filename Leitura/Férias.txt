@@ -77,14 +77,22 @@ Complemento de Calculo:
 REACT - Typescript:
 https://www.youtube.com/playlist?list=PL29TaWXah3iZktD5o1IHbc7JDqG_80iOm
 
-Curso de react: Aula 01 - Começando com ReactJS
-Curso de react: Aula 02 - Removendo arquivos desnecessários
-Curso de react: Aula 02.01 [bônus] - Atualização do react-router-dom
-Curso de react: Aula 03 - Estrutura de pastas
-Curso de react: Aula 04 - Componentes e páginas
-Curso de react: Aula 05 - Navegando entre rotas
-Curso de react: Aula 06 - Usando o useState da forma certa
-Curso de react: Aula 07 - Usando o useEffect da forma certa
-Curso de react: Aula 08 - Usando o useMemo
-Curso de react: Aula 09 - Usando o useCallback
-Curso de react: Aula 10 - Usando o useRef com elementos HTML
+- Curso de react: Aula 01 - Começando com ReactJS
+- Curso de react: Aula 02 - Removendo arquivos desnecessários
+- Curso de react: Aula 02.01 [bônus] - Atualização do react-router-dom
+- Curso de react: Aula 03 - Estrutura de pastas
+- Curso de react: Aula 04 - Componentes e páginas
+- Curso de react: Aula 05 - Navegando entre rotas
+- Curso de react: Aula 06 - Usando o useState da forma certa
+- Curso de react: Aula 07 - Usando o useEffect da forma certa
+- Curso de react: Aula 08 - Usando o useMemo
+- Curso de react: Aula 09 - Usando o useCallback
+- Curso de react: Aula 10 - Usando o useRef com elementos HTML
+
+TEORIA - ASSUNTOS DE PROGRAMAÇÃO:
+
+- LINUX: linux Mint
+- Personalidades da Computação:
+    Richard Stallman
+    Edsger Dijkstra
+    Ward Cunningham
