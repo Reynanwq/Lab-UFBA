@@ -1,0 +1,2 @@
+Para atualizar programas que serão instalados
+- sudo apt-get update
