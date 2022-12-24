@@ -7,3 +7,6 @@ Mostrar arquivos de diretórios:
 Quantidade de espaço livre disponível:
 - free
 
+Maior controle do sudo, ao utilizar, não precisara digitar a senha pelos próximos 5 minutos
+sudo -k
+sudo "comando"
