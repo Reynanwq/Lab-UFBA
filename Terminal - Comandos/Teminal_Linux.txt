@@ -4,3 +4,6 @@ Para atualizar programas que serão instalados
 Mostrar arquivos de diretórios:
 - ls
 
+Quantidade de espaço livre disponível:
+- free
+
