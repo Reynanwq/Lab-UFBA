@@ -1,2 +1,6 @@
 Para atualizar programas que serão instalados
 - sudo apt-get update
+
+Mostrar arquivos de diretórios:
+- ls
+
