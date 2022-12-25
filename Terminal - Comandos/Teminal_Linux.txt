@@ -35,3 +35,8 @@ remover um diretório usamos:
 Para descobrir em qual diretório eu estou
 (print working directory)
 - pwd
+
+
+Criar um arquivo.txt e confirmar a sua criação
+- touch "nome do arquivo".txt
+- ls
