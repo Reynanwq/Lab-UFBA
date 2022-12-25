@@ -20,3 +20,6 @@ Descobrir o que o usuario pode executar
 
 Executar comando sem utilizar a senha
 - sudo -v
+
+Exibir nome do user que está logado na minha maquina
+- whoami
