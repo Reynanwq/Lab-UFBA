@@ -43,3 +43,7 @@ Criar um arquivo.txt e confirmar a sua criação
 
 Exibir o que está escrito em um arquivo.txt
 - cat "nome do arquivo".txt
+
+DIVERSSÃO!!!
+(comando do tremzinho que aprece quandoo usuario digita sl ao invés de ls)
+- sudo apt install sl 
