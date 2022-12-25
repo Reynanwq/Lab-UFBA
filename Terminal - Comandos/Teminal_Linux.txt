@@ -31,3 +31,7 @@ remover um diretório usamos:
 
 - rmkdir
   que pode ser lido como meio que um "remove director"
+
+Para descobrir em qual diretório eu estou
+(print working directory)
+- pwd
