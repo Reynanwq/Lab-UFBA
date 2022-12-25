@@ -57,3 +57,6 @@ Atualizar o sistema instalando e atualizando pacotes
 
 Mostar as informações detalhadas de algum pacote
 - apt show "nome do pacote"
+
+Mostrar as dependências de algum programa
+- apt-cache depends "nome do programa"
