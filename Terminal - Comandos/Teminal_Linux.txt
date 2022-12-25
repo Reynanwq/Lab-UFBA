@@ -60,3 +60,6 @@ Mostar as informações detalhadas de algum pacote
 
 Mostrar as dependências de algum programa
 - apt-cache depends "nome do programa"
+
+Voltar para o código que foi digitado anteriormente
+- "seta para cima"
