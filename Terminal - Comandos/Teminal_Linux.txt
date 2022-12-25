@@ -47,3 +47,7 @@ Exibir o que está escrito em um arquivo.txt
 DIVERSSÃO!!!
 (comando do tremzinho que aprece quandoo usuario digita sl ao invés de ls)
 - sudo apt install sl 
+
+
+Ver lista do que é para ser atualizado no meu PC
+- sudo list --upgradable
