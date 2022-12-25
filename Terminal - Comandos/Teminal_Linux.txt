@@ -23,3 +23,6 @@ Executar comando sem utilizar a senha
 
 Exibir nome do user que está logado na minha maquina
 - whoami
+
+Voltar para o meu diretório principal
+- ls -
