@@ -26,3 +26,8 @@ Exibir nome do user que está logado na minha maquina
 
 Voltar para o meu diretório principal
 - ls -
+
+remover um diretório usamos:
+
+- rmkdir
+  que pode ser lido como meio que um "remove director"
