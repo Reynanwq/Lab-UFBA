@@ -54,3 +54,6 @@ Ver lista do que é para ser atualizado no meu PC
 
 Atualizar o sistema instalando e atualizando pacotes
 - sudo apt upgrade
+
+Mostar as informações detalhadas de algum pacote
+- apt show "nome do pacote"
