@@ -51,3 +51,6 @@ DIVERSSÃO!!!
 
 Ver lista do que é para ser atualizado no meu PC
 - sudo list --upgradable
+
+Atualizar o sistema instalando e atualizando pacotes
+- sudo apt upgrade
