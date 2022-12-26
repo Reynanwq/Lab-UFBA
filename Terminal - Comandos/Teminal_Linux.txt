@@ -63,3 +63,8 @@ Mostrar as dependências de algum programa
 
 Voltar para o código que foi digitado anteriormente
 - "seta para cima"
+
+DIVERSÃO!!!
+Inverter qualquer palavra
+(rev provavelmente vem)
+- rev
