@@ -1,0 +1,9 @@
+INSTALL PROTON VPN FOR LINUX - UBUNTU
+
+baixar pacote vpn que está nesta URL: https://protonvpn.com/support/linux-ubuntu-vpn-setup/
+- sudo apt-get update
+- sudo apt-get install protonvpn
+- protonvpn-cli login "nome do usuario"
+- "digitar senha da conta criada no Proton VPN"
+- "escolher pais: Holanda, Japão, USA"
+- "escolher servidor"
