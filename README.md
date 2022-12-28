@@ -8,15 +8,14 @@
 
 <h2>Pastas:</h2>
 
-+ API
-+ Books
++ API's
 + CSS
-+ FCHC45
 + Games
-+ Lab-UFBA
-+ MATA40
++ Lab-UFBA (private)
++ 2022.2
 + Terminal - Comandos
-+ Vocation
++ Férias
++ Leitura
 
 ## Technologies Used:
 
@@ -25,5 +24,6 @@
     <td>C</td>
     <td>HTML</td>
     <td>CSS</td>
+    <td>JavaScript</td>
   </tr>
 </table>
