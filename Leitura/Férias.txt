@@ -90,7 +90,7 @@ https://www.youtube.com/playlist?list=PL29TaWXah3iZktD5o1IHbc7JDqG_80iOm
 - Curso de react: Aula 10 - Usando o useRef com elementos HTML
 
 TEORIA - ASSUNTOS DE PROGRAMAÇÃO:
-
+    
 - LINUX: linux Mint
 - Personalidades da Computação:
     Richard Stallman
