@@ -25,5 +25,6 @@
     <td>HTML</td>
     <td>CSS</td>
     <td>JavaScript</td>
+    <td>Git & Github</td>
   </tr>
 </table>
