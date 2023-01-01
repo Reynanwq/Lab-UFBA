@@ -21,10 +21,11 @@
 
 <table>
   <tr>
-    <td>C</td>
+    <td>C/C++</td>
     <td>HTML</td>
     <td>CSS</td>
     <td>JavaScript</td>
+    <td>TypeScript</td>
     <td>Git & Github</td>
   </tr>
 </table>
