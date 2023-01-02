@@ -53,3 +53,15 @@ Merge:
 ANOTAÇÕES - AULA: Curso de Git e Github COMPLETO 2021 [Iniciantes] + Desafios + Muita Prática
 link: https://www.youtube.com/watch?v=kB5e-gTAl_s&t=117s
 
+PARA DÁ PUSH EM UM ARQUIVO ESPECIFICO
+(caso o arquivo esta dentro de alguma pasta, então também deve citar a pasta)
+- git add "nome do arquivo"
+
+PARA VERIFICAR QUAIS FORAM OS MEUS HISTÓRICOS DE ALTERAÇÃO
+- git reflog
+- <entre> (para ir vendo as alterações mais antigas)
+
+PARA NAVEGAR ENTRE VERSÕES ANTERIORES DO SEU CÓDIGO
+- git reflog (para descobrir o id da versão que você quer voltar)
+- git reset --hard "id da versão anterior"
+- git reset --hard "id da versão atual"  (caso queira voltar para a versão original)
