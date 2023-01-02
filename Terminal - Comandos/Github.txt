@@ -48,3 +48,8 @@ Merge:
     hint: 'git pull ...') before pushing again.
     hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 )
+
+
+ANOTAÇÕES - AULA: Curso de Git e Github COMPLETO 2021 [Iniciantes] + Desafios + Muita Prática
+link: https://www.youtube.com/watch?v=kB5e-gTAl_s&t=117s
+
