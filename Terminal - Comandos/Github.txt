@@ -65,3 +65,14 @@ PARA NAVEGAR ENTRE VERSÕES ANTERIORES DO SEU CÓDIGO
 - git reflog (para descobrir o id da versão que você quer voltar)
 - git reset --hard "id da versão anterior"
 - git reset --hard "id da versão atual"  (caso queira voltar para a versão original)
+
+
+VER OS DOIS ÚLTIMOS COMMITS
+
+- git log 
+
+"autor do commit"
+"data de alteração do commit"
+"o commit"
+
+quando mais vezes apertar a tecla <Enter> mais o histórico vai aparecendo
