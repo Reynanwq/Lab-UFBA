@@ -76,3 +76,5 @@ VER OS DOIS ÚLTIMOS COMMITS
 "o commit"
 
 quando mais vezes apertar a tecla <Enter> mais o histórico vai aparecendo
+
+(GIT COMMIT --AMEND) O QUE FAZ?
