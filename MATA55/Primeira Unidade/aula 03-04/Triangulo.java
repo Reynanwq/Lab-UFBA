@@ -5,6 +5,7 @@ public class Triangulo{
     private int z;
     
     public Triangulo(int x, int y, int z){
+        /*sempre retorna uma instancia e é publico(maioria das vezes)*/
         this.x = x;
         this.y = y;
         this.z = z;
