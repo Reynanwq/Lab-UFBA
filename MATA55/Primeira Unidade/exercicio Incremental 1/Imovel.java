@@ -20,7 +20,7 @@ public class Imovel
     public String tipo;
     public String utilizacao;
     
-    /*-------- construtor -------*/
+    /*-------- Construtor -------*/
     
     public Imovel (int iptu, String rua, int numero, int cep, String estado, String cidade, String tipo, String utilizacao){
         this.iptu = iptu;
@@ -29,7 +29,7 @@ public class Imovel
         this.cep = cep;
     }
     
-    /*------ metodos get -------*/
+    /*------ Metodos get -------*/
     
     public int getIptu(){
         return this.iptu;
@@ -63,7 +63,7 @@ public class Imovel
         return this.utilizacao;
     }
     
-    /*-------- metodos set ---------*/
+    /*-------- Metodos set ---------*/
     
     public void setIptu(){
         this.iptu = iptu;
@@ -96,9 +96,4 @@ public class Imovel
     public void setUtilizacao(){
         this.utilizacao = utilizacao;
     }
-    
-    
-	public static void main(String[] args) {
-		
-	}
 }
