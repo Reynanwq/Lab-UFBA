@@ -11,6 +11,7 @@
    Um proprietário tem nome, cpf , identidade, rua, número, cep, estado, cidade.*/
 
 public class Proprietario{
+    
    public String nome;
    public String cpf;
    public String identidade;
@@ -100,3 +101,13 @@ public class Proprietario{
        this.cidade = cidade;
    }
 }
+
+
+
+
+
+
+
+
+
+

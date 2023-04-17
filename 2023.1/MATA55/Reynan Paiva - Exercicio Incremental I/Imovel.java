@@ -11,14 +11,15 @@
    Um proprietário tem nome, cpf , identidade, rua, número, cep, estado, cidade.*/
 public class Imovel
 {
-    public int iptu;
-    public String rua;
-    public int numero;
-    public int cep;
-    public String estado;
-    public String cidade;
-    public String tipo;
-    public String utilizacao;
+    private int iptu;
+    private String rua;
+    private int numero;
+    private int cep;
+    private String estado;
+    private String cidade;
+    private String tipo;
+    private String utilizacao;
+    
     
     /*-------- Construtor -------*/
     
@@ -27,6 +28,10 @@ public class Imovel
         this.rua = rua;
         this.numero = numero;
         this.cep = cep;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.tipo = tipo;
+        this.utilizacao = utilizacao;
     }
     
     /*------ Metodos get -------*/
