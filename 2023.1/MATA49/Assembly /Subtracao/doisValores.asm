@@ -1,0 +1,5 @@
+; SUBTRACAO DE DOIS NUMEROS
+MOV A, 6 ; 6
+MOV B, 4 ; 4
+SUB A, B ; (6 - 4)
+MOV C, A ; 2
