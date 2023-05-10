@@ -1,7 +1,7 @@
 section .data
     prompt_nome db "Digite seu nome: ", 0 ;O VALOR ZERO INDICA O TERMINO DA STRING
-    prompt_semestre db "Digite o semestre: ", 0 
-    mensagem_inicial db "Programação de Software Básico, ", 0
+    prompt_semestre db 10, "Digite o semestre: ", 0 ; 10/0ah: pular a linha
+    mensagem_inicial db 0ah,  "Programação de Software Básico, ", 0
     mensagem_do_meio db " seja bem vindo ao ", 0
     nome db 12 DUP (0) ; RESERVA UM ESPACO DE MEMORIA DE 100 BYTES
     semestre db 16 DUP (0) ; 'DUP' DUPLICA O VALOR DE '0' EM 100 VEZES
