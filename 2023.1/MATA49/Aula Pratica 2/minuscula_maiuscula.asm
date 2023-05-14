@@ -1,5 +1,5 @@
 section .data
-    letra db "a"
+    letra db 'a'
     
 section .bss
     letra_maiuscula resb 1
@@ -8,19 +8,24 @@ section .text
     global _start
     
 _start:
-    mov rax, letra
-    add rax, 32 ;converte para maiuscula
+    mov rax, [letra]     ; Carrega o valor da letra em A no registrador rax
+    
+    cmp rax, 'a'         ; Verifica se a letra é minúscula
+    jb encerra_program   ; Pula se a letra não for minúscula e encerra o programa
+    
+    sub rax, 32          ; Converte a letra minúscula em maiúscula
     mov [letra_maiuscula], rax
     
-    ;leitura
+encerra_program:
+
+    ; Escrita
     mov rax, 1
     mov rdi, 1
     mov rsi, letra_maiuscula
     mov rdx, 1
     syscall
     
-    ;encerrar programa
+    ; Encerrar programa
     mov rax, 60
     xor rdi, rdi
     syscall
-    
