@@ -1,0 +1,26 @@
+Considere a seguinte base de conhecimento composta de predicados progenitor/2:
+
+progenitor(maria, jose).
+progenitor(joao, jose).
+progenitor(joao, ana).
+progenitor(jose, julia).
+progenitor(jose, iris).
+progenitor(iris, jorge).
+
+Considere que o predicado progenitor(A, B) significa que A é progenitor (i.e., pai ou mãe) de B.
+
+Exercício 1. Desenhe a árvore genealógica representada pela base de conhecimento.
+
+Exercício 2. Escreva uma consulta para responder à seguinte pergunta: “Ana é progenitora de Jorge?”
+
+Exercício 3. Escreva uma consulta para retornar os progenitores de Íris.
+
+Exercício 4. Escreva uma consulta para retornar os progenitores de José.
+
+Exercício 5. Escreva uma consulta para retornar todos os pares progenitor/filho da base de conhecimento.
+
+Exercício 6. Escreva uma consulta para retornar todos os avós de Jorge. Dica: sua consulta será formada por dois termos separados por vírgula.
+
+Exercício 7. Escreva uma consulta para retornar todos os netos de João.
+
+Exercício 8. Escreva uma consulta para retornar todos os progenitores comuns de José e Ana

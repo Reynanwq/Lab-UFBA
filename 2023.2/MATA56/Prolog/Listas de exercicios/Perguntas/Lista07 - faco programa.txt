@@ -1,0 +1,17 @@
+1.  Escreva uma programa SWI-Prolog que implemente um predicado que receba dois parâmetros, (1) um número inteiro; (2) uma lista de números inteiros. O predicado deverá ter sucesso, no caso do referido número inteiro pertence à lista de número inteiros dada, e insucesso, no caso contrário.
+
+2.  Escreva uma programa em SWI-Prolog que implemente um predicado que receba três parâmetros: (1) um símbolo; (2) uma lista de símbolos; e (3) uma variável não instanciada. O predicado deverá instanciar a variável em questão com a lista que se obtém da remoção de todas as ocorrências do referido símbolo da lista de símbolos dada.
+
+3.  Escreva uma programa em SWI-Prolog que implemente um predicado que receba três parâmetros: (1) um número inteiro; (2) uma lista de números inteiros; e (3) uma variável não instanciada. O predicado deverá instanciar a variável em questão com a lista que se obtém da inclusão ordenada do referido número inteiro na lista de números inteiros dada.
+
+4.  Escreva uma programa em SWI-Prolog que implemente m predicado que receba três parâmetros: os parâmetros (1) e (2) serão listas de números inteiros; e o parâmetros (3) será uma variável não instanciada. O predicado deverá instanciar a variável em questão com a lista que se obtém da concatenação das duas listas de números inteiros dadas.
+
+5.  Escreva uma programa em SWI-Prolog que implemente m predicado que receba dois parâmetros: (1) uma lista de números inteiros; e (2) uma variável não instanciada. O predicado deverá instanciar a variável em questão com a lista que se obtém da ordenação da lista de números inteiros dada.
+
+6.  Escreva uma programa em SWI-Prolog que implemente m predicado que receba dois parâmetros: (1) uma lista de números inteiros; e (2) uma variável não instanciada. O predicado deverá instanciar a variável em questão com a lista que se obtém da retirada do elemento mais à direita da referida lista.
+
+7.  Escreva uma programa em SWI-Prolog que implemente m predicado que receba dois parâmetros: (1) uma lista de números inteiros; e (2) uma variável não instanciada. O predicado deverá instanciar a variável em questão com a maior número inteiro da lista de número inteiro da lista de número inteiro dada.
+
+8.  Escreva uma programa em SWI-Prolog que implemente m predicado que receba dois parâmetros: (1) uma lista de números inteiros; e (2) uma variável não instanciada. O predicado deverá instanciar a variável em questão com a lista que se obtém da retirada do maior número inteiro da lista de números inteiros dada.
+
+9.  Escreva uma programa em SWI-Prolog que implemente m predicado que receba dois parâmetros: (1) uma lista de números inteiros; e (2) uma variável não instanciada. O predicado deverá instanciar a variável em questão com o números real que representa a média aritmética dos elementos da lista de números inteiros dada.
