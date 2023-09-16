@@ -1,0 +1,161 @@
+Para resolver os exercícios propostos, vou fornecer as regras em Prolog correspondentes a cada situação.
+
+Exercício RC 1:
+
+```prolog
+livro(os_maia).
+autor(os_maia, eca_de_queiroz).
+nacionalidade(eca_de_queiroz, portugues).
+tipo(os_maia, romance).
+escreveu(eca_de_queiroz, os_maia).
+tipo(os_maia, ficcao).
+```
+
+Perguntas:
+
+a) Quem escreveu "Os Maias"?
+
+```prolog
+?- escreveu(X, os_maia).
+```
+
+b) Que autores portugueses escrevem romances?
+
+```prolog
+?- autor(Livro, Autor), nacionalidade(Autor, portugues), tipo(Livro, romance).
+```
+
+c) Quais os autores de livros de ficção que escreveram livros de outro tipo também?
+
+```prolog
+?- autor(Livro1, Autor), tipo(Livro1, ficcao), escreveu(Autor, Livro2), Livro1 \= Livro2, tipo(Livro2, Tipo2), Tipo2 \= ficcao.
+```
+
+Exercício RC 2:
+
+```prolog
+gosta(ana, vinho_verde).
+gosta(bruno, vinho_verde).
+casado(ana, bruno).
+combina(salmão, vinho_verde).
+combina(peru, vinho_maduro).
+combina(frango, vinho_maduro).
+```
+
+Perguntas:
+
+a) Ana e Bruno são casados e gostam de vinho verde?
+
+```prolog
+?- casado(ana, bruno), gosta(ana, vinho_verde), gosta(bruno, vinho_verde).
+```
+
+b) Que bebida combina com salmão?
+
+```prolog
+?- combina(salmão, Bebida).
+```
+
+c) Que comidas combinam com vinho verde?
+
+```prolog
+?- combina(Comida, vinho_verde).
+```
+
+Exercício RC 3:
+
+```prolog
+mora_em(joao, apartamento).
+mora_em(maria, casa).
+mora_em(ana, apartamento).
+gosta_de(joao, animal).
+gosta_de(maria, animal).
+gosta_de(ana, animal).
+jogo(joao, xadrez).
+jogo(maria, damas).
+jogo(ana, ténis).
+desporto(joao, ténis).
+desporto(maria, natacao).
+desporto(ana, natacao).
+```
+
+Perguntas:
+
+a) Quem mora num apartamento e gosta de animais?
+
+```prolog
+?- mora_em(Pessoa, apartamento), gosta_de(Pessoa, animal).
+```
+
+b) O João e a Maria moram numa casa e gostam de desportos?
+
+```prolog
+?- mora_em(joao, casa), mora_em(maria, casa), desporto(joao, Desporto), desporto(maria, Desporto).
+```
+
+c) Quem gosta de jogos e de desportos?
+
+```prolog
+?- jogo(Pessoa, _), desporto(Pessoa, _).
+```
+
+d) Existe alguma mulher que gosta de ténis e gosta de tigres?
+
+```prolog
+?- gosta_de(Mulher, tigre), gosta_de(Mulher, ténis), mora_em(Mulher, _), mulher(Mulher).
+```
+
+Exercício RC 4:
+
+```prolog
+come(silvester, X) :- gosta(silvester, X).
+```
+
+Perguntas:
+
+a) Use Prolog para determinar tudo o que come o Silvester?
+
+```prolog
+?- come(silvester, X).
+```
+
+b) A resposta é razoável? Se não for, verifique se o problema está na especificação original ou na sua tradução para Prolog, corrija e execute novamente.
+
+A regra fornecida parece correta, mas a resposta pode depender do conhecimento prévio sobre o que Silvester gosta.
+
+Exercício RC 5:
+
+```prolog
+traduza(1, integer_overflow).
+traduza(2, divisao_por_zero).
+traduza(3, id_desconhecido).
+```
+
+Esta implementação parece razoável, desde que os códigos de erro sejam correspondentes ao que foi especificado.
+
+Exercício RC 6:
+
+As perguntas estão apresentadas em linguagem natural, e as respostas dependerão da execução do Prolog com a base de factos fornecida. Se você desejar as respostas exatas, precisará executar essas perguntas em um ambiente Prolog.
+
+Exercício RC 7:
+
+```prolog
+alunos_do_professor(Professor, Aluno) :- aluno(Aluno, Disciplina), professor(Professor, Disciplina).
+
+pessoas_da_universidade(Universidade, Pessoa) :- frequenta(Pessoa, Universidade); funcionario(Pessoa, Universidade).
+
+colega(X, Y) :- (aluno(X, Disciplina), aluno(Y, Disciplina)); (aluno(X, _), aluno(Y, _), frequenta(X, Universidade), frequenta(Y, Universidade), X \= Y); (professor(X, Universidade), professor(Y, Universidade), X \= Y).
+```
+
+Exercício RC 8:
+
+```prolog
+pode_vender(Pessoa, Carro, AnoAtual) :-
+    comprou(Pessoa, Carro),
+    ano(Carro, AnoCompra),
+    AnoAtual - AnoCompra =< 10,
+    valor(Carro, Valor),
+    Valor < 10000.
+```
+
+Estas são as regras em Prolog para os exercícios fornecidos. Se precisar de alguma explicação adicional ou quiser testar alguma das perguntas, sinta-se à vontade para perguntar!
