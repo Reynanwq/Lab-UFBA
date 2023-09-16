@@ -1,0 +1,121 @@
+Claro, vou ajudá-lo a expressar essas informações em Prolog. Vamos abordar cada um dos exercícios separadamente:
+
+**Exercício 1:**
+
+```prolog
+% Fatos
+passaro(joao).
+peixe(pedro).
+minhoca(maria).
+
+gosta(passaro, minhoca).
+gosta(gato, peixe).
+gosta(gato, passaro).
+gosta(amigo, amigo).
+
+amigo(gato, eu).
+come(gato, X) :- gosta(gato, X), X \= pessoa.
+
+nome(gato, chuck_norris).
+
+% Regras
+come_tudo_que_gosta(X, Y) :- come(X, Z), gosta(X, Z), Z \= Y.
+```
+
+**Exercício 2:**
+
+```prolog
+% Fatos
+bonita(cassia).
+rico(marcos).
+rico(ana).
+forte(ana).
+forte(fabiano).
+amavel(silvio).
+
+gosta(homem, mulher_bonita).
+feliz(homem_rico).
+feliz(homem_que_gosta_mulher_que_gosta_dele).
+feliz(mulher_que_gosta_homem_que_gosta_dela).
+
+gosta(ana, X) :- gosta(X, ana).
+gosta(cassia, X) :- gosta(X, cassia), (rico(X); amavel(X); bonito(X)).
+```
+
+**Exercício 3:**
+
+```prolog
+% Base de fatos dada
+
+% Regras
+alunos_do_professor(Prof, Alunos) :- findall(Aluno, (aluno(Aluno, Disc), professor(Prof, Disc)), Alunos).
+
+pessoas_associadas_universidade(Universidade, Pessoas) :- findall(Pessoa, (frequenta(Pessoa, Universidade); professor(Pessoa, _)), Pessoas).
+```
+
+**Exercício 4:**
+
+```prolog
+% Base de fatos dada
+
+% Regra
+situacao_aluno(Aluno, Situacao) :-
+    nota(Aluno, Nota),
+    (Nota >= 7.0 -> Situacao = 'Aprovado';
+     Nota >= 5.0 -> Situacao = 'Recuperacao';
+     Situacao = 'Reprovado').
+```
+
+**Exercício 5:**
+
+```prolog
+% Base de fatos (exemplo)
+
+filme(titanic, james_cameron, romance, 1997, 195).
+filme(o_sexto_sentido, m_night_shyamalan, suspense, 1999, 107).
+filme(superman, richard_donner, acao, 1978, 143).
+filme(lethal_weapon, richard_donner, acao, 1987, 110).
+filme(signs, m_night_shyamalan, suspense, 2002, 106).
+% ... (outros filmes)
+
+% Regras genéricas
+dirigiu(Diretor, Filme) :- filme(Filme, Diretor, _, _, _).
+filmes_suspense(Filme) :- filme(Filme, _, suspense, _, _).
+filmes_donner(Filme) :- filme(Filme, richard_donner, _, _, _).
+ano_lancamento(Filme, Ano) :- filme(Filme, _, _, Ano, _).
+duracao_curta(Filme) :- filme(Filme, _, _, _, Duracao), Duracao < 100.
+lancados_entre_2000_e_2005(Filme) :- filme(Filme, _, _, Ano, _), Ano >= 2000, Ano =< 2005.
+
+% Predicados específicos
+classico(Titulo) :- filme(Titulo, _, _, Ano, _), Ano < 1980.
+genero(Genre, Titulo) :- filme(Titulo, _, Genre, _, _).
+
+% Consultas
+classico(TituloClassico).
+genero(suspense, TituloSuspense).
+```
+
+**Exercício 6:**
+
+a) Bem sucedida, A=1, B=2.
+b) Bem sucedida.
+c) Falha.
+d) Falha.
+e) Bem sucedida, D=E=2.
+f) Bem sucedida, Y=1.
+
+**Exercício 7:**
+
+```prolog
+% Regras sobre listas
+adiciona(X, L1, [X|L1]).
+remover(X, L1, L2) :- delete(L1, X, L2).
+inverte([], []).
+inverte([H|T], L) :- inverte(T, R), append(R, [H], L).
+tamanho([], 0).
+tamanho([_|T], X) :- tamanho(T, N), X is N+1.
+soma([], 0).
+soma([H|T], X) :- soma(T, N), X is N+H.
+```
+
+Espero que isso ajude! Se tiver mais dúvidas ou precisar de mais alguma coisa, não hesite em perguntar.
