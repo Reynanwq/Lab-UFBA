@@ -1,0 +1,73 @@
+Aqui estão os programas em SWI-Prolog para cada uma das perguntas:
+
+1. Verifica se um número pertence a uma lista:
+```prolog
+pertence(X, [X|_]).
+pertence(X, [_|Resto]) :- pertence(X, Resto).
+```
+
+2. Remove todas as ocorrências de um símbolo da lista:
+```prolog
+remover(_, [], []).
+remover(X, [X|Resto], NovoResto) :- remover(X, Resto, NovoResto).
+remover(X, [Y|Resto], [Y|NovoResto]) :- X \= Y, remover(X, Resto, NovoResto).
+```
+
+3. Insere ordenadamente um número na lista:
+```prolog
+inserir_ordenado(X, [], [X]).
+inserir_ordenado(X, [Y|Resto], [X,Y|Resto]) :- X =< Y.
+inserir_ordenado(X, [Y|Resto], [Y|NovoResto]) :- X > Y, inserir_ordenado(X, Resto, NovoResto).
+```
+
+4. Concatena duas listas:
+```prolog
+concatenar([], L, L).
+concatenar([X|L1], L2, [X|L3]) :- concatenar(L1, L2, L3).
+```
+
+5. Ordena uma lista de números inteiros:
+```prolog
+ordenar([], []).
+ordenar([X|Resto], ListaOrdenada) :-
+    separar(X, Resto, Menor, Maior),
+    ordenar(Menor, MenorOrdenada),
+    ordenar(Maior, MaiorOrdenada),
+    concatenar(MenorOrdenada, [X|MaiorOrdenada], ListaOrdenada).
+
+separar(_, [], [], []).
+separar(Pivo, [X|Resto], [X|Menor], Maior) :- X =< Pivo, separar(Pivo, Resto, Menor, Maior).
+separar(Pivo, [X|Resto], Menor, [X|Maior]) :- X > Pivo, separar(Pivo, Resto, Menor, Maior).
+```
+
+6. Retira o elemento mais à direita da lista:
+```prolog
+retirar_ult([X], [], X).
+retirar_ult([X|Resto], [X|NovoResto], Elemento) :- retirar_ult(Resto, NovoResto, Elemento).
+```
+
+7. Retorna o maior número inteiro da lista:
+```prolog
+maior([X], X).
+maior([X|Resto], Maior) :- maior(Resto, MaiorResto), Maior is max(X, MaiorResto).
+```
+
+8. Remove o maior número inteiro da lista:
+```prolog
+remover_maior(Lista, NovoLista) :-
+    maior(Lista, Maior),
+    retirar_ult(Lista, NovoLista, Maior).
+```
+
+9. Calcula a média dos elementos da lista:
+```prolog
+media(Lista, Media) :-
+    soma(Lista, Soma),
+    length(Lista, Tamanho),
+    Media is Soma / Tamanho.
+
+soma([], 0).
+soma([X|Resto], Soma) :- soma(Resto, SomaResto), Soma is X + SomaResto.
+```
+
+Para testar cada um desses programas, você pode chamá-los no interpretador SWI-Prolog com os argumentos desejados. Por exemplo, para verificar se o número 3 pertence à lista [1,2,3,4], você pode chamar `pertence(3, [1,2,3,4]).`.
