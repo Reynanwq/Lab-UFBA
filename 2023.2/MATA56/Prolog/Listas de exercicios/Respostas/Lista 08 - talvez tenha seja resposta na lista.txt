@@ -1,0 +1,43 @@
+Você forneceu um conjunto de exercícios que envolvem diferentes tópicos em Prolog. Vou fornecer soluções ou explicações para cada um deles.
+
+1. **Regras e Fatos**
+   - Para representar a fórmula \(\forall x \forall y (p(x) \land q(y) \to r(x, y))\) em Prolog, usamos a seguinte regra:
+   
+   ```prolog
+   r(X, Y) :- p(X), q(Y).
+   ```
+
+2. **Exercício Prático**
+   - Este exercício pede para você entender e executar um programa em Prolog. O código e as consultas estão detalhadas no documento fornecido.
+
+3. **Regras Aprovado e Reprovado**
+   - Você deve modificar o programa `ex005-00-regras-apr.pl` para incluir uma regra que determine os alunos reprovados em qualquer disciplina. A solução está no arquivo `ex005-01-regras-apr-rep-sol.pl`.
+
+4. **Mundo de Tarski**
+   - Este exercício envolve a construção de fórmulas e um mundo que satisfaça essas fórmulas no programa Prolog `ex008-00-mundo-tarski.pl`.
+
+5. **Nacionalidade de Comidas**
+   - No arquivo `ex010-00-comida.pl`, inclua uma regra que represente que toda pessoa gosta de uma certa comida se a pessoa e a comida forem do mesmo país.
+
+6. **Jogo da Velha**
+   - Implemente um programa Prolog que, dado um estado de um tabuleiro do jogo da velha, determine se há um vencedor e quem é esse vencedor. A solução está no arquivo `ex180-00-jogo-da-velha.pl`.
+
+7. **Coloração de Mapas**
+   - Este exercício envolve a atribuição de cores a regiões de um mapa de forma que regiões adjacentes não tenham a mesma cor. A solução pode ser encontrada nos arquivos `ex190-00-coloracao-mapa` e `ex190-10-coloracao-mapa`.
+
+8. **Modelo e Teoria em Prolog**
+   - Este exercício pede para construir uma teoria em LPO que represente um mundo com pessoas e cachorros, e implementar essa teoria em Prolog. As respostas estão no arquivo `ex170-00-teoria-modelo.pl`.
+
+9. **Recursividade no Fatorial**
+   - No arquivo `ex060-00-fatorial.pl`, há uma implementação recursiva para o cálculo do fatorial. Identifique e corrija o problema de término.
+
+10. **Expressividade Simpsons**
+    - No arquivo `ex030-00-expressividade-simpsons.pl`, há uma representação lógica dos personagens Simpsons. O desafio é expressar a regra de antepassado sem variáveis. A solução pode ser encontrada no arquivo `ex040-00-simpsons-recursividade.pl`.
+
+11. **Mapa Acíclico**
+    - Este exercício envolve a representação de um mapa de estradas que interconectam cidades e a busca de caminhos em árvores. A solução está no arquivo `ex200-00-mapaAciclico-sol.pl`.
+
+12. **Resolução**
+    - Este exercício envolve o entendimento da resolução em Prolog e a comparação com o trace. Os códigos relacionados estão em `ex140-00-arvoreBusca.pl` e `ex060-10-unificacao-recursividade.pl`.
+
+Se você tiver alguma dúvida específica sobre algum desses exercícios, fique à vontade para perguntar!
