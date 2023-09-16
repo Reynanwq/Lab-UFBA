@@ -1,0 +1,69 @@
+**Exercício 1:**
+
+```
+       maria   joao
+         |      |
+        jose   ana
+       /   \
+   julia    iris
+             |
+           jorge
+```
+
+**Exercício 2:**
+
+```prolog
+?- progenitor(ana, jorge).
+```
+Resposta: Não.
+
+**Exercício 3:**
+
+```prolog
+?- progenitor(X, iris).
+```
+Resposta: X = jose ; X = joao.
+
+**Exercício 4:**
+
+```prolog
+?- progenitor(X, jose).
+```
+Resposta: X = maria ; X = joao.
+
+**Exercício 5:**
+
+```prolog
+?- progenitor(X, Y).
+```
+Resposta:
+
+```
+X = maria, Y = jose ;
+X = joao, Y = jose ;
+X = joao, Y = ana ;
+X = jose, Y = julia ;
+X = jose, Y = iris ;
+X = iris, Y = jorge.
+```
+
+**Exercício 6:**
+
+```prolog
+?- progenitor(X, jorge), progenitor(X, iris).
+```
+Resposta: X = jose.
+
+**Exercício 7:**
+
+```prolog
+?- progenitor(joao, X), progenitor(X, Y).
+```
+Resposta: Y = jorge.
+
+**Exercício 8:**
+
+```prolog
+?- progenitor(Z, jose), progenitor(Z, ana).
+```
+Resposta: Z = joao.
