@@ -255,3 +255,68 @@ ordenar([H|T], Sorted) :-
 inserir(X, [], [X]).
 inserir(X, [H|T], [X,H|T]) :- X =< H, !.
 inserir(X, [H|T], [H|NT]) :- inserir(X, T, NT).
+
+20.
+% Definir os predicados encher, esvaziar, despejar, trocar
+% encher(Balde)
+% esvaziar(Balde)
+% despejar(Balde1, Balde2)
+% trocar(Balde1, Balde2)
+
+% Inicialmente, ambos os baldes estão vazios.
+estado_inicial(balde3-0, balde5-0).
+
+% O estado objetivo é ter 4 galões no balde de 5 galões.
+objetivo(balde3-X, balde5-4) :- X >= 0.
+
+% Transições de estado
+transicao(balde3-X, balde5-Y, encher(balde3)) :-
+    X < 3,
+    Y = Y.
+
+transicao(balde3-X, balde5-Y, encher(balde5)) :-
+    Y < 5,
+    X = X.
+
+transicao(balde3-X, balde5-Y, esvaziar(balde3)) :-
+    X > 0,
+    Y = Y.
+
+transicao(balde3-X, balde5-Y, esvaziar(balde5)) :-
+    Y > 0,
+    X = X.
+
+transicao(balde3-X, balde5-Y, despejar(balde3, balde5)) :-
+    X > 0,
+    Y < 5,
+    Y1 is min(X+Y, 5),
+    X1 is X - (Y1 - Y).
+
+transicao(balde3-X, balde5-Y, despejar(balde5, balde3)) :-
+    Y > 0,
+    X < 3,
+    X1 is min(X+Y, 3),
+    Y1 is Y - (X1 - X).
+
+transicao(balde3-X, balde5-Y, trocar(balde3, balde5)) :-
+    X > 0,
+    Y < 5,
+    X1 is max(0, X - (5 - Y)),
+    Y1 is min(5, Y + X).
+
+transicao(balde3-X, balde5-Y, trocar(balde5, balde3)) :-
+    Y > 0,
+    X < 3,
+    Y1 is max(0, Y - (3 - X)),
+    X1 is min(3, X + Y).
+
+% Busca em profundidade
+busca(Estado, _, Acoes) :- objetivo(Estado, balde5-4), reverse(Acoes, Solucao), write(Solucao), nl.
+
+busca(Estado, Visitados, Acoes) :-
+    transicao(Estado, EstadoProx, Acao),
+    \+ member(EstadoProx, Visitados),
+    busca(EstadoProx, [EstadoProx|Visitados], [Acao|Acoes]).
+
+% Para iniciar a busca, chame: busca(estado_inicial(balde3-0, balde5-0), [estado_inicial(balde3-0, balde5-0)], []).
+
