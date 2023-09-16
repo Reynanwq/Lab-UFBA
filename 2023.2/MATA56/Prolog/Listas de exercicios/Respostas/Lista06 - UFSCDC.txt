@@ -1,0 +1,257 @@
+1. Base de Dados Geometria:
+
+prolog
+
+% Base de Dados Geometria
+vertical(seg(ponto(X,Y),ponto(X,Y1))).
+horizontal(seg(ponto(X,Y),ponto(X1,Y))).
+
+2. Casamento de Padrão:
+
+prolog
+
+a) point(A,B) = point(1,2) - B = 2, A = 1.
+b) point(A,B) = point(X, X, Z) - Falha (número de elementos diferentes).
+c) [a,b,c,[ab], [], [[a], c]] = [X, Y | Z] - X = a, Y = b, Z = [c,[ab],[],[[a],c]].
+d) [p, [seg], t, q] = [X,[Y] ,Z | S] - X = p, Y = seg, Z = t, S = [q].
+e) triangle(point(-1,0),P2, P3) = triangle(P1,point(1,0),point(0,Y)) - P2 = point(1,0), P3 = point(0,Y), P1 = point(-1,0).
+f) [X,Y | Z] = [2,[3,4]] - X = 2, Y = [3,4], Z = [].
+g) [lista, de, exercicios, de , IA] = [X, de | W] - X = lista, W = [exercicios, de, IA].
+
+3. Consultas:
+
+prolog
+
+?- gosta_de(maria,X) = gosta_de(X,joao). % Falha (não há informação sobre o predicado gosta_de).
+?- 3+5 >= 5+3. % Verdadeiro.
+?- 3+5 @>= 5+3. % Verdadeiro.
+?- 3+(5*2-1)/4 =:= 5-2. % Falso.
+?- 3+(5*2-1)/4 = 5-2. % Verdadeiro.
+?- 3+(5*2-1)/4 == 5-2. % Falso.
+?- X=4, X is (X-2)*2. % X = 4.
+?- X is X+1. % Não é possível resolver (recursividade infinita).
+?- X =1, X is X + 1. % Não é possível resolver (recursividade infinita).
+
+4. Base de Dados sobre Livros:
+
+prolog
+
+livro(nome('C completo e total'), autor('Schildt'), pal_chave([linguagemc, programacao, computacao])).
+livro(nome('Prolog para iniciantes'), autor('Silva'), pal_chave([prolog, programacao, inteligencia_artificial])).
+livro(nome('Python Avançado'), autor('Ramos'), pal_chave([python, programacao, desenvolvimento_web])).
+livro(nome('Algoritmos e Estruturas de Dados'), autor('Pereira'), pal_chave([algoritmos, estruturas_de_dados, computacao])).
+livro(nome('Introdução à Inteligência Artificial'), autor('Ferreira'), pal_chave([inteligencia_artificial, machine_learning, algoritmos])).
+
+Consultas:
+
+prolog
+
+a) 
+- nome do autor, dado o nome do livro:
+  ?- livro(nome(_,autor(Autor)), autor('C completo e total')).
+  Resposta: Autor = 'Schildt'.
+  
+- nome do livro, dado o nome do autor:
+  ?- livro(nome(Livro,_), autor('Schildt')).
+  Resposta: Livro = 'C completo e total'.
+  
+- as palavras chave, dado o nome do livro:
+  ?- livro(nome(_,_), pal_chave(PalavrasChave)).
+  Resposta: PalavrasChave = [linguagemc, programacao, computacao].
+
+- nome do autor e o nome do livro, dada uma palavra chave:
+  ?- livro(nome(Livro,autor(Autor)), pal_chave([programacao])).
+  Resposta: 
+    Livro = 'C completo e total',
+    Autor = 'Schildt' ;
+    Livro = 'Prolog para iniciantes',
+    Autor = 'Silva' ;
+    Livro = 'Python Avançado',
+    Autor = 'Ramos' ;
+    Livro = 'Algoritmos e Estruturas de Dados',
+    Autor = 'Pereira' ;
+    Livro = 'Introdução à Inteligência Artificial',
+    Autor = 'Ferreira'.
+    
+b) 
+- Encontrar os livros (nome e autor) que têm pelo menos uma das palavras chave fornecidas:
+  ?- livro(nome(Livro,autor(Autor)), pal_chave(PalavrasChave)), 
+     member(PalavraChave, PalavrasChave), 
+     member(PalavraChave, [inteligencia_artificial, python]).
+  Resposta: 
+    Livro = 'Python Avançado',
+    Autor = 'Ramos' ;
+    Livro = 'Introdução à Inteligência Artificial',
+    Autor = 'Ferreira'.
+
+5. Predicados n_par(Lista) e n_impar(Lista):
+
+prolog
+
+n_par(Lista) :- 
+    length(Lista, N),
+    N mod 2 =:= 0.
+
+n_impar(Lista) :- 
+    length(Lista, N),
+    N mod 2 =\= 0.
+
+6. Relação shift(Lista1, Lista2):
+
+prolog
+
+shift([H|T], L2) :-
+    append(T, [H], L2).
+
+7. Relação traduz(L1, L2):
+
+prolog
+
+t(0, zero).
+t(1, um).
+t(2, dois).
+t(3, tres).
+t(4, quatro).
+t(5, cinco).
+t(6, seis).
+t(7, sete).
+t(8, oito).
+t(9, nove).
+
+traduz([], []).
+traduz([H1|T1], [H2|T2]) :-
+    t(H1, H2),
+    traduz(T1, T2).
+
+8. Relação subset(Set, Subset):
+
+prolog
+
+subset([], _).
+subset([H|T], L) :-
+    member(H, L),
+    subset(T, L).
+
+9. Predicado max(X, Y, Max):
+
+prolog
+
+max(X, Y, Max) :- X >= Y, Max = X.
+max(X, Y, Max) :- Y > X, Max = Y.
+
+10. Predicado maxlista(Lista, Max):
+
+prolog
+
+maxlista([X], X).
+maxlista([H|T], Max) :-
+    maxlista(T, MaxT),
+    max(H, MaxT, Max).
+
+11. Predicado between(N1, N2, X):
+
+prolog
+
+between(N1, N2, X) :- N1 =< X, X =< N2.
+
+12. Classe eficiente com corte:
+
+prolog
+
+classe(N, positivo) :- N > 0, !.
+classe(0, zero) :- !.
+classe(_, negativo).
+
+13. Procedimento split com e sem uso do corte:
+
+prolog
+
+% Com corte
+split([], [], []).
+split([H|T], [H|Pos], Neg) :- H >= 0, !, split(T, Pos, Neg).
+split([H|T], Pos, [H|Neg]) :- split(T, Pos, Neg).
+
+% Sem corte
+split_sem_corte([], [], []).
+split_sem_corte([H|T], [H|Pos], Neg) :- H >= 0, split_sem_corte(T, Pos, Neg).
+split_sem_corte([H|T], Pos, [H|Neg]) :- H < 0, split_sem_corte(T, Pos, Neg).
+
+14. Eu sou meu próprio avô:
+
+prolog
+
+eu_sou_meu_proprio_avo :- 
+    me_casei(X), % Eu me casei com uma viúva
+    minha_filha(Y), % Que tem uma filha adulta
+    meu_pai(Z), % Meu pai se apaixonou por ela e casou-se
+    filho(X, Z), % Meu pai se tornou meu enteado
+    enteada(Y, Z), % Minha enteada tornou-se minha madrasta
+    meu_filho(W), % Minha mulher teve um filho
+    cunhado(W, Z), % Meu filho se tornou cunhado do meu pai
+    tio(W, Z), % Meu filho se tornou tio do meu pai
+    filho(Y, V), % A mulher do meu pai também teve um filho
+    tio(U, V). % O filho da enteada tornou-se tio
+
+% Fatos específicos do problema
+me_casei(viuva).
+minha_filha(adulta).
+meu_pai(pai).
+filho(viuva, pai).
+enteada(adulta, pai).
+meu_filho(filho).
+cunhado(filho, pai).
+tio(filho, pai).
+
+15. Operações Básicas entre Conjuntos:
+
+prolog
+
+% União
+uniao([], L, L).
+uniao([H|T], L, R) :- member(H, L), !, uniao(T, L, R).
+uniao([H|T], L, [H|R]) :- uniao(T, L, R).
+
+% Interseção
+intersecao([], _, []).
+intersecao([H|T], L, [H|R]) :- member(H, L), !, intersecao(T, L, R).
+intersecao([_|T], L, R) :- intersecao(T, L, R).
+
+% Diferença
+diferenca([], _, []).
+diferenca([H|T], L, [H|R]) :- \+ member(H, L), !, diferenca(T, L, R).
+diferenca([_|T], L, R) :- diferenca(T, L, R).
+
+16. Interseção usando Corte:
+
+prolog
+
+intersecao_com_corte(L1, L2, Inter) :-
+    findall(X, (member(X, L1), member(X, L2)), Inter).
+
+17. Interseção sem Corte:
+
+prolog
+
+intersecao_sem_corte([], _, []).
+intersecao_sem_corte([H|T], L2, [H|R]) :- member(H, L2), intersecao_sem_corte(T, L2, R).
+intersecao_sem_corte([_|T], L2, R) :- intersecao_sem_corte(T, L2, R).
+
+18. Verificar Pertencimento em Lista:
+
+prolog
+
+pertence(X, [X|_]) :- !.
+pertence(X, [_|T]) :- pertence(X, T).
+
+19. Ordenação de Elementos:
+
+prolog
+
+ordenar([], []).
+ordenar([H|T], Sorted) :-
+    ordenar(T, SortedT),
+    inserir(H, SortedT, Sorted).
+
+inserir(X, [], [X]).
+inserir(X, [H|T], [X,H|T]) :- X =< H, !.
+inserir(X, [H|T], [H|NT]) :- inserir(X, T, NT).
