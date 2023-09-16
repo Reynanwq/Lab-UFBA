@@ -159,3 +159,397 @@ pode_vender(Pessoa, Carro, AnoAtual) :-
 ```
 
 Estas são as regras em Prolog para os exercícios fornecidos. Se precisar de alguma explicação adicional ou quiser testar alguma das perguntas, sinta-se à vontade para perguntar!
+
+
+Aqui estão as respostas para cada questão em Prolog:
+
+**Exercício IP 1. Objectos e Atributos**
+
+```prolog
+% a) Predicado debaixo(O1, O2) que sucede se o objeto O1 está debaixo (diretamente) do objeto O2.
+debaixo(O1, O2) :- sobre(O1, O2).
+
+% b) Predicado objectos(Lista) que calcula a lista de objetos existentes no mundo.
+objectos(Lista) :- findall(X, objecto(X), Lista).
+
+% c) Predicado objectos_descricao(Lista) que retorna uma lista com a descrição de todos os objetos.
+objectos_descricao(Lista) :- findall(Descricao, descricao_objeto(Descricao), Lista).
+
+descricao_objeto(Objeto-Descricao) :-
+    objecto(Objeto),
+    material(Objeto, Material),
+    tipo(Objeto, Tipo),
+    peso(Objeto, Peso),
+    atomic_list_concat([Objeto, Material, Tipo, Peso], '-', Descricao).
+
+% d) Predicado tipos_objectos(Lista) que retorna uma lista com todos os tipos de objeto sem elementos repetidos.
+tipos_objectos(Lista) :- findall(Tipo, tipo(Tipo), Tipos), list_to_set(Tipos, Lista).
+
+% e) Predicado media_resistencia(Obj) que sucede se o objeto não é frágil nem forte.
+media_resistencia(Obj) :- objecto(Obj), \+ (material(Obj, Material), (fraco(Material); forte(Material))).
+
+% f) Predicado mais_leve(O1, O2, Dif) que recebe dois objetos e sucede se o primeiro for mais leve do que o segundo.
+mais_leve(O1, O2, Dif) :-
+    peso(O1, Peso1),
+    peso(O2, Peso2),
+    Dif is Peso2 - Peso1.
+
+% g) Predicado um_deles_fragil(O1, O2, Mat) que recebe dois objetos e sucede se um deles for feito de um material frágil.
+um_deles_fragil(O1, O2, Mat) :-
+    (material(O1, Mat), fraco(Mat), \+ (material(O2, Mat2), forte(Mat2)));
+    (material(O2, Mat), fraco(Mat), \+ (material(O1, Mat2), forte(Mat2))).
+
+% h) Predicado por_cima_indireto(O1, O2) que sucede se o objeto O1 está sobre um objeto que por sua vez está sobre O2.
+por_cima_indireto(O1, O2) :- sobre(O1, X), sobre(X, O2).
+
+% i) Predicado sobre_mesmo(O1, O2, Obase) que sucede se dois objetos se encontram diretamente sobre o mesmo objeto.
+sobre_mesmo(O1, O2, Obase) :- sobre(O1, Obase), sobre(O2, Obase).
+
+% j) Predicado objectos_tipo(Tipo, Lista) que determina a lista de todos os objetos de um dado tipo.
+objectos_tipo(Tipo, Lista) :- findall(Objeto, (tipo(Objeto, Tipo)), Lista).
+
+% k) Predicado nao_toca_material(Obj) que sucede se um dado objeto não toca em nenhum objeto composto do mesmo material.
+nao_toca_material(Obj) :- \+ (sobre(Obj, X), material(X, Mat), material(Obj, Mat2), Mat \= Mat2).
+
+% l) Predicado eu_sou_original(Obj) que sucede se um dado objeto é o único de um dado tipo ou é o único de um dado material.
+eu_sou_original(Obj) :- \+ (objecto(Obj), (objecto(X), X \= Obj, tipo(X, Tipo), tipo(Obj, Tipo); material(X, Mat), material(Obj, Mat), X \= Obj)).
+```
+
+**Exercício IP 2. Países e Fronteiras**
+
+```prolog
+% a) Predicado junto(P1, P2) que sucede se o país P1 faz fronteira com P2.
+junto(P1, P2) :- fronteira(P1, P2); fronteira(P2, P1).
+
+% b) Predicado paises_continente(Lista, Cont) que calcula a lista de países existentes num dado continente.
+paises_continente(Lista, Cont) :- findall(Pais, (pais(Pais, Cont, _)), Lista).
+
+% c) Predicado paises_grandes(Lista, Cont) que calcula a lista de países com mais de 100 milhões de habitantes de um dado continente.
+paises_grandes(Lista, Cont) :- findall(Pais, (pais(Pais, Cont, Pop), Pop > 100), Lista).
+
+% d) Predicado dois_mais_pop(P1, P2) que calcula quais os dois países com mais habitantes.
+dois_mais_pop(P1, P2) :-
+    findall(Pop-Pais, (pais(Pais, _, Pop)), PopLista),
+    keysort(PopLista, SortedPopLista),
+    reverse(SortedPopLista, [Pop1-P1, Pop2-P2 | _]).
+
+% e) Predicado descricao(Lista) que retorna uma lista com a descrição de todos os países.
+descricao(Lista) :- findall(Descricao, descricao_pais(Descricao), Lista).
+
+descricao_pais(Descricao) :-
+    pais(Nome, Continente, Populacao, Fronteiras),
+    atomic_list_concat([Nome, Continente, Populacao], '*', Descricao).
+
+% f) Predicado nao_sou_o_maior_do_continente(P1) que sucede se P1 não é o maior país do seu continente.
+nao_sou_o_maior_do_continente(P1) :- pais(P1, Cont, Pop1), \+ (pais(P2, Cont, Pop2), Pop2 > Pop1, P1 \= P2).
+
+% g) Predicado chego_la_facil(P1, P2) que sucede se é possível chegar de P1 a P2, diretamente ou atravessando unicamente um outro país.
+chego_la_facil(P1, P2) :- junto(P1, P2); (junto(P1, X), junto(X, P2)).
+
+% h) Predicado num_paises_atravessados(P1, P2, Num) que calcula o número de países que
+
+ é necessário atravessar para chegar de P1 a P2.
+num_paises_atravessados(P1, P2, Num) :- findall(X, (caminho(P1, P2, [P1], X), length(X, Num)), _).
+
+caminho(P1, P2, Visitados, [P2 | Visitados]) :- junto(P1, P2).
+caminho(P1, P2, Visitados, Caminho) :- junto(P1, X), \+ member(X, Visitados), caminho(X, P2, [X | Visitados], Caminho).
+
+% i) Predicado conta_paises(Num) que calcula quantos países diferentes existem na base de dados.
+conta_paises(Num) :- findall(Pais, pais(Pais, _, _), Paises), length(Paises, Num).
+
+% j) Predicado introduz_novo_pais que pergunta ao utilizador qual o nome do país, continente e população e introduz estes dados na base de dados.
+introduz_novo_pais :-
+    write('Nome do país: '),
+    read(Nome),
+    write('Continente: '),
+    read(Continente),
+    write('População: '),
+    read(Populacao),
+    assertz(pais(Nome, Continente, Populacao)).
+
+% k) Predicado elimina_pais(P1) que dado um país P1, se ele existir, elimina-o da base de dados. Deve ainda eliminar a especificação do continente e da população desse país.
+elimina_pais(P1) :- retract(pais(P1, _, _)).
+
+% l) Predicado corta_fronteiras(P1) que elimina todas as fronteiras do país P1 da base de dados.
+corta_fronteiras(P1) :- retractall(fronteira(P1, _)), retractall(fronteira(_, P1)).
+
+% m) Predicado soma_populacao_vizinhos(P1, Soma) que calcula a soma da população dos vizinhos de P1.
+soma_populacao_vizinhos(P1, Soma) :- findall(Pop, (junto(P1, V), pais(V, _, Pop)), Pops), sumlist(Pops, Soma).
+
+% n) Predicado o_meu_vizinho_e_maior_que_o_teu(P1, P2) que sucede se o maior vizinho de P1 é maior (em população) que o maior vizinho de P2.
+o_meu_vizinho_e_maior_que_o_teu(P1, P2) :-
+    vizinho_mais_populoso(P1, Viz1),
+    vizinho_mais_populoso(P2, Viz2),
+    pais(Viz1, _, Pop1),
+    pais(Viz2, _, Pop2),
+    Pop1 > Pop2.
+
+vizinho_mais_populoso(P, V) :-
+    findall(Pop-Pais, (junto(P, Pais), pais(Pais, _, Pop)), PopLista),
+    keysort(PopLista, SortedPopLista),
+    reverse(SortedPopLista, [_-V | _]).
+```
+
+**Exercício IP 3. Relações de Parentesco**
+
+```prolog
+% a) Predicado pessoas(Lista) que calcula a Lista de todas as pessoas existentes na base de factos.
+pessoas(Lista) :- findall(Pessoa, (homem(Pessoa); mulher(Pessoa)), Lista).
+
+% b) Predicado avof(Mul, Pess) em que Mul seja avó de Pess.
+avof(Mul, Pess) :- mulher(Mul), mae(Mul, Filho), pai(Filho, Pess).
+
+% c) Predicado avom(Hom, Pess) em que Hom seja avô de Pess.
+avom(Hom, Pess) :- homem(Hom), pai(Hom, Filho), pai(Filho, Pess).
+
+% d) Predicado bisavom(Hom, Pess) que suceda se Hom for bisavô de Pess.
+bisavom(Hom, Pess) :- avom(Hom, Neto), pai(Neto, Pess).
+
+% e) Predicados tio(Hom, Pess) e tia(Hom, Pess) que sucedem se Hom (Mul) for tio/tia de Pess.
+tio(Hom, Pess) :- homem(Hom), irmaos(Hom, Irmao), (pai(Irmao, Pess); mae(Irmao, Pess)).
+
+tia(Mul, Pess) :- mulher(Mul), irmaos(Mul, Irma), (pai(Irma, Pess); mae(Irma, Pess)).
+
+% f) Predicados neto(Hom, Pess) e neta(Hom, Pess) que sucedem se Hom (Mul) for neto/neta de Pess.
+neto(Hom, Pess) :- homem(Hom), pai(Pess, Filho), pai(Filho, Hom).
+
+neta(Mul, Pess) :- mulher(Mul), pai(Pess, Filho), pai(Filho, Mul).
+
+% g) Predicado primo_1(P1, P2) que sucede se P1 e P2 forem primos no primeiro grau.
+primo_1(P1, P2) :-
+    (homem(P1), pai(P1, Pai1), pai(P2, Pai2), irmaos(Pai1, Pai2));
+    (mulher(P1), mae(P1, Mae1), mae(P2, Mae2), irmaos(Mae1, Mae2)).
+
+% h) Predicado primo(P1, P2) que sucede se P1 e P2 forem primos no primeiro em qualquer grau.
+primo(P1, P2) :-
+    primo_1(P1, P2);
+    (homem(P1), pai(P1, Pai1), primo(Pai1, P2));
+    (mulher(P1), mae(P1, Mae1), primo(Mae1, P2)).
+
+% i) Predicado maior_de_idade(Pess) que sucede se Pess for maior de idade.
+maior_de_idade(Pess) :- idade(Pess, Idade), Idade >= 18.
+
+% j) Predicado mais_velho(Pess) que retorna a pessoa mais velha que consta na base de factos.
+mais_velho(Pess) :- findall(Idade-Pessoa, idade(Pessoa, Idade), ListaIdades), max_member(_, ListaIdades, Pess).
+
+% k) Predicado adequados(Hom, Mul) que sucede se Hom for um homem, Mul for uma mulher e o homem for (no máximo) mais novo 2 anos do que a mulher ou mais velho 10 anos do que ela e se ambos não tiverem nenhuma relação de parentesco nem nenhum deles
+
+ for casado!
+adequados(Hom, Mul) :-
+    homem(Hom),
+    mulher(Mul),
+    \+ irmaos(Hom, Mul),
+    \+ pai(Hom, _),
+    \+ pai(Mul, _),
+    \+ casados(Hom, _),
+    \+ casados(Mul, _),
+    idade(Hom, IdadeHom),
+    idade(Mul, IdadeMul),
+    (IdadeHom =< IdadeMul + 2; IdadeHom >= IdadeMul + 10).
+
+% l) Predicado lista_pessoas(Lista,Sexo) que retorne uma lista de todas as pessoas do Sexo indicado (m/f), incluindo as suas respectivas idades. Por exemplo lista_pessoas(Lista, m) deveria retornar Lista=[americo-18, paulo-25, carlos-37, filipe-32].
+lista_pessoas(Lista, Sexo) :- findall(Nome-Idade, (idade(Nome, Idade), (homem(Nome), Sexo = m; mulher(Nome), Sexo = f)), Lista).
+
+% m) Predicado numero_irmaos(Pess, N) que sucede se N for o número de irmãos de Pess.
+numero_irmaos(Pess, N) :- findall(Irmao, irmaos(Pess, Irmao), Irmaos), length(Irmaos, N).
+
+% n) Predicado lista_dos_mais_velhos_que_eu(Pess, Lista) que retorne uma lista com todas as pessoas mais velhas que Pess.
+lista_dos_mais_velhos_que_eu(Pess, Lista) :- idade(Pess, Idade), findall(Nome-Idade, (idade(Nome, Idade2), Idade2 > Idade), Lista).
+```
+
+**Exercício IP 4. Ordens de Serviço**
+
+A melhor forma de representar as ordens de serviço em Prolog seria utilizando uma abordagem que permitisse associar os dados relevantes a cada ordem de serviço. Assim, a opção (ii) `ordem(<nome>, <data>, <autor>, <distribuição>)` seria a mais adequada. Isso porque ela permite identificar cada ordem por um nome, associar uma data de emissão, indicar o autor da ordem e especificar os detalhes de distribuição.
+
+**Exercício IP 5. Electrodomésticos e Componentes - Fogão**
+
+a) Factos em Prolog:
+
+```prolog
+componente(fogao, estrutura).
+componente(fogao, cordao_eletrico).
+componente(estrutura, resistencia).
+material(resistencia, metal).
+componente(estrutura, painel).
+componente(painel, botao).
+material(botao, plastico).
+componente(cordao_eletrico, fio).
+material(fio, metal).
+componente(cordao_eletrico, isolador).
+material(isolador, fibra).
+```
+
+b) Questões:
+
+```prolog
+?- componente(X, metal).
+?- componente(X, plastico).
+```
+
+c) Regras de transitividade:
+
+```prolog
+parte_de(Peca1, Peca3) :- componente(Peca1, Peca2), parte_de(Peca2, Peca3).
+herda_material(Peca1, Peca3) :- componente(Peca1, Peca2), herda_material(Peca2, Peca3).
+```
+
+d) Questões após a inclusão das regras:
+
+```prolog
+?- componente(X, metal).
+?- componente(X, plastico).
+```
+
+**Exercício IP 6. Mundo dos Blocos**
+
+a) Representação em Prolog:
+
+```prolog
+bloco(D).
+bloco(C).
+bloco(G).
+bloco(B).
+bloco(F).
+bloco(I).
+bloco(A).
+bloco(E).
+bloco(H).
+
+apoiado_em(C, B).
+apoiado_em(G, C).
+apoiado_em(I, G).
+apoiado_em(E, A).
+apoiado_em(H, E).
+
+esquerda_de(B, F).
+esquerda_de(F, I).
+esquerda_de(A, D).
+esquerda_de(D, C).
+```
+
+b) Factos inseridos em um arquivo:
+
+```prolog
+% Bloco D
+% Bloco C Bloco G
+% Bloco B Bloco F Bloco I
+% Bloco A Bloco E Bloco H
+bloco(D).
+bloco(C).
+bloco(G).
+bloco(B).
+bloco(F).
+bloco(I).
+bloco(A).
+bloco(E).
+bloco(H).
+
+apoiado_em(C, B).
+apoiado_em(G, C).
+apoiado_em(I, G).
+apoiado_em(E, A).
+apoiado_em(H, E).
+
+esquerda_de(B, F).
+esquerda_de(F, I).
+esquerda_de(A, D).
+esquerda_de(D, C).
+```
+
+c) Questões:
+
+```prolog
+?- apoiado_em(X, Y).
+?- esquerda_de(X, Y).
+```
+
+d) Regras e inclusão no arquivo:
+
+```prolog
+% Regras
+acima_de(X, Y) :- apoiado_em(X, Y).
+acima_de(X, Y) :- apoiado_em(X, Z), acima_de(Z, Y).
+empilhado_a_esq(X, Y) :- esquerda_de(X, Y).
+
+% Inclusão no arquivo
+:- dynamic(acima_de/2).
+:- dynamic(empilhado_a_esq/2).
+```
+
+e) Questões após inclusão das regras:
+
+```prolog
+?- acima_de(X, Y).
+?- empilhado_a_esq(X, Y).
+```
+
+**Exercício IP 7. Países e Fronteiras**
+
+```prolog
+% a) Predicado pop_elevada(+Continente, -Lista) que calcule a lista de todos os países com mais de 15 milhões de habitantes de um dado continente, ordenada por ordem crescente de população, no formato indicado.
+pop_elevada(Continente, Lista) :-
+    findall(Pop-Pais, (pais(Pais, Continente, Pop), Pop > 15), Pops),
+    keysort(Pops, Lista).
+
+% b) Predicado isolados_grandes(-Lista) que calcule a lista, ordenada por ordem alfabética, de todos os continentes que possuem pelo menos dois países que tenham simultaneamente uma população superior a 15 milhões e duas ou menos fronteiras terrestres (com países conhecidos).
+isolados_grandes(Lista) :-
+    findall(Cont,
+        (isolado_grande(Cont, Populacao),
+        Populacao >= 2),
+        Continentes),
+    sort(Continentes, Lista).
+
+isolado_grande(Continente,
+
+ Populacao) :-
+    pais(Pais1, Continente, Pop1),
+    pais(Pais2, Continente, Pop2),
+    Pop1 > 15,
+    Pop2 > 15,
+    fronteiras_terrestres(Pais1, Front1),
+    length(Front1, NumFront1),
+    fronteiras_terrestres(Pais2, Front2),
+    length(Front2, NumFront2),
+    NumFront1 =< 2,
+    NumFront2 =< 2.
+
+fronteiras_terrestres(Pais, Lista) :-
+    findall(Front,
+        (junto(Pais, Front), pais(Front, _, _)),
+        Lista).
+```
+
+**Exercício IP 8. Processador de Texto**
+
+```prolog
+% a) Base de dados de palavras
+
+palavra(a).
+palavra(uma).
+palavra(um).
+palavra(e).
+palavra(com).
+palavra(de).
+palavra(o).
+palavra(aos).
+palavra(para).
+palavra(em).
+palavra(na).
+palavra(no).
+
+% b) Regras para detecção de frases
+
+frase --> sujeito, predicado.
+sujeito --> determinante, nome.
+sujeito --> nome.
+predicado --> verbo.
+predicado --> verbo, sujeito.
+
+% c) Frases de exemplo
+
+exemplo1 --> uma, coisa, e, outra.
+exemplo2 --> o, rato, roeu, a, roupa.
+exemplo3 --> um, livro, com, muitas, palavras.
+```
+
+Espero que estas soluções sejam úteis! Se tiver mais perguntas ou precisar de algo mais, não hesite em perguntar.
