@@ -1,0 +1,19 @@
+    Unificação: É a base da programação em Prolog. Entender como a unificação funciona é crucial para escrever regras e resolver consultas.
+
+    Fatos e Regras: Fatos representam informações concretas sobre o domínio do problema. Regras são instruções que definem relações entre fatos.
+
+    Recursão: Prolog é bem adequado para a resolução de problemas recursivos. Compreender como implementar funções recursivas em Prolog é essencial.
+
+    Backtracking: Prolog usa backtracking para explorar diferentes caminhos de solução. É importante entender como e quando o backtracking ocorre.
+
+    Consultas: Saber como fazer consultas é crucial. Compreender como a Prolog resolve as consultas também é importante para depurar e entender o comportamento do programa.
+
+    Variáveis: Compreender como as variáveis funcionam em Prolog é essencial para lidar com padrões e instancias.
+
+    Padrões de Unificação: Compreender os padrões de unificação e saber como eles são usados na resolução de consultas.
+
+    Estrutura do Programa: Ter uma boa organização do código, com uma clara separação entre fatos e regras, torna o programa mais legível e fácil de manter.
+
+    Pensamento Lógico: É importante abordar os problemas em Prolog de maneira lógica. Isso envolve quebrar o problema em partes e entender como elas se relacionam.
+
+    Entendimento do Domínio: Para resolver problemas específicos, é crucial entender o domínio em questão e como representá-lo em termos de fatos e regras.
