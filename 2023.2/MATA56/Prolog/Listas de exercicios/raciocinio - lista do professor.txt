@@ -190,6 +190,29 @@ prefixo([X|R1],[X|R2]) :- prefixo(R1,R2).
 
 ---
 
+**Questão 12: conjunto**
+
+A função `conjunto` em Prolog verifica se uma lista não tem elementos repetidos, ou seja, se ela pode ser interpretada como um conjunto. Aqui está a implementação:
+
+```prolog
+conjunto([]).  % Uma lista vazia é um conjunto.
+
+conjunto([X|Resto]) :-  % Verifica se X não está presente no restante da lista.
+    \+ member(X, Resto),
+    conjunto(Resto).
+```
+
+Aqui está como a função funciona:
+
+- A base da recursão é que uma lista vazia é sempre um conjunto (`conjunto([])`).
+
+- A regra `conjunto([X|Resto])` lida com listas não vazias. Ela verifica se o elemento `X` não está presente no restante da lista (`\+ member(X, Resto)`). Se isso for verdade, significa que não há elementos repetidos com relação a `X` no restante da lista.
+
+- Em seguida, a função chama recursivamente `conjunto(Resto)` para verificar se o restante da lista também não tem elementos repetidos.
+
+A negação `\+` é usada para garantir que não existam elementos repetidos em toda
+---
+
 **Questão 13: Subsequência**
 
 ```prolog
