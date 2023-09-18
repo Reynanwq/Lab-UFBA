@@ -98,6 +98,24 @@ inv3([X|R],A,LI) :- inv3(R,[X|A],LI).
   - Se o primeiro elemento da lista (`X`) é uma lista, ela é invertida e colocada na lista acumulada (`A`), enquanto a recursão continua com o restante da lista.
   - Se o primeiro elemento da lista não é uma lista, ele é colocado na cabeça da lista acumulada (`A`) e a recursão continua.
 
+EXPLICAÇÃO DETALHADA:
+    inverterLG(L,Linv) :- inv3(L,[],Linv).
+        Esta regra principal chama a regra inv3 com os parâmetros apropriados para realizar a inversão da lista genérica L.
+
+    inv3([],A,A).
+        Este é o primeiro caso da regra inv3. Quando a lista LG está vazia (caso base), o resultado (Linv) é a lista acumulada (A). Isso significa que quando a lista está vazia, a função de inversão retorna a lista acumulada como resultado.
+
+    inv3([X|R],A,LI) :- is_list(X),inv3(X,[],XI),inv3(R,[XI|A],LI),!.
+        Esta é a segunda parte da regra inv3 e trata do caso em que o primeiro elemento (X) da lista LG é uma lista.
+        is_list(X) verifica se X é uma lista. Se for, a função inv3 é chamada recursivamente para inverter X, resultando em XI.
+        XI é então adicionado à lista acumulada (A), e a recursão continua com o restante da lista (R) e a nova lista acumulada ([XI|A]).
+        O ! no final dessa regra é um cut que serve para cortar escolhas alternativas, garantindo que esta regra seja usada quando o primeiro elemento de LG é uma lista.
+
+    inv3([X|R],A,LI) :- inv3(R,[X|A],LI).
+        Esta é a terceira parte da regra inv3 e trata do caso em que o primeiro elemento (X) da lista LG não é uma lista.
+        Nesse caso, X é adicionado diretamente à lista acumulada (A) como o novo primeiro elemento.
+        A recursão continua com o restante da lista (R) e a nova lista acumulada ([X|A]).
+
 ---
 
 **Questão 8: Parear**
