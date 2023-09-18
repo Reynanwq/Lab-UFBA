@@ -1,0 +1,1358 @@
+----------------------------- PRIMEIRA AULA -----------------------------
+
+% Fatos
+
+cidade(salvador).
+cidade(brasilia).
+pais(brasil).
+estado(bahia).
+capital(brasilia,brasil).
+capital(salvador, bahia).
+
+
+% Regras
+progenitor(X,Y) :- pai(X,Y).
+progenitor(X,Y) :- mae(X,Y).
+
+filho(Y,X) :- progenitor(X,Y), homem(Y).
+filha(Y,X) :- progenitor(X,Y), mulher(Y).
+
+irmaos(X,Y) :- progenitor(Z,X),progenitor(Z,Y), X\==Y.
+
+irmao(X,Y) :- irmaos(X,Y), homem(X).
+irma(X,Y) :- irmaos(X,Y), mulher(X).
+
+homem(manoel).
+homem(renato).
+homem(ricardo).
+
+mulher(graca).
+
+pai(renato, manoel).
+pai(renato, graca).
+pai(renato, ricardo).
+
+mae(conca, manoel).
+mae(conca, graca).
+mae(maria, ricardo).
+
+
+----------------------------- SEGUNDA AULA -----------------------------
+
+% Aritmetica
+%
+
+media(A,B,C) :- C is (A+B)/2.
+
+% fatorial
+
+fatorial1(0,1).
+fatorial1(N,X) :- N>0,
+                  N1 is N-1,
+                  fatorial1(N1,X1),
+                  X is N*X1.
+
+% fatorial com o cut
+
+fatorial2(0,1).
+fatorial2(N,X) :- N>0,
+                  N1 is N-1,
+                  fatorial2(N1,X1),
+                  X is N*X1,!.
+
+% fatorial recursivo de cauda
+
+fatorial3(0,A,A).
+fatorial3(N,A,X) :- N>0,
+                    N1 is N-1,
+                    NA is N*A,
+                    fatorial3(N1,NA,X),!.
+
+fatorial4(N,X) :- fatorial3(N,1,X).
+
+
+% fatorial simb�lico
+%
+fatorial5(0,1).
+fatorial5(N,N*Z):- N>0,
+                   N1 is N-1,
+                   fatorial5(N1,Z),!.
+
+
+% torre de Hanoi
+%
+torre_hanoi(1,X,Y,_) :- write("mova disco do "),
+                        write(X),
+                        write(" para o "),
+                        writeln(Y).
+
+torre_hanoi(N,X,Y,Z) :- N > 1,
+                        N1 is N-1,
+                        torre_hanoi(N1,X,Z,Y),
+                        torre_hanoi(1,X,Y,_),
+                        torre_hanoi(N1,Z,Y,X),!.
+
+----------------------------- TERCEIRA AULA -----------------------------
+
+color(red).
+color(green).
+color(blue).
+color(yellow).
+
+
+vizinho(StateAColor, StateBColor) :-
+	color(StateAColor),
+	color(StateBColor),
+	StateAColor \= StateBColor.   /* \= is the not equal operator */
+
+brazil(RS, SC, PR, SP, MS, MG, RJ, MT, GO,
+       ES, BA, TO, PA, AM, RO, PI, PE, SE,
+       MA, AP, RR, AC, CE, PB, AL, RN) :-
+	vizinho(RS, SC),
+	vizinho(SC, PR),
+	vizinho(PR, SP), vizinho(PR, MS),
+	vizinho(SP, MS), vizinho(SP, MG), vizinho(SP, RJ),
+	vizinho(MS, MG), vizinho(MS, MT), vizinho(MS, GO),
+	vizinho(MG, GO), vizinho(MG, RJ), vizinho(MG, ES), vizinho(MG, BA),
+	vizinho(RJ, ES),
+	vizinho(MT, GO), vizinho(MT, TO), vizinho(MT, PA), vizinho(MT, AM), vizinho(MT, RO),
+	vizinho(GO, TO), vizinho(GO, BA),
+	vizinho(ES, BA),
+	vizinho(BA, TO), vizinho(BA, PI), vizinho(BA, PE), vizinho(BA, SE),
+	vizinho(TO,PA), vizinho(TO,MA),
+	vizinho(PA,MA), vizinho(PA,AM), vizinho(PA,AP), vizinho(PA,RR),
+	vizinho(AM,RR), vizinho(AM,RO), vizinho(AM,AC), /* Rondonia n�o tem */
+	vizinho(PI,PE), vizinho(PI,MA), vizinho(PI,CE),
+	vizinho(PE,CE), vizinho(PE,PB), vizinho(PE,AL),
+	vizinho(SE,AL), /* Maranh�o, Amap�, Roraima e Acre n�o tem */
+	vizinho(CE,PB), vizinho(CE,RN),
+	vizinho(PB,RN). /* Alagoas e Rio Grande do Norte n�o tem */
+
+% brazil(RS, SC, PR, SP, MS, MG, RJ, MT, GO, ES, BA, TO, PA, AM, RO,PI,PE, SE, MA, AP, RR, AC, CE, PB, AL, RN).
+
+
+----------------------------- QUARTA AULA -----------------------------
+
+/*
+p(a).
+p(X) :- q(X), r(X).
+p(X) :- u(X).
+
+
+q(X) :- s(X).
+
+r(a).
+r(b).
+
+s(a).
+s(b).
+s(c).
+
+u(d).
+*/
+
+
+p(a).
+p(X) :- q(X), r(X).
+p(X) :- u(X).
+
+q(X) :- s(X).
+q(X) :- t(X).
+q(X) :- u(X).
+
+r(a).
+r(b).
+
+s(a) :- !.
+s(b).
+s(c).
+
+u(d).
+
+t(e).
+t(f).
+t(b).
+
+vermelho(marcador).
+preto(lapis).
+cor(P,vermelho) :- vermelho(P),!.
+cor(P,preto) :- preto(P),!.
+cor(_,desconhecida).
+
+cabeca([C|_],C).
+cauda([_|T],T).
+cons(C,T,[C|T]).
+
+membro(X,[X|_]).
+membro(X,[_|C]) :- membro(X,C).
+
+----------------------------- QUINTA AULA -----------------------------
+
+% Membro
+%
+
+membro(X,[X|_]).
+membro(X,[_|R]) :- membro(X,R).
+
+
+% consultas
+%
+% ?- membro(c,[a,b,c,d,e]).
+%
+% ?- membro(X,[a,b,c,d,e]).
+%
+% ?- membro(X,[23,45,67,12,222,19,9,6]), Y is X*X, Y < 100.
+%
+% ?- membro([3,Y],[[1,a],[2,m],[3,z],[4,v],[3,p]]).
+%
+% ?- membro(c,X).
+
+
+%
+% Quadrado menor
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor(_,[],[]).
+quadradoMenor(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor(X,R,R2).
+quadradoMenor(X,[E|R],R2) :- Y is E*E, Y >= X, quadradoMenor(X,R,R2).
+
+
+%
+% Quadrado menor V2
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor2(_,[],[]) :- !.
+quadradoMenor2(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor2(X,R,R2), !.
+quadradoMenor2(X,[_|R],R2) :- quadradoMenor2(X,R,R2).
+
+
+% consultas
+%
+% ?- quadradoMenor2(100,[1,2,3,5,7,9,11,12,15,20,6,21],L).
+
+
+% Remova todas as ocorr�ncias
+% remova(X,L1,L2)
+% remova(+,+,?)
+remova(_,[],[]).
+remova(X,[X|Y],W) :- remova(X,Y,W).
+remova(X,[Z|Y],[Z|W]) :- X \== Z, remova(X,Y,W).
+
+
+removaG(X,[X|R],R).
+removaG(X,[F|R],[F|S]) :- removaG(X,R,S).
+
+% remova geral
+% ?- removaG(a,[a,b,c],X).
+% ?- removaG(mm,[mm,a,mm,b,mm,c],X).
+% ?- removaG(mm,X,[a,b,c]).
+
+
+
+
+% Quadrado Menor
+%
+qM(_,[],[]).
+
+qM(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM(X,R,W).
+
+qM(X,[Y|R],W) :- Y2 is Y*Y,
+                 Y2 >= X,
+                 qM(X,R,W).
+
+
+
+% Quadrado Menor
+%
+qM1(_,[],[]) :- !.
+
+qM1(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM1(X,R,W),!.
+
+qM1(X,[_|R],W) :- qM1(X,R,W).
+
+
+% Quadrado Menor
+%
+
+qM2(X,[Y|_],Y) :- Y2 is Y*Y,
+                  Y2 < X.
+
+qM2(X,[_|R],W) :- qM2(X,R,W).
+
+% Insere em todas as posi��es
+%
+insere(E, L,[E|L]).
+insere(E,[X|R], [X|W]) :- insere(E, R, W).
+
+
+----------------------------- SEXTA AULA -----------------------------
+
+% Membro
+%
+
+membro(X,[X|_]).
+membro(X,[_|R]) :- membro(X,R).
+
+
+% consultas
+%
+% ?- membro(c,[a,b,c,d,e]).
+%
+% ?- membro(X,[a,b,c,d,e]).
+%
+% ?- membro(X,[23,45,67,12,222,19,9,6]), Y is X*X, Y < 100.
+%
+% ?- membro([3,Y],[[1,a],[2,m],[3,z],[4,v],[3,p]]).
+%
+% ?- membro(c,X).
+
+
+%
+% Quadrado menor
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor(_,[],[]).
+quadradoMenor(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor(X,R,R2).
+quadradoMenor(X,[E|R],R2) :- Y is E*E, Y >= X, quadradoMenor(X,R,R2).
+
+
+%
+% Quadrado menor V2
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor2(_,[],[]) :- !.
+quadradoMenor2(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor2(X,R,R2), !.
+quadradoMenor2(X,[_|R],R2) :- quadradoMenor2(X,R,R2).
+
+
+% consultas
+%
+% ?- quadradoMenor2(100,[1,2,3,5,7,9,11,12,15,20,6,21],L).
+
+
+% Remova todas as ocorr�ncias
+% remova(X,L1,L2)
+% remova(+,+,?)
+remova(_,[],[]).
+remova(X,[X|Y],W) :- remova(X,Y,W).
+remova(X,[Z|Y],[Z|W]) :- X \== Z, remova(X,Y,W).
+
+
+removaG(X,[X|R],R).
+removaG(X,[F|R],[F|S]) :- removaG(X,R,S).
+
+% remova geral
+% ?- removaG(a,[a,b,c],X).
+% ?- removaG(mm,[mm,a,mm,b,mm,c],X).
+% ?- removaG(mm,X,[a,b,c]).
+
+
+
+
+% Quadrado Menor
+%
+qM(_,[],[]).
+
+qM(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM(X,R,W).
+
+qM(X,[Y|R],W) :- Y2 is Y*Y,
+                 Y2 >= X,
+                 qM(X,R,W).
+
+
+
+% Quadrado Menor
+%
+qM1(_,[],[]) :- !.
+
+qM1(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM1(X,R,W),!.
+
+qM1(X,[_|R],W) :- qM1(X,R,W).
+
+
+% Quadrado Menor
+%
+
+qM2(X,[Y|_],Y) :- Y2 is Y*Y,
+                  Y2 < X.
+
+qM2(X,[_|R],W) :- qM2(X,R,W).
+
+% Insere em todas as posi��es
+%
+insere(E, L,[E|L]).
+insere(E,[X|R], [X|W]) :- insere(E, R, W).
+
+% Uniao de dois conjuntos
+% uniao(C1+,C2+,CR?)
+%
+uniao([],C2,C2).
+uniao([X|R],C2,CR) :- membro(X,C2),uniao(R,C2,CR),!.
+uniao([X|R],C2,[X|CR]) :- uniao(R,C2,CR).
+
+
+uniao2([],C2,C2).
+uniao2([X|R],C2,CR) :- membro(X,C2),uniao2(R,C2,CR).
+uniao2([X|R],C2,[X|CR]) :-  \+ membro(X,C2),uniao2(R,C2,CR).
+
+% Interseccao de dois conjuntos
+% interseccao(C1+,C2+,CR?)
+%
+interseccao([],_,[]).
+interseccao([X|R],C2,[X|CR]) :- membro(X,C2),interseccao(R,C2,CR),!.
+interseccao([_|R],C2,CR) :- interseccao(R,C2,CR).
+
+
+interseccao2([],_,[]) :- !.
+interseccao2([X|R],C2,[X|CR]) :- membro(X,C2),interseccao2(R,C2,CR),!.
+interseccao2([X|R],C2,CR) :- \+ membro(X,C2),interseccao2(R,C2,CR),!.
+
+
+% Uniao de um conjunto de conjuntos
+% uniaoCC(CC+,CR?)
+% ?- uniaoCC(   [ [a,b,c] , [c,d] ,[e,f,g,a] ]  , CR  )
+%  CR = [a,b,c,d,e,f,g].
+%
+% ?- uniaoCC(   [ [a,b,c] ]  , CR  )
+%  CR = [a,b,c].
+
+% uniaoCC([],[]).
+uniaoCC([C],C).
+uniaoCC([C1,C2|RC],UCC) :- uniao(C1,C2,CR),uniaoCC([CR|RC],UCC),!.
+
+% Fa�am interseccaoCC
+%  ????
+%
+
+% Ordenacao por insercao
+% oi(LNO+,LO?).
+% oi([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+oi([],[]).
+oi([E],[E]) :-! .
+oi([X,Y|R],LO) :- oi([Y|R],LOR), coloque(X,LOR,LO),!.
+
+% Coloque E em uma lista ordenada LO
+% coloque(E+.LO+,LOR?)
+coloque(X,[],[X]) :- !.
+coloque(X,[Y|R],[X,Y|R]) :- X < Y, !.
+coloque(X,[Y|R],[Y|LO]) :- coloque(X,R,LO).
+
+
+% Ordenacao por sele��o
+% os(LNO+,LO?).
+% os([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+os([],[]) :- !.
+os([E],[E]) :-!.
+os(L,[M|LOR]) :- menor_s(L, M, LS), os(LS,LOR).
+
+% Menor_S, acha o menor elemento de uma lista e retorna o
+%  elemento e a lista dos outros elementos
+%  menor_s(L+,E?,LS?)
+menor_s([E],E,[]) :- !.
+menor_s([X,Y|R],M,[Y|LR]) :- X =< Y, menor_s([X|R],M,LR),!.
+menor_s([X,Y|R],M,[X|LR]) :- menor_s([Y|R],M,LR).
+
+
+% Merge - Mescla duas listas ordenadas
+% mescla(LO1+,LO2+,LOR?).
+% ?- mescla([3,4,8,10],[1,7,9],LOR).
+% LOR = [1,3,4,7,8,9,10].
+mescla([],L2,L2) :-!.
+mescla(L1,[],L1) :-!.
+mescla([X|RL1],[Y|RL2],[X|MRL]) :- X =< Y, mescla(RL1,[Y|RL2],MRL),!.
+mescla([X|RL1],[Y|RL2],[Y|MRL]) :- mescla([X|RL1],RL2,MRL).
+
+% Divida uma lista L em duas listas
+% dividir(L+,L1?,L2?).
+% dividir([3,4,1,2,7,8],L1,L2)
+% ?- L1 = [3,1,7] L2=[4,2,8]
+dividir([],[],[]).
+dividir([E],[E],[]).
+dividir([X,Y|R], [X|RL1],[Y|RL2]) :- dividir(R,RL1,RL2),!.
+
+% Ordenacao por mesclagem
+% om(LNO+,LO?).
+% om([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+om([],[]) :- !.
+om([E],[E]) :- !.
+om(L,LO) :- dividir(L,L1,L2),om(L1,LO1),om(L2,LO2),mescla(LO1,LO2,LO).
+
+
+% Ordenacao r�pida esbo�o (quick sort 1)
+% qs(LNO+,LO?).
+% qs([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+qs([],[]) :- !.
+qs([E],[E]) :- !.
+qs([P|R],LO) :- dividir_p(P,R,L1,L2),
+                qs(L1,LO1),
+                qs(L2,LO2),
+                juntar(LO1,[P|LO2],LO),!.
+
+juntar([],L2,L2).
+juntar([X|R],L2,[X|LR]) :- juntar(R,L2,LR).
+
+dividir_p(_,[],[],[]).
+dividir_p(P,[X|R],[X|RL1],RL2) :- X < P, dividir_p(P,R,RL1,RL2),!.
+dividir_p(P,[X|R],RL1,[X|RL2]) :- dividir_p(P,R,RL1,RL2).
+
+%!  %%%%%%%%%%%%%%%%%%%
+% Base din�mica
+%
+%
+
+progenitor(maria, manoel).
+progenitor(renato, manoel).
+progenitor(maria, joaquim).
+progenitor(renato, joaquim).
+
+progenitor(maria, carla).
+progenitor(adolfo, carla).
+
+
+mulher(joana).
+mulher(maria).
+mulher(carla).
+mulher(carla2).
+
+:- dynamic homem/1.
+
+homem(manoel).
+homem(renato).
+homem(joaquim).
+homem(adolfo).
+
+pai(X,Y) :- progenitor(X,Y), homem(X).
+mae(X,Y) :- progenitor(X,Y), mulher(X).
+
+filho(Y,X) :- progenitor(X,Y), homem(Y).
+filha(Y,X) :- progenitor(X,Y), mulher(Y).
+
+irmaos(X,Y) :- progenitor(Z,X),progenitor(Z,Y), X \== Y.
+
+
+irmao(X,Y) :- irmaos(X,Y), homem(X).
+irma(X,Y) :- irmaos(X,Y), mulher(X).
+
+
+----------------------------- SETIMA AULA -----------------------------
+
+% Membro
+%
+
+membro(X,[X|_]).
+membro(X,[_|R]) :- membro(X,R).
+
+
+% consultas
+%
+% ?- membro(c,[a,b,c,d,e]).
+%
+% ?- membro(X,[a,b,c,d,e]).
+%
+% ?- membro(X,[23,45,67,12,222,19,9,6]), Y is X*X, Y < 100.
+%
+% ?- membro([3,Y],[[1,a],[2,m],[3,z],[4,v],[3,p]]).
+%
+% ?- membro(c,X).
+
+
+%
+% Quadrado menor
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor(_,[],[]).
+quadradoMenor(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor(X,R,R2).
+quadradoMenor(X,[E|R],R2) :- Y is E*E, Y >= X, quadradoMenor(X,R,R2).
+
+
+%
+% Quadrado menor V2
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor2(_,[],[]) :- !.
+quadradoMenor2(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor2(X,R,R2), !.
+quadradoMenor2(X,[_|R],R2) :- quadradoMenor2(X,R,R2).
+
+
+% consultas
+%
+% ?- quadradoMenor2(100,[1,2,3,5,7,9,11,12,15,20,6,21],L).
+
+
+% Remova todas as ocorr�ncias
+% remova(X,L1,L2)
+% remova(+,+,?)
+remova(_,[],[]).
+remova(X,[X|Y],W) :- remova(X,Y,W).
+remova(X,[Z|Y],[Z|W]) :- X \== Z, remova(X,Y,W).
+
+
+removaG(X,[X|R],R).
+removaG(X,[F|R],[F|S]) :- removaG(X,R,S).
+
+% remova geral
+% ?- removaG(a,[a,b,c],X).
+% ?- removaG(mm,[mm,a,mm,b,mm,c],X).
+% ?- removaG(mm,X,[a,b,c]).
+
+
+
+
+% Quadrado Menor
+%
+qM(_,[],[]).
+
+qM(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM(X,R,W).
+
+qM(X,[Y|R],W) :- Y2 is Y*Y,
+                 Y2 >= X,
+                 qM(X,R,W).
+
+
+
+% Quadrado Menor
+%
+qM1(_,[],[]) :- !.
+
+qM1(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM1(X,R,W),!.
+
+qM1(X,[_|R],W) :- qM1(X,R,W).
+
+
+% Quadrado Menor
+%
+
+qM2(X,[Y|_],Y) :- Y2 is Y*Y,
+                  Y2 < X.
+
+qM2(X,[_|R],W) :- qM2(X,R,W).
+
+% Insere em todas as posi��es
+%
+insere(E, L,[E|L]).
+insere(E,[X|R], [X|W]) :- insere(E, R, W).
+
+% Uniao de dois conjuntos
+% uniao(C1+,C2+,CR?)
+%
+uniao([],C2,C2).
+uniao([X|R],C2,CR) :- membro(X,C2),uniao(R,C2,CR),!.
+uniao([X|R],C2,[X|CR]) :- uniao(R,C2,CR).
+
+
+uniao2([],C2,C2).
+uniao2([X|R],C2,CR) :- membro(X,C2),uniao2(R,C2,CR).
+uniao2([X|R],C2,[X|CR]) :-  \+ membro(X,C2),uniao2(R,C2,CR).
+
+% Interseccao de dois conjuntos
+% interseccao(C1+,C2+,CR?)
+%
+interseccao([],_,[]).
+interseccao([X|R],C2,[X|CR]) :- membro(X,C2),interseccao(R,C2,CR),!.
+interseccao([_|R],C2,CR) :- interseccao(R,C2,CR).
+
+
+interseccao2([],_,[]) :- !.
+interseccao2([X|R],C2,[X|CR]) :- membro(X,C2),interseccao2(R,C2,CR),!.
+interseccao2([X|R],C2,CR) :- \+ membro(X,C2),interseccao2(R,C2,CR),!.
+
+
+% Uniao de um conjunto de conjuntos
+% uniaoCC(CC+,CR?)
+% ?- uniaoCC(   [ [a,b,c] , [c,d] ,[e,f,g,a] ]  , CR  )
+%  CR = [a,b,c,d,e,f,g].
+%
+% ?- uniaoCC(   [ [a,b,c] ]  , CR  )
+%  CR = [a,b,c].
+
+% uniaoCC([],[]).
+uniaoCC([C],C).
+uniaoCC([C1,C2|RC],UCC) :- uniao(C1,C2,CR),uniaoCC([CR|RC],UCC),!.
+
+% Fa�am interseccaoCC
+%  ????
+%
+
+% Ordenacao por insercao
+% oi(LNO+,LO?).
+% oi([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+oi([],[]).
+oi([E],[E]) :-! .
+oi([X,Y|R],LO) :- oi([Y|R],LOR), coloque(X,LOR,LO),!.
+
+% Coloque E em uma lista ordenada LO
+% coloque(E+.LO+,LOR?)
+coloque(X,[],[X]) :- !.
+coloque(X,[Y|R],[X,Y|R]) :- X =< Y, !.
+coloque(X,[Y|R],[Y|LO]) :- coloque(X,R,LO).
+
+
+% Ordenacao por sele��o
+% os(LNO+,LO?).
+% os([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+os([],[]) :- !.
+os([E],[E]) :-!.
+os(L,[M|LOR]) :- menor_s(L, M, LS), os(LS,LOR).
+
+% Menor_S, acha o menor elemento de uma lista e retorna o
+%  elemento e a lista dos outros elementos
+%  menor_s(L+,E?,LS?)
+menor_s([E],E,[]) :- !.
+menor_s([X,Y|R],M,[Y|LR]) :- X =< Y, menor_s([X|R],M,LR),!.
+menor_s([X,Y|R],M,[X|LR]) :- menor_s([Y|R],M,LR).
+
+
+% Merge - Mescla duas listas ordenadas
+% mescla(LO1+,LO2+,LOR?).
+% ?- mescla([3,4,8,10],[1,7,9],LOR).
+% LOR = [1,3,4,7,8,9,10].
+mescla([],L2,L2) :-!.
+mescla(L1,[],L1) :-!.
+mescla([X|RL1],[Y|RL2],[X|MRL]) :- X =< Y, mescla(RL1,[Y|RL2],MRL),!.
+mescla([X|RL1],[Y|RL2],[Y|MRL]) :- mescla([X|RL1],RL2,MRL).
+
+% Divida uma lista L em duas listas
+% dividir(L+,L1?,L2?).
+% dividir([3,4,1,2,7,8],L1,L2)
+% ?- L1 = [3,1,7] L2=[4,2,8]
+dividir([],[],[]).
+dividir([E],[E],[]).
+dividir([X,Y|R], [X|RL1],[Y|RL2]) :- dividir(R,RL1,RL2),!.
+
+% Ordenacao por mesclagem
+% om(LNO+,LO?).
+% om([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+om([],[]) :- !.
+om([E],[E]) :- !.
+om(L,LO) :- dividir(L,L1,L2),om(L1,LO1),om(L2,LO2),mescla(LO1,LO2,LO).
+
+
+% Ordenacao r�pida esbo�o (quick sort 1)
+% qs(LNO+,LO?).
+% qs([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+qs([],[]) :- !.
+qs([E],[E]) :- !.
+qs([P|R],LO) :- dividir_p(P,R,L1,L2),
+                qs(L1,LO1),
+                qs(L2,LO2),
+                juntar(LO1,[P|LO2],LO),!.
+
+juntar([],L2,L2).
+juntar([X|R],L2,[X|LR]) :- juntar(R,L2,LR).
+
+dividir_p(_,[],[],[]).
+dividir_p(P,[X|R],[X|RL1],RL2) :- X < P, dividir_p(P,R,RL1,RL2),!.
+dividir_p(P,[X|R],RL1,[X|RL2]) :- dividir_p(P,R,RL1,RL2).
+
+%!  %%%%%%%%%%%%%%%%%%%
+% Base din�mica
+%
+%
+
+progenitor(maria, manoel).
+progenitor(renato, manoel).
+progenitor(maria, joaquim).
+progenitor(renato, joaquim).
+
+progenitor(maria, carla).
+progenitor(adolfo, carla).
+
+
+mulher(joana).
+mulher(maria).
+mulher(carla).
+mulher(carla2).
+
+%
+:- dynamic homem/1.
+
+homem(manoel).
+homem(renato).
+homem(joaquim).
+homem(adolfo).
+
+pai(X,Y) :- progenitor(X,Y), homem(X).
+mae(X,Y) :- progenitor(X,Y), mulher(X).
+
+filho(Y,X) :- progenitor(X,Y), homem(Y).
+filha(Y,X) :- progenitor(X,Y), mulher(Y).
+
+irmaos(X,Y) :- progenitor(Z,X),progenitor(Z,Y), X \== Y.
+
+
+irmao(X,Y) :- irmaos(X,Y), homem(X).
+irma(X,Y) :- irmaos(X,Y), mulher(X).
+
+
+%!  %%%%%
+%
+iSortG([],_,[]).
+iSortG([X|Y],C,Z) :- iSortG(Y,C,W),insereG(X,W,C,Z).
+
+insereG(X,[],_,[X]) :- !.
+insereG(X,[Y|R],C,[X,Y|R]) :- comparador(C,X,Y),!.
+insereG(X,[Y|R],C,[Y|W]) :- insereG(X,R,C,W),!.
+
+comparador(direta,X,Y) :- X=<Y.
+comparador(inversa,X,Y) :- X>Y.
+
+----------------------------- OITAVA AULA -----------------------------
+
+% Membro
+%
+
+membro(X,[X|_]).
+membro(X,[_|R]) :- membro(X,R).
+
+
+% consultas
+%
+% ?- membro(c,[a,b,c,d,e]).
+%
+% ?- membro(X,[a,b,c,d,e]).
+%
+% ?- membro(X,[23,45,67,12,222,19,9,6]), Y is X*X, Y < 100.
+%
+% ?- membro([3,Y],[[1,a],[2,m],[3,z],[4,v],[3,p]]).
+%
+% ?- membro(c,X).
+
+
+%
+% Quadrado menor
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor(_,[],[]).
+quadradoMenor(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor(X,R,R2).
+quadradoMenor(X,[E|R],R2) :- Y is E*E, Y >= X, quadradoMenor(X,R,R2).
+
+
+%
+% Quadrado menor V2
+% quadradoMenor(X,L1,L2)
+% quadradoMenor(+,+,?)
+
+quadradoMenor2(_,[],[]) :- !.
+quadradoMenor2(X,[E|R],[E|R2]) :- Y is E*E, Y < X, quadradoMenor2(X,R,R2), !.
+quadradoMenor2(X,[_|R],R2) :- quadradoMenor2(X,R,R2).
+
+
+% consultas
+%
+% ?- quadradoMenor2(100,[1,2,3,5,7,9,11,12,15,20,6,21],L).
+
+
+% Remova todas as ocorr�ncias
+% remova(X,L1,L2)
+% remova(+,+,?)
+remova(_,[],[]).
+remova(X,[X|Y],W) :- remova(X,Y,W).
+remova(X,[Z|Y],[Z|W]) :- X \== Z, remova(X,Y,W).
+
+
+removaG(X,[X|R],R).
+removaG(X,[F|R],[F|S]) :- removaG(X,R,S).
+
+% remova geral
+% ?- removaG(a,[a,b,c],X).
+% ?- removaG(mm,[mm,a,mm,b,mm,c],X).
+% ?- removaG(mm,X,[a,b,c]).
+
+
+
+
+% Quadrado Menor
+%
+qM(_,[],[]).
+
+qM(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM(X,R,W).
+
+qM(X,[Y|R],W) :- Y2 is Y*Y,
+                 Y2 >= X,
+                 qM(X,R,W).
+
+
+
+% Quadrado Menor
+%
+qM1(_,[],[]) :- !.
+
+qM1(X,[Y|R],[Y|W]) :- Y2 is Y*Y,
+                     Y2 < X,
+                     qM1(X,R,W),!.
+
+qM1(X,[_|R],W) :- qM1(X,R,W).
+
+
+% Quadrado Menor
+%
+
+qM2(X,[Y|_],Y) :- Y2 is Y*Y,
+                  Y2 < X.
+
+qM2(X,[_|R],W) :- qM2(X,R,W).
+
+% Insere em todas as posi��es
+%
+insere(E, L,[E|L]).
+insere(E,[X|R], [X|W]) :- insere(E, R, W).
+
+% Uniao de dois conjuntos
+% uniao(C1+,C2+,CR?)
+%
+uniao([],C2,C2).
+uniao([X|R],C2,CR) :- membro(X,C2),uniao(R,C2,CR),!.
+uniao([X|R],C2,[X|CR]) :- uniao(R,C2,CR).
+
+
+uniao2([],C2,C2).
+uniao2([X|R],C2,CR) :- membro(X,C2),uniao2(R,C2,CR).
+uniao2([X|R],C2,[X|CR]) :-  \+ membro(X,C2),uniao2(R,C2,CR).
+
+% Interseccao de dois conjuntos
+% interseccao(C1+,C2+,CR?)
+%
+interseccao([],_,[]).
+interseccao([X|R],C2,[X|CR]) :- membro(X,C2),interseccao(R,C2,CR),!.
+interseccao([_|R],C2,CR) :- interseccao(R,C2,CR).
+
+
+interseccao2([],_,[]) :- !.
+interseccao2([X|R],C2,[X|CR]) :- membro(X,C2),interseccao2(R,C2,CR),!.
+interseccao2([X|R],C2,CR) :- \+ membro(X,C2),interseccao2(R,C2,CR),!.
+
+
+% Uniao de um conjunto de conjuntos
+% uniaoCC(CC+,CR?)
+% ?- uniaoCC(   [ [a,b,c] , [c,d] ,[e,f,g,a] ]  , CR  )
+%  CR = [a,b,c,d,e,f,g].
+%
+% ?- uniaoCC(   [ [a,b,c] ]  , CR  )
+%  CR = [a,b,c].
+
+% uniaoCC([],[]).
+uniaoCC([C],C).
+uniaoCC([C1,C2|RC],UCC) :- uniao(C1,C2,CR),uniaoCC([CR|RC],UCC),!.
+
+% Fa�am interseccaoCC
+%  ????
+%
+
+% Ordenacao por insercao
+% oi(LNO+,LO?).
+% oi([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+oi([],[]).
+oi([E],[E]) :-! .
+oi([X,Y|R],LO) :- oi([Y|R],LOR), coloque(X,LOR,LO),!.
+
+% Coloque E em uma lista ordenada LO
+% coloque(E+.LO+,LOR?)
+coloque(X,[],[X]) :- !.
+coloque(X,[Y|R],[X,Y|R]) :- X =< Y, !.
+coloque(X,[Y|R],[Y|LO]) :- coloque(X,R,LO).
+
+
+% Ordenacao por sele��o
+% os(LNO+,LO?).
+% os([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+os([],[]) :- !.
+os([E],[E]) :-!.
+os(L,[M|LOR]) :- menor_s(L, M, LS), os(LS,LOR).
+
+% Menor_S, acha o menor elemento de uma lista e retorna o
+%  elemento e a lista dos outros elementos
+%  menor_s(L+,E?,LS?)
+menor_s([E],E,[]) :- !.
+menor_s([X,Y|R],M,[Y|LR]) :- X =< Y, menor_s([X|R],M,LR),!.
+menor_s([X,Y|R],M,[X|LR]) :- menor_s([Y|R],M,LR).
+
+
+% Merge - Mescla duas listas ordenadas
+% mescla(LO1+,LO2+,LOR?).
+% ?- mescla([3,4,8,10],[1,7,9],LOR).
+% LOR = [1,3,4,7,8,9,10].
+mescla([],L2,L2) :-!.
+mescla(L1,[],L1) :-!.
+mescla([X|RL1],[Y|RL2],[X|MRL]) :- X =< Y, mescla(RL1,[Y|RL2],MRL),!.
+mescla([X|RL1],[Y|RL2],[Y|MRL]) :- mescla([X|RL1],RL2,MRL).
+
+% Divida uma lista L em duas listas
+% dividir(L+,L1?,L2?).
+% dividir([3,4,1,2,7,8],L1,L2)
+% ?- L1 = [3,1,7] L2=[4,2,8]
+dividir([],[],[]).
+dividir([E],[E],[]).
+dividir([X,Y|R], [X|RL1],[Y|RL2]) :- dividir(R,RL1,RL2),!.
+
+% Ordenacao por mesclagem
+% om(LNO+,LO?).
+% om([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+om([],[]) :- !.
+om([E],[E]) :- !.
+om(L,LO) :- dividir(L,L1,L2),om(L1,LO1),om(L2,LO2),mescla(LO1,LO2,LO).
+
+
+% Ordenacao r�pida esbo�o (quick sort 1)
+% qs(LNO+,LO?).
+% qs([3,4,1,5,2],LO)
+% ?- LO = [1,2,3,4,5]
+qs([],[]) :- !.
+qs([E],[E]) :- !.
+qs([P|R],LO) :- dividir_p(P,R,L1,L2),
+                qs(L1,LO1),
+                qs(L2,LO2),
+                juntar(LO1,[P|LO2],LO),!.
+
+juntar([],L2,L2).
+juntar([X|R],L2,[X|LR]) :- juntar(R,L2,LR).
+
+dividir_p(_,[],[],[]).
+dividir_p(P,[X|R],[X|RL1],RL2) :- X < P, dividir_p(P,R,RL1,RL2),!.
+dividir_p(P,[X|R],RL1,[X|RL2]) :- dividir_p(P,R,RL1,RL2).
+
+%!  %%%%%%%%%%%%%%%%%%%
+% Base din�mica
+%
+%
+
+progenitor(maria, manoel).
+progenitor(renato, manoel).
+progenitor(maria, joaquim).
+progenitor(renato, joaquim).
+
+progenitor(maria, carla).
+progenitor(adolfo, carla).
+
+
+mulher(joana).
+mulher(maria).
+mulher(carla).
+mulher(carla2).
+
+%
+:- dynamic homem/1.
+
+homem(manoel).
+homem(renato).
+homem(joaquim).
+homem(adolfo).
+
+pai(X,Y) :- progenitor(X,Y), homem(X).
+mae(X,Y) :- progenitor(X,Y), mulher(X).
+
+filho(Y,X) :- progenitor(X,Y), homem(Y).
+filha(Y,X) :- progenitor(X,Y), mulher(Y).
+
+irmaos(X,Y) :- progenitor(Z,X),progenitor(Z,Y), X \== Y.
+
+
+irmao(X,Y) :- irmaos(X,Y), homem(X).
+irma(X,Y) :- irmaos(X,Y), mulher(X).
+
+
+%!  %%
+%
+
+:- dynamic olha_resultado/3.
+
+resolucao_complicada(X,Y,Res):-
+   olha_resultado(X,Y,Res), !. % olha resultado
+
+resolucao_complicada(X,Y,Res):-
+   Res is (X+Y)*(X+Y),              % resolve
+   assert(olha_resultado(X,Y,Res)). % armazena
+
+
+
+
+%!  %%%%%
+% Revisitabdo ordena��o por inser��o
+iSortG2([],[]).
+iSortG2([X|Y],Z) :- iSortG2(Y,W),insere2(X,W,Z).
+
+insere2(X,[],[X]) :- !.
+insere2(X,[Y|R],[X,Y|R]) :- X<Y,!.
+insere2(X,[Y|R],[Y|W]) :- insere2(X,R,W),!.
+
+
+%!  %%%%%
+% Adicinando um comportamento pseudo-din�mico
+% O comparador � baseado em uma regra
+iSortG3([],_,[]).
+iSortG3([X|Y],C,Z) :- iSortG3(Y,C,W),insereG(X,W,C,Z).
+
+insereG(X,[],_,[X]) :- !.
+insereG(X,[Y|R],C,[X,Y|R]) :- comparador(C,X,Y),!.
+insereG(X,[Y|R],C,[Y|W]) :- insereG(X,R,C,W),!.
+
+comparador(direta,X,Y) :- X=<Y.
+comparador(inversa,X,Y) :- X>Y.
+
+
+%!  %%%%%
+% Adicinando um comportamento realmente din�mico (meta-call)
+% O comparador � baseado em uma regra
+iSortG4([],_,[]).
+iSortG4([X|Y],C,Z) :- iSortG4(Y,C,W),insereGG(X,W,C,Z).
+
+insereGG(X,[],_,[X]) :- !.
+insereGG(X,[Y|R],C,[X,Y|R]) :- call(C,X,Y),!.
+insereGG(X,[Y|R],C,[Y|W]) :- insereGG(X,R,C,W),!.
+
+
+%!  %%%%%
+% Adicinando um comportamento realmente din�mico (meta-call)
+% com valor default
+iSortG4(L,LO) :-  iSortG4(L,<,LO).
+
+
+%!  %%%%%
+% Adicinando um comportamento realmente din�mico (meta-call)
+% O comparador e chave � baseado em uma regra
+iSortG5([],_,_,[]).
+iSortG5([X|Y],C,K,Z) :- iSortG5(Y,C,K,W),insereGGG(X,W,C,K,Z).
+
+insereGGG(X,[],_,_,[X]) :- !.
+insereGGG(X,[Y|R],C,K,[X,Y|R]) :- call(K,X,XC),
+                                  call(K,Y,YC),
+                                  call(C,XC,YC),!.
+insereGGG(X,[Y|R],C,K,[Y|W]) :- insereGGG(X,R,C,K,W),!.
+
+
+%!  %%%%%
+% Adicinando um comportamento realmente din�mico (meta-call)
+% com valor default
+iSortG5(L,C,LO) :-  iSortG5(L,C,identidade,LO).
+
+%!  %%%%%
+% Adicinando um comportamento realmente din�mico (meta-call)
+% com valor default
+iSortG5(L,LO) :-  iSortG5(L,<,identidade,LO).
+identidade(X,X).
+
+
+
+% teste string_codes(S,C))
+
+
+
+/*
+ *
+
+?- iSortG6([[2,1,7],[3,5],[1],[4,3,2,1]],=<,length,L).
+L = [[1], [3, 5], [2, 1, 7], [4, 3, 2, 1]].
+
+?-  assert(first([X|_],X)).
+
+true.
+
+?- listing(first/2).
+:- dynamic first/2.
+
+first([A|_], A).
+
+true.
+
+?- iSortG6([[2,1,7],[3,5],[1],[4,3,2,1]],=<,first,L).
+L = [[1], [2, 1, 7], [3, 5], [4, 3, 2, 1]]
+
+*/
+
+
+----------------------------- NONA AULA -----------------------------
+
+
+progenitor(maria, manoel).
+progenitor(renato, manoel).
+progenitor(maria, joaquim).
+progenitor(renato, joaquim).
+
+progenitor(maria, carla).
+progenitor(adolfo, carla).
+
+
+mulher(joana).
+mulher(maria).
+mulher(carla).
+mulher(carla2).
+
+%
+:- dynamic homem/1.
+
+homem(manoel).
+homem(renato).
+homem(joaquim).
+homem(adolfo).
+
+pai(X,Y) :- progenitor(X,Y), homem(X).
+mae(X,Y) :- progenitor(X,Y), mulher(X).
+
+%!  %%
+%
+
+:- dynamic olha_resultado/3.
+
+resolucao_complicada(X,Y,Res):-
+   olha_resultado(X,Y,Res), !. % olha resultado
+
+resolucao_complicada(X,Y,Res):-
+   Res is (X+Y)*(X+Y),              % resolve
+   assert(olha_resultado(X,Y,Res)). % armazena
+
+
+%!  %%%%%
+% Revisitabdo ordena��o por inser��o
+iSortG2([],[]).
+iSortG2([X|Y],Z) :- iSortG2(Y,W),insere2(X,W,Z).
+
+insere2(X,[],[X]) :- !.
+insere2(X,[Y|R],[X,Y|R]) :- X=<Y,!.
+insere2(X,[Y|R],[Y|W]) :- insere2(X,R,W),!.
+
+
+
+%!  %%%%%
+% Revisitabdo ordena��o por inser��o
+iSortG3([],[]).
+iSortG3([X|Y],Z) :- iSortG3(Y,W),insere3(X,W,Z).
+
+insere3(X,[],[X]) :- !.
+insere3(X,[Y|R],[X,Y|R]) :- X>Y,!.
+insere3(X,[Y|R],[Y|W]) :- insere3(X,R,W),!.
+
+
+
+%!  %%%%%
+% Revisitabdo ordena��o por inser��o
+iSortG4([],_,[]).
+iSortG4([X|Y],P,Z) :- iSortG4(Y,P,W),insere4(X,W,P,Z).
+
+insere4(X,[],_,[X]) :- !.
+insere4(X,[Y|R],P,[X,Y|R]) :- compara(P,X,Y),!.
+insere4(X,[Y|R],P,[Y|W]) :- insere4(X,R,P,W),!.
+
+
+compara(direta,X,Y) :- X=<Y.
+compara(inversa,X,Y) :- X>Y.
+
+
+
+%!  %%%%%
+% Revisitabdo ordena��o por inser��o
+iSortG5([],_,[]).
+iSortG5([X|Y],P,Z) :- iSortG5(Y,P,W),insere5(X,W,P,Z).
+
+insere5(X,[],_,[X]) :- !.
+insere5(X,[Y|R],P,[X,Y|R]) :- call(P,X,Y),!.
+insere5(X,[Y|R],P,[Y|W]) :- insere5(X,R,P,W),!.
+
+
+%!   Versao default
+iSortG5(L,LO) :- iSortG5(L,=<,LO).
+
+
+%!  %%%%%
+% Revisitabdo ordena��o por inser��o
+iSortG6([],_,_,[]).
+iSortG6([X|Y],P,K,Z) :- iSortG6(Y,P,K,W),insere6(X,W,P,K,Z).
+
+insere6(X,[],_,_,[X]) :- !.
+insere6(X,[Y|R],P,K,[X,Y|R]) :-
+    call(K,X,CX),
+    call(K,Y,CY),
+    call(P,CX,CY),!.
+insere6(X,[Y|R],P,K,[Y|W]) :- insere6(X,R,P,K,W),!.
+
+
+%!   Versao default
+iSortG6(L,LO) :- iSortG6(L,=<,identidade,LO).
+
+identidade(X,X).
+
+
+/*
+ *
+
+?- iSortG6([[2,1,7],[3,5],[1],[4,3,2,1]],=<,length,L).
+L = [[1], [3, 5], [2, 1, 7], [4, 3, 2, 1]].
+
+?-  assert(first([X|_],X)).
+
+true.
+
+?- listing(first/2).
+:- dynamic first/2.
+
+first([A|_], A).
+
+true.
+
+?- iSortG6([[2,1,7],[3,5],[1],[4,3,2,1]],=<,first,L).
+L = [[1], [2, 1, 7], [3, 5], [4, 3, 2, 1]]
+
+*/
+
+
+
+% Inverte
+% inv(L+,LI?).
+
+inv(L,LI) :- invaux(L,[],LI).
+
+invaux([],A,A).
+invaux([X|RL],A,LI):- invaux(RL,[X|A],LI).
+
+% Inverte Lista gen�rica
+inv_lg(LG,LGI) :- invaux_lg(LG,[],LGI).
+
+invaux_lg([],A,A).
+
+invaux_lg([X|RL],A,RESP) :- is_list(X),
+                            invaux_lg(X,[],Xinv),
+                            invaux_lg(RL,[Xinv|A],RESP),!.
+
+invaux_lg([X|RL],A,RESP) :- invaux_lg(RL,[X|A],RESP).
+
+
+
+parear(_,[],[]).
+parear(E,[X|R],[[E,X]|RL]) :-  parear(E,R,RL),!.
+
+
+
+pares([],[]).
+pares([X|R],LR) :- parear(X,R,PX),
+                   pares(R,LRR),
+                   append(PX,LRR,LR),!.
