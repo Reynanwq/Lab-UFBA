@@ -318,3 +318,44 @@ mergesort2(L,LO) :- mergesort3(L,=<,identidade,LO).
  `is_list`, `call`, `concatenar`, entre outras, são frequentemente utilizadas para auxiliar na implementação das funções principais. É importante entender como essas funções funcionam e onde elas são aplicadas.
 
 Lembre-se de que Prolog é uma linguagem declarativa e a execução é baseada em inferência de fatos e regras, e não em execução sequencial de comandos como em linguagens imperativas. Portanto, entender a lógica de cada função é crucial para compreender como o código opera. Boa sorte na sua prova!
+
+-------
+
+EXPLICAÇÃO DETALHADA DAS QUESTÕES 15,16,17
+
+**Questão 15: Mesclar (Merge Sort)**
+
+Nesta questão, temos a implementação do algoritmo de ordenação *Merge Sort* em Prolog.
+
+1. **Dividir a lista (divide):**
+   - `divide([],[],[]) :- !.`: Esta regra trata o caso base, onde se a lista for vazia, ambas as listas resultantes também serão vazias.
+   - `divide([E],[E],[]) :- !.`: Se a lista tiver apenas um elemento, ele será dividido em duas listas, sendo a primeira com esse elemento e a segunda vazia.
+   - `divide([E1,E2|R], [E1|R1], [E2|R2]) :- divide(R,R1,R2).`: Para listas com mais de um elemento, ela divide a lista em duas partes (`[E1|R1]` e `[E2|R2]`) e continua a recursão com o restante da lista (`R`).
+
+2. **Aplicar o Merge Sort (mergesort):**
+   - `mergesort([],[]) :- !.`: Se a lista for vazia, ela já está ordenada.
+   - `mergesort([E],[E]) :- !.`: Se a lista tiver apenas um elemento, também está ordenada.
+   - `mergesort(L,LO) :- divide(L,L1,L2), mergesort(L1,LO1), mergesort(L2,LO2), mescle(LO1,LO2,LO).`: Para listas maiores, a lista é dividida em duas partes (`L1` e `L2`). O *Merge Sort* é então aplicado recursivamente a ambas as partes (`mergesort(L1,LO1)` e `mergesort(L2,LO2)`). Por fim, as duas partes ordenadas são mescladas (`mescle`) para formar a lista ordenada final (`LO`).
+
+**Questão 16: Mesclar (Merge Sort) Versão 2**
+
+Essa versão introduz um novo parâmetro `FC` que representa a função de comparação utilizada para determinar a ordem dos elementos.
+
+- `mescle2([],L2,_,L2) :- !.`: Se a primeira lista estiver vazia, a lista resultante será a segunda lista (`L2`).
+- `mescle2(L1,[],_,L1) :- !.`: Se a segunda lista estiver vazia, a lista resultante será a primeira lista (`L1`).
+- `mescle2([E1|R1], [E2|R2], FC, [E1|W]) :- call(FC,E1,E2), mescle2(R1, [E2|R2], FC, W),!.`: Aqui, `FC` é chamada para comparar `E1` e `E2` e determinar a ordem. O elemento menor (`E1`) é adicionado à lista resultante (`[E1|W]`). A função é chamada recursivamente com o restante das duas listas.
+- `mescle2([E1|R1], [E2|R2], FC , [E2|W]) :- mescle2([E1|R1], R2, FC, W).`: Neste caso, `E2` é o menor elemento, então ele é adicionado à lista resultante. A função é chamada recursivamente com o restante da segunda lista.
+
+**Questão 17: Mesclar (Merge Sort) Versão 3**
+
+Nesta versão, além da função de comparação (`FC`), são introduzidas uma função de comparação de chaves (`CC`) e uma função para extrair a chave de comparação dos elementos (`Ch`).
+
+- `mergesort3(L,LO) :- mergesort3(L,=<,identidade,LO).`: Esta regra chama a função `mergesort3` com uma função de comparação padrão (`=<`), uma função de comparação de chaves padrão (`identidade`) e a lista original (`L`) para ordenar. 
+
+- `mergesort3([],_,_,[]) :- !.`: Se a lista for vazia, a lista resultante também será vazia.
+- `mergesort3([E],_,_,[E]) :- !.`: Se a lista tiver apenas um elemento, ela já está ordenada.
+- A recursão ocorre da mesma maneira que na Questão 15, mas agora são utilizadas funções de comparação (`FC`) e de comparação de chaves (`CC`) para determinar a ordem dos elementos.
+
+- `mescle3(LO1,LO2,FC,CC,LO).`: A função `mescle3` é usada para mesclar as listas ordenadas `LO1` e `LO2` de acordo com as funções de comparação `FC` e `CC`.
+
+Em resumo, a Questão 15 apresenta uma implementação básica do Merge Sort, enquanto as Questões 16 e 17 introduzem variações com a adição de parâmetros para permitir a personalização das funções de comparação.
