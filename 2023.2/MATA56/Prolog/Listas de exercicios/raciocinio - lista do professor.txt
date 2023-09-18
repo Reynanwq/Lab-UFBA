@@ -1,0 +1,279 @@
+------------- RACIOCINIO UTILIZADO PARA RESOLVER AS QUESTÕES DA LISTA DE PROLOG -------------
+
+Vou analisar cada uma das perguntas e as respostas correspondentes, fornecendo o padrão de raciocínio para cada uma:
+
+---
+
+**Questão 1: Concatenar**
+
+```prolog
+concatenar([],L,L).
+concatenar([X|R], L, [X|W]) :- concatenar(R,L,W).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a primeira lista (`L1`) está vazia, o resultado é a segunda lista (`L2`).
+  - Caso contrário, o primeiro elemento da primeira lista (`X`) é mantido na cabeça da lista resultante (`L3`), e a recursão é chamada com o restante da primeira lista (`R`) e a segunda lista (`L2`).
+
+---
+
+**Questão 2: Concatenar Invertido**
+
+```prolog
+concatenarInv(L1,L2,L3) :- concatenar(L2,L1,L3).
+```
+
+- **Padrão de raciocínio**:
+  - Esta questão é basicamente uma inversão na ordem dos argumentos em relação à questão 1. A função `concatenar` é usada, mas com os argumentos `L2` e `L1` trocados.
+
+---
+
+**Questão 3: Concatenar Lista de Listas**
+
+```prolog
+concatenarLL([],[]).
+concatenarLL([X],X).
+concatenarLL([X,Y|R],T) :- concatenar(X,Y,W), concatenarLL([W|R],T),!.
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a lista de listas (`LL`) está vazia, o resultado é uma lista vazia.
+  - Quando há apenas uma lista em `LL`, o resultado é ela mesma.
+  - Caso contrário, a função `concatenar` é usada para unir as duas primeiras listas de `LL` e o resultado é inserido recursivamente no restante da lista (`R`).
+
+---
+
+**Questão 4: Juntar Intercalando Duas Listas**
+
+```prolog
+juntar([],[Y|YR],[Y|YR]).
+juntar([X|XR],[],[X|XR]).
+juntar([X|XR],[Y|YR],[X,Y|R]) :- juntar(XR,YR,R).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando uma das listas está vazia, o resultado é a outra lista.
+  - Quando ambas as listas não estão vazias, o primeiro elemento de `X` é colocado na cabeça da lista resultante (`R`) e a função é chamada recursivamente com o restante das duas listas.
+
+---
+
+**Questão 5: Adicionar no Final**
+
+```prolog
+adicionarFinal(E,[],[E]).
+adicionarFinal(E, [X|R], [X|W]) :- adicionarFinal(E,R,W).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a lista está vazia, o resultado é uma lista com o elemento a ser adicionado (`E`).
+  - Caso contrário, o primeiro elemento da lista (`X`) é mantido na cabeça da lista resultante (`LR`), e a função é chamada recursivamente com o restante da lista (`R`).
+
+---
+
+**Questão 6: Inverter**
+
+```prolog
+inverter([],[]) :- !.
+inverter([X|R],T) :- inverter(R,W), adicionarFinal(X,W,T),!.
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a lista está vazia, o resultado é uma lista vazia.
+  - Para inverter uma lista não vazia, o último elemento (`X`) é retirado da lista e adicionado no final do resultado da inversão do restante da lista (`R`).
+
+---
+
+**Questão 7: Inverter Lista Genérica**
+
+```prolog
+inverterLG(L,Linv) :- inv3(L,[],Linv).
+
+inv3([],A,A).
+inv3([X|R],A,LI) :- is_list(X),inv3(X,[],XI),inv3(R,[XI|A],LI),!.
+inv3([X|R],A,LI) :- inv3(R,[X|A],LI).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a lista (`LG`) está vazia, o resultado é a lista acumulada (`A`).
+  - Se o primeiro elemento da lista (`X`) é uma lista, ela é invertida e colocada na lista acumulada (`A`), enquanto a recursão continua com o restante da lista.
+  - Se o primeiro elemento da lista não é uma lista, ele é colocado na cabeça da lista acumulada (`A`) e a recursão continua.
+
+---
+
+**Questão 8: Parear**
+
+```prolog
+parear(_,[],[]).
+parear(E,[X|R],[[E,X]|W]) :- parear(E,R,W).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a segunda lista (`L`) está vazia, o resultado é uma lista vazia.
+  - Caso contrário, o par formado pelo primeiro elemento (`E`) e o primeiro elemento da segunda lista (`X`) é colocado na cabeça da lista resultante (`LL`), e a recursão continua com o restante da segunda lista.
+
+---
+
+**Questão 9: Pares Não Ordenados**
+
+```prolog
+pares([],[]).
+pares([_],[]).
+pares([X,Y|R],[[X,Y]|LL]) :-
+     parear(X,R,L1),parear(Y,R,L2),pares(R,L3),concatenar([L1,L2,L3],LL).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a lista tem menos de dois elementos, o resultado é uma lista vazia.
+  - Caso contrário, a função `parear` é usada para criar pares com o primeiro e o segundo elemento da lista, e a recursão continua com o restante da lista.
+
+---
+
+**Questão 10: Permutar**
+
+```prolog
+permutar([],[]).
+permutar(List,[H|Perm]):- remova(H,List,Rest),permutar(Rest,Perm).
+
+remova(X,[X|T],T).
+remova(X,[H|T],[H|NT]):- remova(X,T,NT).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que quando a lista a ser permutada está vazia, o resultado é uma lista vazia.
+  - Caso contr
+
+ário, o primeiro elemento (`H`) é removido da lista original (`List`), e recursivamente é permutado o restante (`Rest`) da lista original, resultando em uma lista de permutações (`Perm`).
+
+---
+
+**Questão 11: Conjunto (Sem Elementos Repetidos)**
+
+```prolog
+conjunto([]).
+conjunto([X|R]) :- \+ member(X,R), conjunto(R).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que uma lista vazia é um conjunto.
+  - Para ser um conjunto, nenhum elemento (`X`) pode ser membro do restante da lista (`R`). Isso é verificado usando `member` e negando a condição.
+
+---
+
+**Questão 12: Prefixo**
+
+```prolog
+prefixo([],_).
+prefixo([X|R1],[X|R2]) :- prefixo(R1,R2).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que uma lista vazia é prefixo de qualquer lista (`_`).
+  - Para ser prefixo, os primeiros elementos de ambas as listas (`X`) devem ser iguais, e a recursão continua com o restante das listas.
+
+---
+
+**Questão 13: Subsequência**
+
+```prolog
+subsequencia([],_) :- !.
+subsequencia(L1,L2) :- prefixo(L1,L2).
+subsequencia(L1,[_|R]) :- subsequencia(L1,R).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que uma lista vazia é subsequência de qualquer lista (`_`).
+  - Uma lista (`L1`) é subsequência de outra (`L2`) se for prefixo dela, ou se for subsequência do restante da lista (`R`).
+
+---
+
+**Questão 14: Mescle**
+
+```prolog
+mescle([],L2,L2) :- !.
+mescle(L1,[],L1) :- !.
+mescle([E1|R1], [E2|R2], [E1|W]) :- E1 =< E2, mescle(R1, [E2|R2], W),!.
+mescle([E1|R1], [E2|R2], [E2|W]) :- mescle([E1|R1], R2, W).
+```
+
+- **Padrão de raciocínio**:
+  - A base da recursão é que se uma das listas está vazia, o resultado é a outra lista.
+  - Se o primeiro elemento de `L1` é menor ou igual ao primeiro elemento de `L2`, ele é colocado na cabeça da lista resultante (`W`), e a função é chamada recursivamente com o restante de `L1` e `L2`.
+  - Caso contrário, o primeiro elemento de `L2` é colocado na cabeça da lista resultante (`W`), e a função é chamada recursivamente com `L1` e o restante de `L2`.
+
+---
+
+**Questão 15: Mesclar (Merge Sort)**
+
+```prolog
+divide([],[],[]) :- !.
+divide([E],[E],[]) :- !.
+divide([E1,E2|R], [E1|R1], [E2|R2]) :- divide(R,R1,R2).
+
+mergesort([],[]) :- !.
+mergesort([E],[E]) :- !.
+mergesort(L,LO) :- divide(L,L1,L2),
+                   mergesort(L1,LO1),
+                   mergesort(L2,LO2),
+                   mescle(LO1,LO2,LO).
+```
+
+- **Padrão de raciocínio**:
+  - A função `divide` divide uma lista (`L`) em duas listas (`L1` e `L2`) de tamanhos similares.
+  - O algoritmo de merge sort é baseado na divisão da lista em metades, a aplicação do merge sort nessas metades, e finalmente, a mesclagem (`mescle`) das listas ordenadas.
+
+---
+
+**Questão 16: Mesclar (Merge Sort) Versão 2**
+
+```prolog
+mescle2([],L2,_,L2) :- !.
+mescle2(L1,[],_,L1) :- !.
+mescle2([E1|R1], [E2|R2], FC, [E1|W]) :- call(FC,E1,E2), mescle2(R1, [E2|R2], FC, W),!.
+mescle2([E1|R1], [E2|R2], FC , [E2|W]) :- mescle2([E1|R1], R2, FC, W).
+```
+
+- **Padrão de raciocínio**:
+  - Esta versão da função `mescle` tem uma adição de um parâmetro chamado `FC`, que representa a função de comparação utilizada para determinar a ordem dos elementos.
+
+---
+
+**Questão 17: Mesclar (Merge Sort) Versão 3**
+
+```prolog
+mergesort3(L,LO) :- mergesort3(L,=<,identidade,LO).
+
+identidade(X,X).
+
+mergesort3([],_,_,[]) :- !.
+mergesort3([E],_,_,[E]) :- !.
+mergesort3(L,FC,CC,LO) :- divide(L,L1,L2),
+                          mergesort3(L1,FC,CC,LO1),
+                          mergesort3(L2,FC,CC,LO2),
+                          mescle3(LO1,LO2,FC,CC,LO).
+```
+
+- **Padrão de raciocínio**:
+  - Esta versão da função `mergesort` é mais generalizada e aceita três argumentos adicionais: uma função de comparação (`FC`), uma função de comparação de chaves (`CC`), e uma função para extrair a chave de comparação dos elementos (`Ch`).
+
+---
+
+**Questão 18: Merge Sort com Versões Curtas e Valores Padrão**
+
+```prolog
+mergesort2(L,LO) :- mergesort3(L,=<,identidade,LO).
+```
+
+- **Padrão de raciocínio**:
+  - Esta versão da função `mergesort` chama a versão mais generalizada `mergesort3` com os seguintes valores padrão: função de comparação (`=<`), função de comparação de chaves (`identidade`). Esses valores padrão foram definidos previamente nas funções.
+
+---
+
+**Observações Gerais**:
+
+- A base do raciocínio em Prolog geralmente envolve casamento de padrões (pattern matching) e recursão. Muitas vezes, é importante identificar os casos base e como a recursão é utilizada para resolver problemas mais complexos.
+
+- As funções auxiliares como `remova`,
+
+ `is_list`, `call`, `concatenar`, entre outras, são frequentemente utilizadas para auxiliar na implementação das funções principais. É importante entender como essas funções funcionam e onde elas são aplicadas.
+
+Lembre-se de que Prolog é uma linguagem declarativa e a execução é baseada em inferência de fatos e regras, e não em execução sequencial de comandos como em linguagens imperativas. Portanto, entender a lógica de cada função é crucial para compreender como o código opera. Boa sorte na sua prova!
