@@ -1,0 +1,47 @@
+Prolog é uma linguagem de programação lógica e, como tal, possui uma série de funções e predicados que são frequentemente usados para auxiliar na resolução de problemas. Algumas das funções e predicados comuns em Prolog incluem:
+
+    is/2: Verifica se dois termos são unificáveis. Por exemplo, X is 3 + 2 unifica X com o valor 5.
+
+    length/2: Determina o comprimento de uma lista.
+
+    Exemplo: length([a, b, c], Len) unifica Len com 3.
+
+    member/2: Verifica se um elemento está presente em uma lista.
+
+    Exemplo: member(a, [a, b, c]) é verdadeiro.
+
+    append/3: Concatena listas.
+
+    Exemplo: append([a, b], [c, d], Result) unifica Result com [a, b, c, d].
+
+    nth0/3 e nth1/3: Retorna o elemento na n-ésima posição de uma lista (começando de 0 ou 1, respectivamente).
+
+    Exemplo: nth0(1, [a, b, c], Elem) unifica Elem com b.
+
+    select/3: Remove a primeira ocorrência de um elemento em uma lista, retornando o restante da lista.
+
+    Exemplo: select(a, [a, b, c], Rest) unifica Rest com [b, c].
+
+    sort/2: Ordena uma lista.
+
+    Exemplo: sort([3, 1, 2], Sorted) unifica Sorted com [1, 2, 3].
+
+    reverse/2: Inverte uma lista.
+
+    Exemplo: reverse([a, b, c], Reversed) unifica Reversed com [c, b, a].
+
+    flatten/2: Transforma uma lista de listas em uma lista única.
+
+    Exemplo: flatten([[a, b], [c, d]], Flat) unifica Flat com [a, b, c, d].
+
+    not/1 ou +/1: Realiza a negação lógica de uma cláusula.
+
+Exemplo: \+ member(a, [b, c]) é verdadeiro.
+
+    findall/3: Encontra todas as instâncias de um termo que satisfaçam um predicado.
+
+    Exemplo: findall(X, (member(X, [1, 2, 3]), X > 1), Result) unifica Result com [2, 3].
+
+    bagof/3 e setof/3: Coleta soluções para um predicado com variáveis existenciais.
+
+    Exemplo: bagof(X, member(X, [1, 2, 3]), Result) unifica Result com [1, 2, 3].
