@@ -1,0 +1,39 @@
+Instalando o Castalia e o Omnet
+
+https://github.com/boulis/Castalia
+
+https://omnetpp.org/download-items/omnetpp/omnetpp-46
+
+Preparando o ambiente
+
+cd ~/
+
+mkdir Castalia
+
+Descompactar o castalia e o Omnet nesta pasta
+
+prepara o ambiente usando os comandos:
+sudo apt update && sudo apt upgrade -y
+
+sudo apt-get install build-essential gcc g++ bison flex perl python python3 qt5-default libqt5opengl5-dev tcl-dev tk-dev libxml2-dev zlib1g-dev default-jre doxygen graphviz
+
+
+sudo apt install curl
+
+cd Castalia/omnetpp-4.6/
+
+sudo su
+
+export PATH=$PATH:~/Castalia/omnetpp-4.6/bin
+export LD_LIBRARY_PATH=~/Castalia/omnetpp-4.6/lib
+export PATH=$PATH:/home/reynan/Castalia/omnetpp-4.6/bin
+
+NO_TCL=1 ./configure
+make
+
+Já dentro da pasta do Castalia/Castalia
+
+sudo chmod +x compilar.sh
+
+sudo chmod +x compilarw.sh
+
