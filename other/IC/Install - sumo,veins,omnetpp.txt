@@ -1,0 +1,33 @@
+https://veins.car2x.org/tutorial/
+
+---------------------- SUMO 1.8.0 ----------------------
+download: https://github.com/eclipse-sumo/sumo/tags?after=v1_10_0
+
+$ sudo apt update && sudo apt upgrade
+$ sudo apt-get install sumo sumo-doc sumo-tools
+$ sumo --version
+
+
+---------------------- OMNETPP 5.6.2 ----------------------
+download: https://omnetpp.org/download/old.html
+
+$ sudo apt update && sudo apt upgrade -y
+$ sudo apt-get install build-essential gcc g++ bison flex perl python python3 qt5-default libqt5opengl5-dev tcl-dev tk-dev libxml2-dev zlib1g-dev default-jre doxygen graphviz
+$ sudo apt-get install openmpi-bin libopenmpi-dev
+$ sudo apt-get install libpcap-dev
+$ sudo apt-get install openscenegraph-plugin-osgearth libosgearth-dev
+$ . setenv
+$ gedit ~/.bashrc
+
+export PATH=$HOME/omnetpp-5.6.2/bin:$PATH
+export PATH=$/home/reynan/Veins/omnetpp-5.6.2/bin:$PATH
+export PATH=$PATH:/home/reynan/Veins/omnetpp-5.6.2/bin
+
+$ ./configure
+$ make 
+$ omnetpp
+
+---------------------- VEINS 5.2 ----------------------
+download: https://veins.car2x.org/download/
+
+$ sudo apt update && sudo apt upgrade
