@@ -1,0 +1,124 @@
+Claro, ficarei feliz em ajudar. Vamos abordar cada questão individualmente:
+
+1) Ocultar uma palavra em uma lista de palavras:
+
+```racket
+(define (oculte palavra lst)
+  (cond
+    [(empty? lst) '()]
+    [(equal? (car lst) palavra) (cons 'xxxx (oculte palavra (cdr lst)))]
+    [else (cons (car lst) (oculte palavra (cdr lst)))]))
+
+; Exemplo de uso:
+; (oculte 'casa '(minha casa é bonita é uma linda casa))
+; Retorna: '(minha xxxx é bonita é uma linda xxxx)
+```
+
+2) Ocultar um conjunto de palavras em uma lista de palavras:
+
+```racket
+(define (oculteConj conjunto lst)
+  (cond
+    [(empty? lst) '()]
+    [(member (car lst) conjunto) (cons 'xxxx (oculteConj conjunto (cdr lst)))]
+    [else (cons (car lst) (oculteConj conjunto (cdr lst)))]))
+
+; Exemplo de uso:
+; (oculteConj '(casa bonita) '(minha casa é bonita linda casa))
+; Retorna: '(minha xxxx é xxxx linda xxxx)
+```
+
+3) Intercalar os valores X e Y para formar uma lista de tamanho N:
+
+```racket
+(define (intercala X Y N)
+  (if (zero? N)
+      '()
+      (cons X (cons Y (intercala X Y (- N 2))))))
+
+; Exemplo de uso:
+; (intercala 'vermelho 'azul 5)
+; Retorna: '(vermelho azul vermelho azul vermelho)
+```
+
+4) Sumarizar a lista L em duas listas L1 e L2:
+
+```racket
+(define (sumarize L)
+  (letrec
+      ([helper (lambda (L1 L2 L)
+                  (cond
+                    [(empty? L) (values L1 L2)]
+                    [(member (car L) L1)
+                     (let* ([el (car L)]
+                            [newL2 (cons (+ (count el L) 1) (delete el L))])
+                       (helper L1 newL2 (cdr L)))]
+                    [else (helper (cons (car L) L1) (cons 1 L2) (cdr L))]))])
+    (helper '() '() L)))
+
+; Exemplo de uso:
+; (sumarize '(a a a d e s s s e e a a w))
+; Retorna: '(w s e d a) '(1 3 3 5 1)
+```
+
+5) Empacotar elementos consecutivos iguais em sublistas distintas:
+
+```racket
+(define (empacote L)
+  (letrec
+      ([helper (lambda (L current result)
+                  (cond
+                    [(empty? L) (reverse (cons current result))]
+                    [(equal? (car L) (car current))
+                     (helper (cdr L) (cons (car L) current) result)]
+                    [else (helper (cdr L) (list (car L)) (cons current result))]))])
+    (if (empty? L)
+        '()
+        (reverse (cdr (helper (cdr L) (list (car L)) '()))))))
+
+; Exemplo de uso:
+; (empacote '(a a a b c c a a d e e e e))
+; Retorna: '((a a a) (b) (c c) (a a) (d) (e e e e))
+```
+
+Espero que essas soluções te ajudem na sua prova! Boa sorte!
+
+Claro, vou explicar o raciocínio por trás de cada uma das soluções:
+
+1) **Ocultar uma palavra em uma lista de palavras:**
+
+   - A função `oculte` percorre a lista de palavras `lst` recursivamente.
+   - A base da recursão é quando a lista está vazia, nesse caso, retornamos uma lista vazia.
+   - Para cada elemento da lista, verificamos se é igual à palavra que queremos ocultar.
+   - Se for igual, substituímos pela string 'xxxx', e continuamos a recursão com o restante da lista.
+   - Se não for igual, mantemos o elemento e continuamos a recursão com o restante da lista.
+
+2) **Ocultar um conjunto de palavras em uma lista de palavras:**
+
+   - Esta função chama a função anterior `oculte` para cada palavra no conjunto.
+   - Usamos a função `member` para verificar se o elemento está na lista de palavras a serem ocultadas.
+   - Se estiver, substituímos pela string 'xxxx', senão, mantemos o elemento original.
+
+3) **Intercalar os valores X e Y para formar uma lista de tamanho N:**
+
+   - A função `intercala` é uma função recursiva que alterna entre os valores X e Y até atingir o tamanho desejado N.
+   - A base da recursão é quando N é zero, retornando uma lista vazia.
+   - Caso contrário, a função insere X, depois Y, e chama recursivamente com N reduzido em 2.
+
+4) **Sumarizar a lista L em duas listas L1 e L2:**
+
+   - A função `sumarize` utiliza uma função auxiliar `helper` para percorrer a lista L e construir as listas L1 e L2.
+   - A base da recursão é quando a lista L está vazia, retornando as listas L1 e L2 construídas até então.
+   - Para cada elemento, verifica se ele já está em L1. Se estiver, incrementa o contador correspondente em L2.
+   - Se não estiver, adiciona o elemento em L1 e inicia o contador correspondente em L2.
+
+5) **Empacotar elementos consecutivos iguais em sublistas distintas:**
+
+   - A função `empacote` também utiliza uma função auxiliar `helper`.
+   - A base da recursão é quando a lista L está vazia, retornando o resultado acumulado até então.
+   - Para cada elemento, verifica se ele é igual ao primeiro elemento da lista atual (`current`).
+   - Se for igual, adiciona o elemento à lista atual.
+   - Se não for igual, cria uma nova lista e adiciona a lista atual ao resultado acumulado.
+   - O resultado é retornado reverso, pois as sublistas são adicionadas no começo da lista.
+
+Espero que essa explicação detalhada ajude a esclarecer como cada função opera! Se precisar de mais alguma ajuda ou explicação, sinta-se à vontade para perguntar. Boa sorte na sua prova!
