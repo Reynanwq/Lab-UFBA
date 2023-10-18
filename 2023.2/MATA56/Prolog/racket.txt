@@ -141,3 +141,226 @@ APPEND, REVERSE, APPLY E ETC
 
 
 5)
+
+
+----------------------------
+MINHAS RESOLUÇÕES DA LITSA
+
+#lang racket
+
+#lang racket
+
+;concatenar duas listas
+(define (concatenar1 l1 l2)
+  (if(null? l1)
+     l2
+  (cons (car l1) (concatenar1 (cdr l1) l2))))
+
+;concatenar duas listas, mas a 2° na frente da 1°
+(define (concatenarInv l1 l2)
+  (if (null? l2)
+      l1
+      (cons (car l2) (concatenarInv l1 (cdr l2)))))
+
+;concatenar uma lista que tem listas dentro delas
+(define (concatenar2 lista)
+  (if (null? lista)
+      '()
+      (concatenar1 (car lista) (concatenar2 (cdr lista)))))
+
+
+;juntar duas listas intercalando seus elementos
+(define (juntar l1 l2)
+  (cond
+    [(null? l1) l2]
+    [(null? l2) l1]
+    [else (cons (car l1) (cons (car l2)
+                               (juntar (cdr l1) (cdr l2))))]))
+
+; adicionar um elemento ao final de uma lista
+(define (adicionarFinal e l)
+  (if(null? l)
+    (list e)
+  (cons(car l) (adicionarFinal e (cdr l)))))
+
+
+;escreva uma função par inverter uma lista
+(define (inverter l)
+  (if (null? l)
+      '()
+  (concatenar1 (inverter (cdr l)) (list (car l)))))
+    
+;escreva uma função para intercalar uma lista de dois elementos (e1 e e2) de tamanho N
+(define (intercala n e1 e2)
+  (if(= n 0)
+     '()
+   (if (= n 1)
+       (list e1)
+       (cons e1 (cons e2 (intercala(- n 2) e1 e2))))))
+;
+
+
+---------------------- 
+RESOLUÇÕES DO MATHEUS
+
+#lang racket
+
+; Questão 1
+(define (concatenar1 l1 l2)
+  (cond
+    [(null? l1) l2]
+    [else (cons (first l1) (concatenar1 (rest l1) l2))]
+  )
+)
+
+; Questão 2
+(define (concatenarInv l1 l2)
+  (cond
+    [(null? l1) l2]
+    [else (cons (first l2) (concatenar1 (rest l2) l1))]
+  )
+)
+
+; Questão 3
+(define (concatenar2 l1)
+  (cond
+    [(null? l1) '()]
+    [(list? (first l1))
+      (concatenar1 
+        (concatenar2 (first l1)) 
+        (concatenar2 (rest l1))
+      )
+    ]
+    [else (cons (first l1) (concatenar2 (rest l1)))]
+  )
+)
+
+; Questão 3-v
+(define (concatenar3 . listas)
+  (define (rec l)
+    (cond
+      [(null? l) '()]
+      [else (concatenar1 (first l) (rec (rest l)))]
+    )  
+  )
+  (rec listas)
+)
+
+; Questão 4
+(define (juntar l1 l2)
+  (cond
+    [(null? l1) l2]
+    [else 
+      (cons 
+        (first l1)
+        (cons (first l2) (juntar (rest l1) (rest l2)))
+      )
+    ]
+  )
+)
+
+; Questão 5
+(define (add e l)
+  (if (null? l) 
+    (list e)
+    (cons (first l) (add e (rest l)))
+  )
+) 
+
+; Questão 6
+(define (inverter l)
+  (if (null? l)
+    '()
+    (concatenar1 (inverter (rest l)) (list (first l)))
+  )
+)
+
+; Questão 7
+(define (intercala n e1 e2)
+  (if (= n 0)
+    '()
+    (if (= n 1)
+      (list e1)
+      (cons e1 (cons e2 (intercala (- n 2) e1 e2)))
+    )
+  )
+)
+
+; Questão 8
+(define (getByIndex n lista)
+  (cond
+    [(= n 0) (car lista)]
+    [else (getByIndex (- n 1) (cdr lista))]
+  )
+)
+(define (intercalaMultipleAux n chars [acc 0])
+  (cond
+    [(= acc n) '()]
+    [else (cons 
+      (getByIndex (remainder acc (length chars)) chars) 
+      (intercalaMultipleAux n chars (+ acc 1))
+    )]
+  )
+)
+(define (intercalaMultiple n . chars)
+  (intercalaMultipleAux n chars)
+)
+
+; Questão 9
+(define (parear e l)
+  (if (null? l)
+    '()
+    (cons (list e (first l)) (parear e (rest l)))
+  )  
+)
+
+; Questão 10
+(define (pares l)
+  (if (null? l)
+    '()
+    (concatenar1 
+      (parear (car l) (cdr l))
+      (pares (cdr l))
+    )
+  )
+)
+
+; Questão 12
+(define (equal e1 l)
+  (if (null? l)
+    #f
+    (if (eq? e1 (first l)) 
+      #t 
+      (equal e1 (rest l))
+    )
+  ) 
+)
+(define (conjunto? l)
+  (if (null? l) 
+    #t
+    (if (equal (first l) (rest l))
+      #f
+      (conjunto? (rest l))
+    )
+  )
+)
+
+; Questão 13
+(define (prefixo? l1 l2)
+  (cond
+    [(null? l1) #t]
+    [(null? l2) #f]
+    [(equal? (car l1) (car l2)) (prefixo? (cdr l1) (cdr l2))]
+    [else #f]
+  )
+)
+
+; Questão 14
+(define (subsequencia? l1 l2)
+  (cond
+    [(null? l1) #t]
+    [(null? l2) #f]
+    [(prefixo? l1 l2) #t]
+    [else (subsequencia? l1 (cdr l2))]
+  )
+)
