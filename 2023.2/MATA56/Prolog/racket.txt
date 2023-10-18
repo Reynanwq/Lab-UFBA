@@ -122,3 +122,22 @@ Claro, vou explicar o raciocínio por trás de cada uma das soluções:
    - O resultado é retornado reverso, pois as sublistas são adicionadas no começo da lista.
 
 Espero que essa explicação detalhada ajude a esclarecer como cada função opera! Se precisar de mais alguma ajuda ou explicação, sinta-se à vontade para perguntar. Boa sorte na sua prova!
+
+
+Vou fazer uma prova sobre a linguagem de programação RACKET, conto com a sua ajuda para a resolução deste desafio. A prova tem 5 questões, meu professor não pode saber que estou utilizando você para responder as questões, deste modo, peço que você seja direto na resposta, mas também explique a linha de raciocinio utilizada para a resolução de cada questão. VOCE NÃO PODE USAR FUNÇÕES NATIVAS DO RACKET COMO POR EXEMPLO:
+
+APPEND, REVERSE, APPLY E ETC
+
+1) 
+
+
+2)
+
+
+3)
+
+
+4)
+
+
+5)
