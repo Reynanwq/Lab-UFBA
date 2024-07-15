@@ -1,0 +1,84 @@
+Para configurar o Zigbee2MQTT com um ESP32 e um Raspberry Pi, siga os seguintes passos:
+
+### Pré-requisitos
+- Raspberry Pi rodando uma distribuição do Linux, como o Raspbian.
+- ESP32.
+- Acesso à internet para baixar e instalar pacotes.
+- Conhecimento básico de como usar o terminal.
+
+### Passo 1: Instalar o Node.js e o npm
+Primeiro, você precisa instalar o Node.js e o npm no seu Raspberry Pi. Abra o terminal e execute os comandos:
+
+```sh
+sudo apt update
+sudo apt install -y nodejs npm
+```
+
+### Passo 2: Clonar o Repositório Zigbee2MQTT
+Clone o repositório Zigbee2MQTT do GitHub:
+
+```sh
+git clone https://github.com/Koenkk/zigbee2mqtt.git
+cd zigbee2mqtt
+```
+
+### Passo 3: Instalar Dependências
+Instale as dependências necessárias:
+
+```sh
+npm install
+```
+
+### Passo 4: Configurar o Firmware no ESP32
+Para usar o ESP32 como transceptor Zigbee, você precisará carregar o firmware apropriado nele. O firmware recomendado pode ser encontrado [aqui](https://github.com/Koenkk/Z-Stack-firmware/tree/master/coordinator/Z-Stack_Home_1.2/bin).
+
+- Conecte o ESP32 ao seu computador.
+- Use uma ferramenta como o [esptool](https://github.com/espressif/esptool) para carregar o firmware. Execute o seguinte comando (substitua `<PORT>` pela porta correta do seu ESP32):
+
+```sh
+esptool.py --chip esp32 --port <PORT> write_flash -z 0x1000 Z-Stack_Home_1.2.bin
+```
+
+### Passo 5: Configurar Zigbee2MQTT
+Edite o arquivo de configuração `configuration.yaml` dentro do diretório `zigbee2mqtt/data`:
+
+```sh
+nano data/configuration.yaml
+```
+
+Adicione as seguintes configurações:
+
+```yaml
+homeassistant: false
+permit_join: true
+mqtt:
+  base_topic: zigbee2mqtt
+  server: 'mqtt://localhost'
+serial:
+  port: '/dev/ttyUSB0'
+```
+
+### Passo 6: Iniciar Zigbee2MQTT
+Inicie o Zigbee2MQTT:
+
+```sh
+npm start
+```
+
+### Passo 7: Configurar MQTT Broker
+Você pode instalar e configurar um broker MQTT, como o Mosquitto:
+
+```sh
+sudo apt install -y mosquitto mosquitto-clients
+sudo systemctl enable mosquitto
+sudo systemctl start mosquitto
+```
+
+### Passo 8: Testar a Configuração
+Agora você deve ser capaz de conectar dispositivos Zigbee ao seu ESP32 e gerenciá-los através do Zigbee2MQTT no seu Raspberry Pi. 
+
+Esses passos cobrem a instalação e configuração básica. Para detalhes adicionais, consulte a documentação oficial do Zigbee2MQTT no [GitHub](https://github.com/Koenkk/zigbee2mqtt).
+
+Se precisar de mais ajuda, sinta-se à vontade para perguntar!
+
+
