@@ -1,0 +1,20 @@
+APRESENTAÇÃO DO REYNAN
+
+O projeto propõe o desenvolvimento de um sistema de monitoramento de saúde,
+centrado na visualização e compartilhamento de dados adquiridos por sensores de uma
+Rede de Área Corporal sem Fio, baseado no protocolo DSBS-HT, a concepção deste sistema requer uma abordagem, que combina conhecimentos de desenvolvimento de software, projeto de interfaces, integração de sistemas e redes de comunicação.
+
+Dentre as principais etapas até o momento, temos a implementação preeliminar de uma aplicação de integração baseada no protocolo MQTT, para auxiliar na disponibilização para os demais sistemas, as informações obtidas pelo coordenador da WBAN.
+Basicamente, O MQTT opera com base no modelo de publicação/assinatura. Onde temos um "publisher" enviando mensagens para um "broker", que, por sua vez, as distribui para todos os "subscribers" interessados nessas mensagens, baseado em tópicos de interesse. Então aqui temos os sensores, que enviam os dados para o Nó coordenador, que nós setamos com um gateway uqe desempenha um papel crucial em garantir que os dados dos sensores sejam capturados, formatados corretamente e disponibilizados para os outros sistemas através do broker, ou seja, ele acessa o broker e publica os dados em um tópico, e a API, que estará inscrito no tópico como um subscriber. Trata, os dados armazenando-os em uma Central de Monitoramento e enviando para a aplicação. Na aplicação, Para obter dados da API, o componente faz uma requisicão HTTP utilizando a biblioteca Axios. O Axios é uma biblioteca baseada em Promises, usada para fazer requisições HTTP, que como nós sabemos, é um protocolo para copmunicação entre servidor e navegador. A API retorna os dados no formato JSON(javascript object notacion). 
+
+Dentre as ferramentas utilizadas, temos: 
+Visual Studio Code: No projeto, utilizei-o para executar as aplicações web e mobile, ele possui suporte a uma ampla gama de linguagens e extensões, facilitando o desenvolvimento e a manutenção do código.
+Java Spring Boot: Eu utilizei pois é um framework que simplifica o desenvolvimento de aplicativos Java, oferece um conjunto robusto de ferramentas e bibliotecas.
+MySQL: Sistema de gerenciamento de banco de dados relacional.
+Mosquitto: Um servidor MQTT de código aberto, adequado para implementar comunicações de mensagens assíncronas entre dispositivos IoT.
+
+Aqui temos a versão piloto do sistema, coloquei uma imagem do banco de dados e da aplicação, onde, na aplicação exibimos, o nome do tópico especifico em que estamos inscrito, a mensagem e a data/hora em que ela foi recebida.
+
+Já no banco de dados, além da data/hora, também adiciono outro um identificador para cada mensagem. Que pode ser usado para rastrear a mensagem dentro do sistema. 
+
+Então, esta aplicação, pode ser tanto um professor que está olhando os dados que estão sendo coletados nos testes, quanto um médico que está olhando os dados do paciente Reynan.
